@@ -54,7 +54,7 @@ export default function Hero() {
     const [currentImg, setCurrentImg] = useState(0);
     const [tenure, setTenure] = useState("");
     const [isVisible, setIsVisible] = useState(false);
-    const images = ["/krish.jpeg", "/krish1.jpg"];
+    const images = ["/krish.jpeg", "/krish.jpeg"];
 
     useEffect(() => {
         initParticlesEngine(async (engine) => {
@@ -196,12 +196,13 @@ export default function Hero() {
                             <div className="relative h-full w-full rounded-[2.5rem] overflow-hidden border-8 border-white shadow-2xl shadow-slate-900/10 bg-linear-to-br from-slate-50 to-white">
                                 {images.map((img, idx) => (
                                     <img
-                                        key={img}
+                                        // FIX: Changed key={img} to key={idx} because image paths are identical
+                                        key={idx}
                                         src={img}
                                         alt={`Krishnendu Ghosal ${idx + 1}`}
                                         className={`absolute inset-0 object-cover w-full h-full transition-all duration-1000 ease-in-out ${currentImg === idx
-                                                ? "opacity-100 translate-y-0 scale-100"
-                                                : "opacity-0 translate-y-8 scale-105"
+                                            ? "opacity-100 translate-y-0 scale-100"
+                                            : "opacity-0 translate-y-8 scale-105"
                                             }`}
                                     />
                                 ))}
@@ -213,10 +214,11 @@ export default function Hero() {
                                 <div className="absolute bottom-6 right-6 flex gap-2 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg">
                                     {images.map((_, idx) => (
                                         <div
+                                            // This one was already using idx, which is correct!
                                             key={idx}
                                             className={`h-1.5 rounded-full transition-all duration-500 ${currentImg === idx
-                                                    ? "w-8 bg-indigo-600"
-                                                    : "w-1.5 bg-slate-300"
+                                                ? "w-8 bg-indigo-600"
+                                                : "w-1.5 bg-slate-300"
                                                 }`}
                                         />
                                     ))}

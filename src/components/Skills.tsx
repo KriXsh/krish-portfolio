@@ -25,7 +25,7 @@ import { VscTerminalBash } from "react-icons/vsc";
 const skillCategories = [
     {
         title: "Web Tech",
-        icon: <Layout className="w-5 h-5 text-indigo-600" />,
+        icon: <Layout className="w-5 h-5 text-indigo-400" />,
         items: [
             { name: "Next.js", icon: <SiNextdotjs /> },
             { name: "React.js", icon: <SiReact /> },
@@ -39,7 +39,7 @@ const skillCategories = [
     },
     {
         title: "AI & ML (Generative & Applied)",
-        icon: <BrainCircuit className="w-5 h-5 text-indigo-600" />,
+        icon: <BrainCircuit className="w-5 h-5 text-purple-400" />,
         items: [
             { name: "LLM (Gemini/GPT-4)", icon: <SiOpenai /> },
             { name: "Vector DBs (Pinecone/Milvus)", icon: <Database className="w-3.5 h-3.5" /> },
@@ -51,7 +51,7 @@ const skillCategories = [
     },
     {
         title: "Cloud & DevOps",
-        icon: <Cloud className="w-5 h-5 text-indigo-600" />,
+        icon: <Cloud className="w-5 h-5 text-cyan-400" />,
         items: [
             { name: "AWS", icon: <SiAmazonwebservices /> },
             { name: "ElasticCloud", icon: <SiElasticsearch /> },
@@ -66,7 +66,7 @@ const skillCategories = [
     },
     {
         title: "Databases",
-        icon: <Database className="w-5 h-5 text-indigo-600" />,
+        icon: <Database className="w-5 h-5 text-emerald-400" />,
         items: [
             { name: "MongoDB", icon: <SiMongodb /> },
             { name: "Redis", icon: <SiRedis /> },
@@ -76,7 +76,7 @@ const skillCategories = [
     },
     {
         title: "Languages & OS",
-        icon: <Terminal className="w-5 h-5 text-indigo-600" />,
+        icon: <Terminal className="w-5 h-5 text-pink-400" />,
         items: [
             { name: "Python", icon: <SiPython /> },
             { name: "Bash", icon: <VscTerminalBash /> },
@@ -91,21 +91,21 @@ const skillCategories = [
 export default function Skills() {
     return (
         <section className="py-20">
-            <h2 className="text-sm font-bold text-indigo-600 uppercase tracking-[0.3em] mb-12">Technical Arsenal⚡</h2>
+            <h2 className="text-sm font-bold text-indigo-400 uppercase tracking-[0.3em] mb-12">Technical Arsenal⚡</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
                 {skillCategories.map((cat, i) => (
                     <div key={i} className="space-y-6">
-                        <div className="flex items-center gap-2.5 border-b border-slate-100 pb-3">
+                        <div className="flex items-center gap-2.5 border-b border-slate-800 pb-3">
                             {cat.icon}
-                            <h3 className="text-base font-bold text-slate-900 tracking-tight">{cat.title}</h3>
+                            <h3 className="text-base font-bold text-white tracking-tight">{cat.title}</h3>
                         </div>
                         <div className="flex flex-wrap gap-2">
                             {cat.items.map(skill => (
                                 <span
                                     key={skill.name}
-                                    className="flex items-center gap-2 px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-semibold rounded-lg hover:border-indigo-500 hover:text-indigo-600 transition-all hover:shadow-sm group cursor-default"
+                                    className="flex items-center gap-2 px-3 py-1.5 bg-slate-900/50 border border-slate-800 text-slate-400 text-xs font-semibold rounded-lg hover:border-indigo-500/50 hover:text-indigo-400 hover:bg-slate-800/50 transition-all hover:shadow-sm hover:shadow-indigo-500/20 group cursor-default"
                                 >
-                                    <span className="text-[15px] text-slate-400 group-hover:text-indigo-500 transition-colors">
+                                    <span className="text-[15px] text-slate-500 group-hover:text-indigo-400 transition-colors">
                                         {skill.icon}
                                     </span>
                                     {skill.name}

@@ -1,10 +1,10 @@
-
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
+import WhoAmI from "@/components/whoAmI";
 import Education from "@/components/Education";
 import Contact from "@/components/Contact";
 import Certifications from "@/components/Certifications";
@@ -14,15 +14,18 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white selection:bg-indigo-100 selection:text-indigo-900">
+    <main className="min-h-screen bg-slate-950 selection:bg-indigo-500/20 selection:text-indigo-300">
       <Navbar />
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 space-y-12 pb-20">
         <Hero />
-        <section id="experience" className="scroll-mt-24">
-          <Experience />
+        <section id="whoami" className="scroll-mt-24">
+          <WhoAmI />
         </section>
         <section id="skills" className="scroll-mt-24">
           <Skills />
+        </section>
+        <section id="experience" className="scroll-mt-24">
+          <Experience />
         </section>
         <section id="freelance" className="scroll-mt-24">
           <Freelance />
@@ -39,7 +42,6 @@ export default function Home() {
         <section id="support" className="scroll-mt-24 pb-12">
           <SupportSection />
         </section>
-
         <section id="contact" className="scroll-mt-24 pb-12">
           <Contact />
         </section>

@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   title: 'Krishnendu Ghosal | Software Engineer @ Ironbook AI',
   description: 'Full Stack Developer specialized in AI/ML, Cloud & DevOps. Experienced in building scalable systems with Kafka, Kubernetes, and React.',
   keywords: ['Full Stack Developer', 'DevOps Engineer', 'Ironbook AI', 'Next.js Portfolio', 'System Design'],
+  icons: {
+    icon: "/krish.jpeg",
+    apple: '/apple-icon.png',
+  },
 
 };
 
@@ -27,7 +31,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark bg-slate-950">
-      <link rel="icon" href={favicon.src} className="rounded-full " />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-950 text-slate-200`}
       >

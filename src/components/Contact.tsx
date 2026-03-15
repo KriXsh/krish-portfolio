@@ -29,11 +29,24 @@ export default function Contact() {
 
     return (
         <section id="contact" className="relative overflow-hidden rounded-[3rem] bg-slate-950 border border-slate-800">
-            {/* Background Video */}
-            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+            {/* Background Video — hidden on mobile to prevent blocking paint */}
+            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none hidden md:block">
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="none"
+                    className="w-full h-full object-cover"
+                >
                     <source src="https://ironbook-blogs.s3.ap-southeast-1.amazonaws.com/assests/website-assests/1536322-hd_1920_1080_30fps.mp4" type="video/mp4" />
                 </video>
+            </div>
+
+            {/* Static gradient fallback shown on mobile instead of video */}
+            <div className="absolute inset-0 md:hidden pointer-events-none">
+                <div className="absolute top-0 right-0 w-72 h-72 bg-indigo-600/10 rounded-full blur-[80px]" />
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-600/10 rounded-full blur-[80px]" />
             </div>
 
             <div className="relative z-10 p-8 md:p-16 lg:p-20">

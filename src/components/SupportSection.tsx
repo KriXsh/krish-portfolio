@@ -12,9 +12,13 @@ export default function SupportSection() {
         <section id="support" className="py-20 px-4">
             <div className="max-w-6xl mx-auto bg-linear-to-br from-slate-950 via-slate-900 to-indigo-950 rounded-[3.5rem] p-8 md:p-16 border border-slate-800 relative overflow-hidden group">
 
-                {/* Advanced Background Effects */}
-                <div className="absolute top-0 right-0 w-125 h-125 rounded-full blur-[120px] -mr-64 -mt-64 bg-indigo-600/10" style={{ animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite' }} />
-                <div className="absolute bottom-0 left-0 w-100 h-100 rounded-full blur-[100px] -ml-48 -mb-48 bg-purple-600/10" style={{ animation: 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite' }} />
+                {/*
+                  * MOBILE PERFORMANCE FIX:
+                  * — Replaced raw style={{ animation: '...' }} inline strings with Tailwind's animate-pulse.
+                  * — Hidden on mobile (hidden md:block) to avoid heavy blur on low-end GPUs.
+                */}
+                <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-[120px] -mr-64 -mt-64 bg-indigo-600/10 animate-pulse hidden md:block" />
+                <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-[100px] -ml-48 -mb-48 bg-purple-600/10 animate-pulse hidden md:block" />
 
                 <div className="relative z-10">
                     <div className="text-center mb-12">
@@ -30,7 +34,7 @@ export default function SupportSection() {
                     <div className="grid md:grid-cols-2 gap-8 items-stretch">
 
                         {/* GitHub Sponsors Card */}
-                        <div className="flex flex-col p-8 rounded-[2.5rem] bg-slate-900/30 border border-slate-800 backdrop-blur-md hover:bg-slate-900/50 hover:border-pink-500/30 transition-all duration-500 group/card">
+                        <div className="flex flex-col p-8 rounded-[2.5rem] bg-slate-900/30 border border-slate-800 backdrop-blur-sm hover:bg-slate-900/50 hover:border-pink-500/30 transition-all duration-500 group/card">
                             <div className="flex items-center gap-4 mb-6">
                                 <div className="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-400 border border-pink-500/30 group-hover/card:scale-110 transition-transform">
                                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" /></svg>
@@ -67,7 +71,7 @@ export default function SupportSection() {
                         </div>
 
                         {/* One-time Support Card */}
-                        <div className="flex flex-col p-8 rounded-[2.5rem] bg-slate-900/30 border border-indigo-500/30 backdrop-blur-md hover:border-indigo-500/50 hover:bg-slate-900/50 transition-all duration-500 group/card">
+                        <div className="flex flex-col p-8 rounded-[2.5rem] bg-slate-900/30 border border-indigo-500/30 backdrop-blur-sm hover:border-indigo-500/50 hover:bg-slate-900/50 transition-all duration-500 group/card">
                             <div className="flex items-center gap-4 mb-6">
                                 <div className="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 border border-indigo-500/30 group-hover/card:scale-110 transition-transform">
                                     <span className="text-2xl">☕</span>

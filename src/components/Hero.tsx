@@ -369,7 +369,7 @@ export default function Hero() {
                 {/* Open Source CTA Button - Fixed background extension */}
                 <div className={`mt-16 flex justify-center transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                     <a
-                        href="https://github.com/sponsors/KriXsh/dashboard/profile"
+                        href="https://github.com/sponsors/KriXsh"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group relative w-full max-w-4xl px-10 py-6 bg-slate-900/90 backdrop-blur-xl border-2 border-pink-500/30 rounded-4xl overflow-hidden transition-all duration-500 hover:border-pink-500/60 hover:shadow-2xl hover:shadow-pink-500/30 hover:scale-[1.02]"

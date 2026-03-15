@@ -7,7 +7,8 @@ import {
     CloudCog,
     ArrowRight,
     CheckCircle2,
-    Briefcase
+    Briefcase,
+    ExternalLink
 } from "lucide-react";
 
 const services = [
@@ -39,7 +40,7 @@ const services = [
 
 export default function Freelance() {
     return (
-        <section id="hire" className="py-20">
+        <section id="freelance" className="py-20">
             {/* Section Header */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
                 <div className="max-w-2xl">
@@ -54,11 +55,21 @@ export default function Freelance() {
                     </p>
                 </div>
 
-                <div className="hidden lg:block pb-2">
-                    <div className="flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/30 rounded-full text-emerald-400 text-xs font-bold uppercase tracking-widest animate-pulse">
-                        <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 pb-2">
+                    {/* Available badge */}
+                    <div className="flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/30 rounded-full text-emerald-400 text-xs font-bold uppercase tracking-widest">
+                        <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
                         Available for Projects
                     </div>
+
+                    {/* ✅ NEW: View Freelance Works Button */}
+                    <a
+                        href="#experience"
+                        className="flex items-center gap-2 px-4 py-2 bg-indigo-500/10 border border-indigo-500/30 rounded-full text-indigo-400 text-xs font-bold uppercase tracking-widest hover:bg-indigo-500/20 hover:border-indigo-500/50 transition-all duration-300 group"
+                    >
+                        View Freelance Works
+                        <ExternalLink className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </a>
                 </div>
             </div>
 
@@ -93,10 +104,10 @@ export default function Freelance() {
                 ))}
             </div>
 
-            {/* The "Hire Me" CTA Card */}
+            {/* Hire Me CTA Card */}
             <div className="relative overflow-hidden bg-slate-950 rounded-[3rem] p-8 md:p-12 border border-slate-800 shadow-2xl">
-                {/* Abstract Background Glow */}
-                <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-600/20 rounded-full blur-[100px] -mr-40 -mt-40 transition-transform group-hover:scale-110" />
+                {/* Background Glow — reduced blur on mobile */}
+                <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-600/20 rounded-full blur-[60px] md:blur-[100px] -mr-40 -mt-40" />
 
                 <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
                     <div className="text-center lg:text-left space-y-4">

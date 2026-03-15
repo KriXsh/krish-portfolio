@@ -46,21 +46,25 @@ export default function WhoAmI() {
     const [activeCard, setActiveCard] = useState<number | null>(null);
 
     useEffect(() => {
-        // Trigger entrance animation
         const timer = setTimeout(() => setIsVisible(true), 100);
         return () => clearTimeout(timer);
     }, []);
 
     return (
         <section className="relative py-24 overflow-hidden bg-linear-to-b from-slate-950 via-slate-900 to-slate-950">
-            {/* Animated Background Elements */}
-            <div className="absolute inset-0 opacity-30">
+            {/*
+              * MOBILE PERFORMANCE FIX:
+              * — Blur orbs are hidden on mobile (hidden md:block) — they're the #1 GPU killer on low-end phones.
+              * — Dot grid pattern removed on mobile (hidden md:block) — reduces paint complexity.
+              * — animate-pulse only runs on desktop where GPU can handle it.
+            */}
+            <div className="absolute inset-0 opacity-30 hidden md:block">
                 <div className="absolute top-20 left-10 w-72 h-72 bg-indigo-600/20 rounded-full blur-[100px] animate-pulse" />
                 <div className="absolute bottom-20 right-10 w-72 h-72 bg-purple-600/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
             </div>
 
-            {/* Dot Grid Pattern */}
-            <div className="absolute inset-0 opacity-[0.02]">
+            {/* Dot Grid Pattern — desktop only */}
+            <div className="absolute inset-0 opacity-[0.02] hidden md:block">
                 <div className="absolute inset-0" style={{
                     backgroundImage: 'radial-gradient(circle, #6366f1 1px, transparent 1px)',
                     backgroundSize: '40px 40px'
@@ -69,7 +73,7 @@ export default function WhoAmI() {
 
             <div className="relative z-10 max-w-7xl mx-auto px-6">
                 {/* Section Header */}
-                <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-black uppercase tracking-wider mb-6">
                         <Zap className="w-4 h-4" />
                         Introduction
@@ -87,10 +91,10 @@ export default function WhoAmI() {
                 {/* Main Content Grid */}
                 <div className="grid lg:grid-cols-2 gap-12 mb-16">
                     {/* Left: Story */}
-                    <div className={`transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-                        <div className="relative p-8 rounded-[2.5rem] bg-slate-900/50 backdrop-blur-xl border border-slate-800 overflow-hidden group hover:border-indigo-500/50 transition-all duration-500">
-                            {/* Animated shine effect */}
-                            <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                    <div className={`transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
+                        <div className="relative p-8 rounded-[2.5rem] bg-slate-900/50 backdrop-blur-sm border border-slate-800 overflow-hidden group hover:border-indigo-500/50 transition-all duration-500">
+                            {/* Shine effect — desktop only (expensive on mobile) */}
+                            <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 hidden md:block" />
 
                             <div className="relative z-10">
                                 <div className="flex items-center gap-3 mb-6">
@@ -138,16 +142,14 @@ export default function WhoAmI() {
                     </div>
 
                     {/* Right: Stats */}
-                    <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+                    <div className={`transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
                         <div className="grid grid-cols-2 gap-4 mb-6">
                             {stats.map((stat, idx) => (
                                 <div
                                     key={idx}
-                                    className="relative p-6 rounded-3xl bg-slate-900/50 backdrop-blur-xl border border-slate-800 overflow-hidden group hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1"
+                                    className="relative p-6 rounded-3xl bg-slate-900/50 border border-slate-800 overflow-hidden group hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1"
                                 >
-                                    {/* Gradient background on hover */}
-                                    <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
+                                    <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity hidden md:block" />
                                     <div className="relative z-10">
                                         <div className={`mb-3 ${stat.color}`}>
                                             {stat.icon}
@@ -160,7 +162,7 @@ export default function WhoAmI() {
                         </div>
 
                         {/* Philosophy Quote */}
-                        <div className="relative p-8 rounded-[2.5rem] bg-linear-to-br from-indigo-950/50 to-purple-950/50 backdrop-blur-xl border border-indigo-500/30 overflow-hidden">
+                        <div className="relative p-8 rounded-[2.5rem] bg-linear-to-br from-indigo-950/50 to-purple-950/50 border border-indigo-500/30 overflow-hidden">
                             <div className="absolute top-4 left-4 text-indigo-500/20 text-6xl font-black">"</div>
                             <div className="absolute bottom-4 right-4 text-indigo-500/20 text-6xl font-black rotate-180">"</div>
 
@@ -176,7 +178,7 @@ export default function WhoAmI() {
                 </div>
 
                 {/* Expertise Highlights */}
-                <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <div className={`transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                     <h3 className="text-3xl font-black text-white text-center mb-8">What I Bring to the Table</h3>
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {highlights.map((highlight, idx) => (
@@ -184,11 +186,11 @@ export default function WhoAmI() {
                                 key={idx}
                                 onMouseEnter={() => setActiveCard(idx)}
                                 onMouseLeave={() => setActiveCard(null)}
-                                className={`relative p-6 rounded-3xl bg-linear-to-br ${highlight.gradient} backdrop-blur-xl border ${highlight.border} overflow-hidden cursor-pointer transition-all duration-300 ${activeCard === idx ? 'scale-105 shadow-2xl shadow-indigo-500/20' : 'hover:scale-[1.02]'
+                                className={`relative p-6 rounded-3xl bg-linear-to-br ${highlight.gradient} border ${highlight.border} overflow-hidden cursor-pointer transition-all duration-300 ${activeCard === idx ? 'scale-105 shadow-2xl shadow-indigo-500/20' : 'hover:scale-[1.02]'
                                     }`}
                             >
-                                {/* Shine effect */}
-                                <div className={`absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 ${activeCard === idx ? 'translate-x-full' : '-translate-x-full'
+                                {/* Shine effect — desktop only */}
+                                <div className={`absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 hidden md:block ${activeCard === idx ? 'translate-x-full' : '-translate-x-full'
                                     }`} />
 
                                 <div className="relative z-10">
@@ -204,7 +206,7 @@ export default function WhoAmI() {
                 </div>
 
                 {/* Scroll Indicator */}
-                <div className={`flex justify-center mt-16 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+                <div className={`flex justify-center mt-16 transition-all duration-700 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
                     <div className="flex flex-col items-center gap-2 text-slate-500 hover:text-indigo-400 transition-colors cursor-pointer group">
                         <p className="text-sm font-bold uppercase tracking-wider">Explore More</p>
                         <ChevronDown className="w-6 h-6 animate-bounce group-hover:text-indigo-400" />

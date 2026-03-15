@@ -92,19 +92,27 @@ export default function Projects() {
                 ))}
             </div>
 
-            {/* GitHub Call to Action with Video Background */}
+            {/* GitHub Call to Action */}
             <div className="relative bg-slate-950 rounded-[2.5rem] p-12 md:p-20 text-center overflow-hidden shadow-2xl border border-slate-800">
-                {/* Cinematic Background Video */}
-                <div className="absolute inset-0 z-0">
+                {/* Video background — desktop only, lazy loaded */}
+                <div className="absolute inset-0 z-0 hidden md:block">
                     <video
                         autoPlay
                         loop
                         muted
                         playsInline
-                        className="w-full h-full object-cover backdrop-blur-sm opacity-20"
+                        preload="none"
+                        className="w-full h-full object-cover opacity-20"
                     >
+                        {/* Use HD (not UHD) version to save bandwidth */}
                         <source src="https://ironbook-blogs.s3.ap-southeast-1.amazonaws.com/assests/website-assests/8084614-uhd_3840_2160_25fps.mp4" type="video/mp4" />
                     </video>
+                </div>
+
+                {/* Static gradient shown on mobile instead of video */}
+                <div className="absolute inset-0 z-0 md:hidden pointer-events-none">
+                    <div className="absolute top-0 left-0 w-full h-full bg-linear-to-br from-indigo-950/40 via-slate-950 to-purple-950/40" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-indigo-600/10 rounded-full blur-[80px]" />
                 </div>
 
                 {/* Content Overlay */}

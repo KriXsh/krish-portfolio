@@ -1,52 +1,51 @@
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Experience from "@/components/Experience";
-import Skills from "@/components/Skills";
-import Projects from "@/components/Projects";
 import WhoAmI from "@/components/whoAmI";
-import Education from "@/components/Education";
-import Contact from "@/components/Contact";
-import Certifications from "@/components/Certifications";
-import SupportSection from "@/components/SupportSection";
+import Skills from "@/components/Skills";
+import Experience from "@/components/Experience";
 import Freelance from "@/components/Freelance";
+import Projects from "@/components/Projects";
+import Education from "@/components/Education";
+import Certifications from "@/components/Certifications";
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ChatBot from "@/components/ChatBot";
+import SupportPage from "./support/page";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-slate-950 selection:bg-indigo-500/20 selection:text-indigo-300">
+    <main className="relative min-h-screen solais-bg font-tech text-[#1a0505]">
       <Navbar />
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 space-y-12 pb-20">
-        <Hero />
-        <section id="whoami" className="scroll-mt-24">
-          <WhoAmI />
-        </section>
-        <section id="skills" className="scroll-mt-24">
-          <Skills />
-        </section>
-        <section id="experience" className="scroll-mt-24">
-          <Experience />
-        </section>
-        <section id="freelance" className="scroll-mt-24">
-          <Freelance />
-        </section>
-        <section id="projects" className="scroll-mt-24">
-          <Projects />
-        </section>
-        <section id="education" className="scroll-mt-24">
-          <Education />
-        </section>
-        <section id="achievements" className="scroll-mt-24">
-          <Certifications />
-        </section>
-        <section id="support" className="scroll-mt-24 pb-12">
-          <SupportSection />
-        </section>
-        <section id="contact" className="scroll-mt-24 pb-12">
-          <Contact />
-        </section>
+
+      {/* Persistent Full-Site Background Effects */}
+      <div className="fixed inset-0 pointer-events-none z-0 solais-noise" />
+      <div className="solais-grid-container fixed inset-0 pointer-events-none z-0">
+        <div className="solais-grid" />
       </div>
-      <Footer />
-    </main>
+      <div className="solais-glow fixed pointer-events-none z-0 inset-0" />
+
+      {/* Hero - Full Bleed */}
+      <div className="relative z-10 w-full">
+        <Hero />
+      </div>
+
+      {/* Main Content - Wrapped in Glass Sections */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16 pb-32 space-y-32">
+        {/* <section id="support"className="scroll-mt-24 p-8 solais-glass rounded-sm"><SupportPage /></section> */}
+        <section id="whoami" className="scroll-mt-24 p-8 solais-glass rounded-sm"><WhoAmI /></section>
+        <section id="skills" className="scroll-mt-24 p-8 solais-glass rounded-sm"><Skills /></section>
+        <section id="experience" className="scroll-mt-24 p-8 solais-glass rounded-sm"><Experience /></section>
+        <section id="freelance" className="scroll-mt-24 p-8 solais-glass rounded-sm"><Freelance /></section>
+        <section id="projects" className="scroll-mt-24 p-8 solais-glass rounded-sm"><Projects /></section>
+        <section id="education" className="scroll-mt-24 p-8 solais-glass rounded-sm"><Education /></section>
+        <section id="achievements" className="scroll-mt-24 p-8 solais-glass rounded-sm"><Certifications /></section>
+        <section id="chat" className="scroll-mt-24 p-8 solais-glass rounded-sm pb-12"><Contact /></section>
+        {/* <section id="ChatBot" className="scroll-mt-24 p-8 solais-glass rounded-sm pb-12"><ChatBot /></section> */}
+      </div>
+
+      <div className="relative z-10">
+        <Footer />
+      </div>
+    </main >
   );
 }

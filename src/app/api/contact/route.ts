@@ -1,48 +1,38 @@
-import { NextResponse } from 'next/server';
-import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
-
-const sesClient = new SESClient({
-    region: process.env.AWS_REGION,
-    credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
-    },
-});
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-    try {
-        const { name, email, message } = await req.json();
+  try {
+    const { message } = await req.json();
 
-        const params = {
-            Source: "krishnendughosal999@gmail.com", // Must be verified in SES
-            Destination: {
-                ToAddresses: ["krishnendughosal999@gmail.com"], 
-            },
-            Message: {
-                Subject: { Data: `Portfolio Lead: ${name}` },
-                Body: {
-                    Html: {
-                        Data: `
-                            <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee;">
-                                <h2 style="color: #6366f1;">New Contact Form Submission</h2>
-                                <p><strong>Name:</strong> ${name}</p>
-                                <p><strong>Email:</strong> ${email}</p>
-                                <p><strong>Message:</strong></p>
-                                <p style="background: #f9fafb; padding: 15px; border-radius: 8px;">${message}</p>
-                            </div>
-                        `,
-                    },
-                },
-            },
-        };
-
-        const command = new SendEmailCommand(params);
-        await sesClient.send(command);
-
-        return NextResponse.json({ success: true }, { status: 200 });
-
-    } catch (error: any) {
-        console.error("SES Error:", error);
-        return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
+    if (!message) {
+      return NextResponse.json({ error: "Message is required" }, { status: 400 });
     }
+
+    if (!process.env.GEMINI_API_KEY) {
+      return NextResponse.json({ 
+        response: "Hi! My AI brain is currently disconnected (Missing API Key). Please ask me to connect it in the codebase!" 
+      }, { status: 200 });
+    }
+
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
+
+    const prompt = `
+    You are an AI version of Krishnendu Ghosal (Krish), a passionate Full-Stack Engineer and AI researcher. 
+    Keep your answers concise, friendly, and highly technical when required. 
+    You work at Ironbook AI. You specialize in Next.js, Node.js, Python, AWS, and AI architectures.
+    
+    User says: "${message}"
+    
+    Respond in character as AI-Krish:`;
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response.text();
+
+    return NextResponse.json({ response });
+  } catch (error) {
+    console.error("AI Chat Error:", error);
+    return NextResponse.json({ error: "Failed to generate response" }, { status: 500 });
+  }
 }

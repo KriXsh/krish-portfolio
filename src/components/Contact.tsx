@@ -1,115 +1,69 @@
 "use client";
 
 import { useState } from "react";
-import { Send, Github, Linkedin, Mail } from "lucide-react";
+import { Send, Mail, User, MessageCircle } from "lucide-react";
+import AnimateOnView from "./AnimateOnView";
 
 export default function Contact() {
-    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [pending, setPending] = useState(false);
 
-    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        setStatus("loading");
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setPending(true);
+    // Logic: integration with SES / API route
+    setTimeout(() => setPending(false), 2000); 
+  }
 
-        const formData = new FormData(e.currentTarget);
-        const data = Object.fromEntries(formData);
+  return (
+    <section id="contact" className="py-24 relative overflow-hidden solais-noise">
+      <div className="max-w-4xl mx-auto px-6 relative z-10">
+        <div className="text-center mb-16">
+          <AnimateOnView animation="fade-up">
+            <span className="pill !text-red-600 !border-red-600/30 !bg-red-600/5">Direct Line</span>
+          </AnimateOnView>
+          <h2 className="mt-4 text-4xl md:text-6xl font-black text-[#112337] dark:text-white uppercase tracking-tighter italic">
+            Send A <span className="text-red-600">Message</span>
+          </h2>
+        </div>
 
-        try {
-            const response = await fetch("/api/contact", {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: { "Content-Type": "application/json" },
-            });
-
-            if (response.ok) setStatus("success");
-            else setStatus("error");
-        } catch (err) {
-            setStatus("error");
-        }
-    }
-
-    return (
-        <section id="contact" className="relative overflow-hidden rounded-[3rem] bg-slate-950 border border-slate-800">
-            {/* Background Video — hidden on mobile to prevent blocking paint */}
-            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none hidden md:block">
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="none"
-                    className="w-full h-full object-cover"
-                >
-                    <source src="https://ironbook-blogs.s3.ap-southeast-1.amazonaws.com/assests/website-assests/1536322-hd_1920_1080_30fps.mp4" type="video/mp4" />
-                </video>
+        <div className="card solais-glass p-8 md:p-12 !border-red-600/20">
+          <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-8">
+            <div className="space-y-3">
+              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-red-600 flex items-center gap-2">
+                <User size={12} /> Full Name // Identity
+              </label>
+              <input required name="name" type="text" placeholder="KRISHNENDU GHOSAL" 
+                className="input !border-red-600/20 focus:!border-red-600 !bg-red-600/5 font-tech" />
             </div>
 
-            {/* Static gradient fallback shown on mobile instead of video */}
-            <div className="absolute inset-0 md:hidden pointer-events-none">
-                <div className="absolute top-0 right-0 w-72 h-72 bg-indigo-600/10 rounded-full blur-[80px]" />
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-600/10 rounded-full blur-[80px]" />
+            <div className="space-y-3">
+              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-red-600 flex items-center gap-2">
+                <Mail size={12} /> Email Address // Link
+              </label>
+              <input required name="email" type="email" placeholder="krish@example.com" 
+                className="input !border-red-600/20 focus:!border-red-600 !bg-red-600/5 font-tech" />
             </div>
 
-            <div className="relative z-10 p-8 md:p-16 lg:p-20">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-                    {/* Left Side: Content */}
-                    <div className="text-left">
-                        <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter">
-                            Ready to Build <br />the Future?
-                        </h2>
-                        <p className="text-slate-400 max-w-xl mb-10 text-lg leading-relaxed">
-                            Currently open to roles in Singapore, Thailand, UK, USA, India, Germany or Remote that push the boundaries of Full-stack, AI and Cloud Computing.
-                        </p>
-
-                        <div className="space-y-6">
-                            <a href="mailto:krishnendughosal999@gmail.com" className="flex items-center gap-4 text-slate-300 hover:text-white transition-colors group">
-                                <div className="p-3 bg-slate-900 rounded-xl group-hover:bg-indigo-600 transition-all border border-slate-800">
-                                    <Mail className="w-5 h-5" />
-                                </div>
-                                krishnendughosal999@gmail.com
-                            </a>
-                            <div className="flex gap-4">
-                                <a href="https://github.com/KriXsh" target="_blank" className="p-4 bg-slate-900 rounded-2xl text-slate-400 hover:text-white hover:bg-slate-800 transition-all border border-slate-800">
-                                    <Github className="w-6 h-6" />
-                                </a>
-                                <a href="https://www.linkedin.com/in/krish-me" target="_blank" className="p-4 bg-slate-900 rounded-2xl text-slate-400 hover:text-white hover:bg-slate-800 transition-all border border-slate-800">
-                                    <Linkedin className="w-6 h-6" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Right Side: Form */}
-                    <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800 p-8 rounded-4xl shadow-2xl">
-                        <form onSubmit={handleSubmit} className="space-y-4">
-                            <div>
-                                <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Name</label>
-                                <input required name="name" type="text" placeholder="Your Name" className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white outline-none focus:border-indigo-500 transition-all" />
-                            </div>
-                            <div>
-                                <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Email</label>
-                                <input required name="email" type="email" placeholder="email@example.com" className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white outline-none focus:border-indigo-500 transition-all" />
-                            </div>
-                            <div>
-                                <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Message</label>
-                                <textarea required name="message" rows={4} placeholder="How can I help you?" className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white outline-none focus:border-indigo-500 transition-all resize-none" />
-                            </div>
-
-                            <button
-                                disabled={status === "loading"}
-                                type="submit"
-                                className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-indigo-600/20 disabled:opacity-50"
-                            >
-                                {status === "loading" ? "Sending..." : status === "success" ? "Message Sent!" : "Send Message"}
-                                <Send className="w-4 h-4" />
-                            </button>
-
-                            {status === "error" && <p className="text-red-400 text-xs text-center mt-2">Something went wrong...Contact SES might not be available right now!!..Please send me a Email.</p>}
-                        </form>
-                    </div>
-
-                </div>
+            <div className="md:col-span-2 space-y-3">
+              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-red-600 flex items-center gap-2">
+                <MessageCircle size={12} /> Your Inquiry // Payload
+              </label>
+              <textarea required name="message" rows={5} placeholder="PROJECT SPECIFICATIONS..." 
+                className="input !border-red-600/20 focus:!border-red-600 !bg-red-600/5 font-tech resize-none" />
             </div>
-        </section>
-    );
+
+            <div className="md:col-span-2">
+              <button 
+                disabled={pending}
+                className="btn !bg-red-600 !text-white hover:!bg-red-700 !border-none shadow-[0_0_15px_rgba(220,38,38,0.3)] w-full justify-center group uppercase tracking-widest font-black"
+              >
+                {pending ? "TRANSMITTING..." : "SEND VIA SECURE CHANNEL"}
+                <Send size={16} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
 }

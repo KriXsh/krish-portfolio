@@ -1,141 +1,149 @@
-import { ExternalLink, Github, Code2, Globe, ArrowRight } from "lucide-react";
+"use client";
+
+import { ExternalLink, Github, Globe, ArrowRight, Code2 } from "lucide-react";
+import AnimateOnView from "./AnimateOnView";
 
 const projects = [
-    {
-        title: "Pathfinding Visualizer",
-        date: "June 2022 - Dec 2022",
-        description: "A dynamic visualization tool built to demonstrate Dijkstra's Algorithm. Features an interactive grid where users can set start/end points and draw walls to see real-time shortest-path calculations.",
-        tech: ["React.js", "Algorithms", "CSS3"],
-        link: "https://pathfinding-visualizer-chi-lyart.vercel.app/",
-        type: "Live Demo"
-    },
-    {
-        title: "Car Rental System",
-        date: "Aug 2024",
-        description: "A robust Java-based application designed to manage car inventories, customer records, and rental transactions. Handles core functionalities like booking, availability checks, and returns.",
-        tech: ["Java", "OOPs", "Car Inventory Management"],
-        link: "https://github.com/KriXsh/Car-rental-system-Java",
-        type: "GitHub"
-    },
-    {
-        title: "Sort-Fusion",
-        date: "July 2024",
-        description: "An interactive UI to explore and visualize various sorting data structures. Allows users to witness how different algorithms manipulate arrays in real-time.",
-        tech: ["React.js", "Data Structures", "TailwindCSS"],
-        link: "https://sort-fusion-ui-git-krish-krishs-projects-02e2b9ea.vercel.app/",
-        type: "Live Demo"
-    },
-    {
-        title: "Weather-App",
-        date: "June 2022 - July 2022",
-        description: "A full-stack weather forecasting tool providing real-time updates on temperature, precipitation, and wind speed. Features hourly and weekly forecasts via API integration.",
-        tech: ["Node.js", "Express.js", "React.js", "HBS", "CSS"],
-        link: "https://weather-app-krish.onrender.com/",
-        type: "Live Demo"
-    }
+  {
+    title: "Pathfinding Visualizer",
+    date: "Jun 2022 – Dec 2022",
+    description: "A dynamic visualization tool demonstrating Dijkstra's Algorithm. Features an interactive grid where users set start/end points and draw walls to see real-time shortest-path calculations.",
+    tech: ["React.js", "Algorithms", "CSS3"],
+    link: "https://pathfinding-visualizer-chi-lyart.vercel.app/",
+    type: "Live Demo",
+  },
+  {
+    title: "Stock X AI",
+    date: "Jan 2026 – Feb 2026",
+    description: "An SSR-powered financial visualization tool that applies graph algorithms to stock market data. Features an interactive Next.js interface for real-time pathfinding and trend analysis with instantaneous server-side data fetching.",
+    tech: ["Next.js", "SSR", "Algorithms", "Tailwind CSS"],
+    link: "https://stock-x-ai.vercel.app/",
+    type: "Live Demo",
+  },
+  {
+    title: "Car Rental System",
+    date: "Aug 2024",
+    description: "A robust Java-based application to manage car inventories, customer records, and rental transactions. Handles booking, availability checks, and returns.",
+    tech: ["Java", "OOPs", "Inventory Management"],
+    link: "https://github.com/KriXsh/Car-rental-system-Java",
+    type: "GitHub",
+  },
+  {
+    title: "Sort-Fusion",
+    date: "Jul 2024",
+    description: "An interactive UI to explore and visualize various sorting data structures. Users witness how different algorithms manipulate arrays in real-time.",
+    tech: ["React.js", "Data Structures", "TailwindCSS"],
+    link: "https://sort-fusion-ui-git-krish-krishs-projects-02e2b9ea.vercel.app/",
+    type: "Live Demo",
+  },
+  {
+    title: "Weather-App",
+    date: "Jun 2022 – Jul 2022",
+    description: "A full-stack weather forecasting tool providing real-time updates on temperature, precipitation, and wind speed. Features hourly and weekly forecasts via API integration.",
+    tech: ["Node.js", "Express.js", "React.js", "HBS", "CSS"],
+    link: "https://weather-app-krish.onrender.com/",
+    type: "Live Demo",
+  },
 ];
 
 export default function Projects() {
-    return (
-        <section id="projects" className="py-20">
-            {/* Header Section */}
-            <div className="flex items-center gap-4 mb-12">
-                <h2 className="text-3xl font-black text-white">Featured Projects🚀</h2>
-                <div className="h-px flex-1 bg-slate-800"></div>
-            </div>
+  return (
+    <section id="projects" className="py-24 dot-grid relative overflow-hidden">
 
-            {/* Projects Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                {projects.map((project, i) => (
-                    <div
-                        key={i}
-                        className="group relative bg-slate-900/50 border border-slate-800 rounded-4xl p-8 hover:border-indigo-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/20 hover:bg-slate-900/70"
-                    >
-                        <div className="flex justify-between items-start mb-6">
-                            <div className="p-3 bg-slate-800/50 rounded-2xl group-hover:bg-indigo-500/10 transition-colors border border-slate-700/50">
-                                <Code2 className="w-6 h-6 text-slate-500 group-hover:text-indigo-400" />
-                            </div>
-                            <span className="text-xs font-mono text-slate-500 bg-slate-800/50 px-3 py-1 rounded-full border border-slate-700/50">
-                                {project.date}
-                            </span>
-                        </div>
+      <div className="text-center mb-16 relative z-10">
+        <AnimateOnView animation="fade-up">
+          {/* Forced Red Pill */}
+          <span className="pill !text-red-600 !border-red-600/30 !bg-red-600/5">Projects</span>
+        </AnimateOnView>
+        <AnimateOnView animation="fade-up" delay={80}>
+          <h2 className="mt-4 text-4xl md:text-6xl font-black tracking-tighter text-[#112337] dark:text-white uppercase italic">
+            Featured <span className="text-red-600">Work</span>
+          </h2>
+        </AnimateOnView>
+        <AnimateOnView animation="fade-up" delay={140}>
+          <p className="mt-3 text-[#585e6a] dark:text-[#94a3b8] max-w-xl mx-auto text-sm leading-relaxed">
+            A selection of side projects and experiments that showcase my engineering approach.
+          </p>
+        </AnimateOnView>
+      </div>
 
-                        <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">
-                            {project.title}
-                        </h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10 max-w-[90rem] mx-auto px-6 relative z-10">
+        {projects.map((p, i) => (
+          <AnimateOnView key={i} animation="fade-up" delay={i * 80}>
+            {/* Shining Glass Card */}
+            <div className="card solais-glass p-7 h-full flex flex-col group !border-red-600/10 hover:!border-red-600/50 transition-all duration-500 relative">
 
-                        <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                            {project.description}
-                        </p>
+              <div className="flex justify-between items-start mb-5">
+                <div className="p-2.5 rounded-xl bg-red-600/5 border border-red-600/20 text-red-600 group-hover:bg-red-600/10 group-hover:scale-110 transition-all">
+                  <Code2 className="w-5 h-5" />
+                </div>
+                <span className="text-[10px] font-tech font-black text-red-600/60 bg-red-600/5 border border-red-600/10 px-3 py-1 rounded-none uppercase tracking-widest">
+                  DATA_LOG // {p.date}
+                </span>
+              </div>
 
-                        {/* Tech Badges */}
-                        <div className="flex flex-wrap gap-2 mb-8">
-                            {project.tech.map((t) => (
-                                <span key={t} className="text-[10px] uppercase tracking-wider font-bold text-slate-500 border border-slate-800 px-2 py-1 rounded-md bg-slate-900/30">
-                                    {t}
-                                </span>
-                            ))}
-                        </div>
+              <h3 className="text-lg font-black text-[#112337] dark:text-white mb-2 group-hover:text-red-600 transition-colors uppercase tracking-wider">
+                {p.title}
+              </h3>
+              <p className="text-sm text-[#585e6a] dark:text-[#94a3b8] leading-relaxed mb-5 flex-1">
+                {p.description}
+              </p>
 
-                        {/* Project Link */}
-                        <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-sm font-bold text-slate-300 hover:text-indigo-400 transition-colors"
-                        >
-                            {project.type === "GitHub" ? <Github className="w-4 h-4" /> : <Globe className="w-4 h-4" />}
-                            {project.type}
-                            <ExternalLink className="w-3 h-3" />
-                        </a>
-                    </div>
+              <div className="flex flex-wrap gap-1.5 mb-6">
+                {p.tech.map((t) => (
+                  <span key={t} className="stag !text-red-600 !border-red-600/10 !bg-red-600/5 hover:!border-red-600/40">
+                    {t}
+                  </span>
                 ))}
+              </div>
+
+              {/* FIX: relative, z-20, and block added to ensure it traps clicks properly */}
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative z-20 inline-flex items-center gap-2 text-xs font-bold text-red-600/60 hover:text-red-500 transition-colors group/link cursor-pointer w-fit"
+              >
+                {p.type === "GitHub" ? <Github className="w-4 h-4" /> : <Globe className="w-4 h-4" />}
+                <span className="uppercase tracking-widest">{p.type}</span>
+                <ExternalLink className="w-3 h-3 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+              </a>
             </div>
+          </AnimateOnView>
+        ))}
+      </div>
 
-            {/* GitHub Call to Action */}
-            <div className="relative bg-slate-950 rounded-[2.5rem] p-12 md:p-20 text-center overflow-hidden shadow-2xl border border-slate-800">
-                {/* Video background — desktop only, lazy loaded */}
-                <div className="absolute inset-0 z-0 hidden md:block">
-                    <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        preload="none"
-                        className="w-full h-full object-cover opacity-20"
-                    >
-                        {/* Use HD (not UHD) version to save bandwidth */}
-                        <source src="https://ironbook-blogs.s3.ap-southeast-1.amazonaws.com/assests/website-assests/8084614-uhd_3840_2160_25fps.mp4" type="video/mp4" />
-                    </video>
-                </div>
+      {/* GitHub CTA Section */}
+      <div className="max-w-[90rem] mx-auto px-6 relative z-10">
+        <AnimateOnView animation="fade-up" delay={100}>
+          <div className="card solais-glass relative rounded-none overflow-hidden !border-red-600/20 bg-gradient-to-br from-red-600/5 to-transparent">
+            {/* Decorative background grid inside CTA */}
+            <div className="absolute inset-0 bg-solais-grid opacity-50 pointer-events-none" />
 
-                {/* Static gradient shown on mobile instead of video */}
-                <div className="absolute inset-0 z-0 md:hidden pointer-events-none">
-                    <div className="absolute top-0 left-0 w-full h-full bg-linear-to-br from-indigo-950/40 via-slate-950 to-purple-950/40" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-indigo-600/10 rounded-full blur-[80px]" />
-                </div>
+            <div className="relative z-10 px-10 py-16 text-center">
+              <h3 className="text-3xl md:text-4xl font-black text-[#112337] dark:text-white mb-4 tracking-tighter uppercase italic">
+                Hungry for more project stories<span className="text-red-600">?</span>
+              </h3>
+              <p className="text-[#585e6a] dark:text-[#94a3b8] mb-8 max-w-lg mx-auto text-sm leading-relaxed">
+                I&apos;m constantly building, experimenting, and breaking things.
+                Check out my public repos for the full evolution of my code.
+              </p>
 
-                {/* Content Overlay */}
-                <div className="relative z-10">
-                    <h3 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tighter">
-                        Hungry for more <br className="hidden md:block" /> project stories?
-                    </h3>
-                    <p className="text-slate-400 mb-10 max-w-2xl mx-auto text-lg font-light leading-relaxed">
-                        I'm constantly building, experimenting, and breaking things.
-                        Check out my public repositories on GitHub to see the full evolution of my code and latest experiments.
-                    </p>
-                    <a
-                        href="https://github.com/KriXsh"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-4 bg-white text-slate-950 hover:bg-indigo-500 hover:text-white px-10 py-5 rounded-2xl font-black transition-all duration-300 group shadow-xl"
-                    >
-                        <Github className="w-6 h-6" />
-                        EXPLORE GITHUB REPOS
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                    </a>
-                </div>
+              {/* Forced Red CTA Button */}
+              <a
+                href="https://github.com/KriXsh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn relative z-20 !bg-red-600 !text-white hover:!bg-red-700 !border-none shadow-[0_0_15px_rgba(220,38,38,0.3)] inline-flex items-center justify-center cursor-pointer uppercase tracking-widest text-xs"
+              >
+                <Github className="w-4 h-4" />
+                Explore Repos
+                <ArrowRight className="w-4 h-4" />
+              </a>
             </div>
-        </section>
-    );
+          </div>
+        </AnimateOnView>
+      </div>
+    </section>
+  );
 }

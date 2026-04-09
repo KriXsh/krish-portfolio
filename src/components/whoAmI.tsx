@@ -1,218 +1,152 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Code2, Rocket, Sparkles, Zap, ChevronDown, Terminal, Award, TrendingUp, Target } from "lucide-react";
+import { Code2, Rocket, Sparkles, Terminal, TrendingUp, Target, Award } from "lucide-react";
+import AnimateOnView from "./AnimateOnView";
 
 const stats = [
-    { label: "Years Experience", value: "3+", icon: <TrendingUp className="w-5 h-5" />, color: "text-indigo-400" },
-    { label: "Projects Delivered", value: "50+", icon: <Target className="w-5 h-5" />, color: "text-emerald-400" },
-    { label: "Technologies", value: "25+", icon: <Code2 className="w-5 h-5" />, color: "text-amber-400" },
-    { label: "Certifications", value: "5+", icon: <Award className="w-5 h-5" />, color: "text-rose-400" },
+  { value: "3+",  label: "Years Experience",  icon: TrendingUp, color: "text-red-600"   },
+  { value: "50+", label: "Projects Delivered", icon: Target,     color: "text-red-600" },
+  { value: "25+", label: "Technologies",       icon: Code2,      color: "text-red-600"  },
+  { value: "5+",  label: "Certifications",     icon: Award,      color: "text-red-600"   },
 ];
 
 const highlights = [
-    {
-        title: "Full-Stack Architect",
-        description: "Crafting end-to-end solutions from React frontends to scalable Node.js backends",
-        icon: <Code2 className="w-6 h-6" />,
-        gradient: "from-blue-500/20 to-indigo-500/20",
-        border: "border-blue-500/30"
-    },
-    {
-        title: "AI/ML Engineer",
-        description: "Building intelligent systems with LLMs, RAG architectures, and ML pipelines",
-        icon: <Sparkles className="w-6 h-6" />,
-        gradient: "from-purple-500/20 to-pink-500/20",
-        border: "border-purple-500/30"
-    },
-    {
-        title: "Cloud & DevOps",
-        description: "Deploying on AWS, orchestrating with K8s, and automating CI/CD workflows",
-        icon: <Rocket className="w-6 h-6" />,
-        gradient: "from-emerald-500/20 to-teal-500/20",
-        border: "border-emerald-500/30"
-    },
-    {
-        title: "System Designer",
-        description: "Architecting high-throughput, fault-tolerant systems for enterprise scale",
-        icon: <Terminal className="w-6 h-6" />,
-        gradient: "from-amber-500/20 to-orange-500/20",
-        border: "border-amber-500/30"
-    }
+  {
+    title: "Full-Stack Architect",
+    desc:  "End-to-end solutions from React frontends to scalable Node.js backends",
+    icon:  Code2,
+    color: "text-red-600",
+    bg:    "bg-red-600/5",
+    border:"border-red-600/20",
+  },
+  {
+    title: "AI / ML Engineer",
+    desc:  "Intelligent systems with LLMs, RAG architectures, and ML pipelines",
+    icon:  Sparkles,
+    color: "text-red-600",
+    bg:    "bg-red-600/5",
+    border:"border-red-600/20",
+  },
+  {
+    title: "Cloud & DevOps",
+    desc:  "Deploying on AWS, orchestrating with K8s, automating CI/CD workflows",
+    icon:  Rocket,
+    color: "text-red-600",
+    bg:    "bg-red-600/5",
+    border:"border-red-600/20",
+  },
+  {
+    title: "System Designer",
+    desc:  "High-throughput, fault-tolerant systems for enterprise scale",
+    icon:  Terminal,
+    color: "text-red-600",
+    bg:    "bg-red-600/5",
+    border:"border-red-600/20",
+  },
 ];
 
 export default function WhoAmI() {
-    const [isVisible, setIsVisible] = useState(false);
-    const [activeCard, setActiveCard] = useState<number | null>(null);
+  return (
+    <section id="whoami" className="py-24 relative solais-noise">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
 
-    useEffect(() => {
-        const timer = setTimeout(() => setIsVisible(true), 100);
-        return () => clearTimeout(timer);
-    }, []);
+        <div className="text-center mb-16">
+          <AnimateOnView animation="fade-up">
+            {/* Forced Red Pill */}
+            <span className="pill !text-red-600 !border-red-600/30 !bg-red-600/5">Introduction</span>
+          </AnimateOnView>
+          <AnimateOnView animation="fade-up" delay={80}>
+            <h2 className="mt-4 text-4xl md:text-6xl font-black tracking-tighter text-[#112337] dark:text-white uppercase italic">
+              Who Am I<span className="text-red-600">?</span>
+            </h2>
+          </AnimateOnView>
+        </div>
 
-    return (
-        <section className="relative py-24 overflow-hidden bg-linear-to-b from-slate-950 via-slate-900 to-slate-950">
-            {/*
-              * MOBILE PERFORMANCE FIX:
-              * — Blur orbs are hidden on mobile (hidden md:block) — they're the #1 GPU killer on low-end phones.
-              * — Dot grid pattern removed on mobile (hidden md:block) — reduces paint complexity.
-              * — animate-pulse only runs on desktop where GPU can handle it.
-            */}
-            <div className="absolute inset-0 opacity-30 hidden md:block">
-                <div className="absolute top-20 left-10 w-72 h-72 bg-indigo-600/20 rounded-full blur-[100px] animate-pulse" />
-                <div className="absolute bottom-20 right-10 w-72 h-72 bg-purple-600/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="grid lg:grid-cols-2 gap-8 mb-10">
+          
+          {/* Story card with Shining Glass Effect */}
+          <AnimateOnView animation="fade-right" delay={0}>
+            <div className="card solais-glass h-full p-8 !border-red-600/20">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2.5 rounded-xl bg-red-600/10 border border-red-600/20">
+                  <Sparkles className="w-5 h-5 text-red-600" />
+                </div>
+                <h3 className="text-xl font-black text-[#112337] dark:text-white uppercase">My Journey</h3>
+              </div>
+
+              <div className="space-y-4 text-[#585e6a] dark:text-[#94a3b8] leading-relaxed text-sm">
+                <p>
+                  I&apos;m <span className="text-red-600 font-bold uppercase">Krishnendu Ghosal</span>, a software engineer
+                  at <span className="text-red-600 font-bold">Ironbook AI</span>, where
+                  I architect AI-powered solutions that process millions of data points daily.
+                </p>
+                <p>
+                  My journey began with curiosity about how systems work. From <span className="text-red-600 font-medium">government tech infrastructure</span> to{" "}
+                  <span className="text-red-600 font-medium">fintech platforms</span>, I&apos;ve delivered high-throughput solutions.
+                </p>
+                <p>
+                  What drives me? The thrill of <span className="text-red-600 font-medium">solving complex problems</span> and the impact of creating technology that genuinely improves lives.
+                </p>
+              </div>
+
+              <div className="mt-7 pt-6 border-t border-red-600/10">
+                <p className="text-[10px] font-black uppercase tracking-widest text-red-600/60 mb-3">Core Values</p>
+                <div className="flex flex-wrap gap-2">
+                  {["Innovation", "Quality", "Scalability", "User-Centric"].map((v) => (
+                    <span key={v} className="stag !text-red-600 !border-red-600/20 !bg-red-600/5">{v}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </AnimateOnView>
+
+          <div className="flex flex-col gap-5">
+            <div className="grid grid-cols-2 gap-4">
+              {stats.map((s, i) => (
+                <AnimateOnView key={i} animation="scale-up" delay={i * 70}>
+                  <div className="card solais-glass p-6 !border-red-600/10 hover:!border-red-600/40 transition-all">
+                    <s.icon className={`w-5 h-5 ${s.color} mb-3`} />
+                    <p className="text-4xl font-black text-[#112337] dark:text-white mb-1">{s.value}</p>
+                    <p className="text-[10px] font-black text-red-600 uppercase tracking-widest">{s.label}</p>
+                  </div>
+                </AnimateOnView>
+              ))}
             </div>
 
-            {/* Dot Grid Pattern — desktop only */}
-            <div className="absolute inset-0 opacity-[0.02] hidden md:block">
-                <div className="absolute inset-0" style={{
-                    backgroundImage: 'radial-gradient(circle, #6366f1 1px, transparent 1px)',
-                    backgroundSize: '40px 40px'
-                }} />
-            </div>
+            {/* Philosophy Card - Fixed Colors */}
+            <AnimateOnView animation="fade-up" delay={200}>
+              <div className="card p-7 bg-gradient-to-br from-red-600/10 to-transparent !border-red-600/20 relative overflow-hidden">
+                <div className="absolute top-3 left-5 text-red-600/5 text-7xl font-black leading-none select-none">&ldquo;</div>
+                <p className="relative z-10 text-base text-[#112337] dark:text-white font-medium italic mb-4">
+                  Code is poetry, systems are symphonies, and great software is the intersection
+                  of engineering excellence and user delight.
+                </p>
+                <p className="relative z-10 text-[10px] font-black uppercase tracking-[0.3em] text-red-600">
+                  — SYSTEM PHILOSOPHY
+                </p>
+              </div>
+            </AnimateOnView>
+          </div>
+        </div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-6">
-                {/* Section Header */}
-                <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-black uppercase tracking-wider mb-6">
-                        <Zap className="w-4 h-4" />
-                        Introduction
-                    </div>
-                    <h2 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter">
-                        Who Am I<span className="text-indigo-400">?</span>
-                    </h2>
-                    <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-                        A passionate engineer who transforms complex problems into elegant solutions,
-                        bridging the gap between <span className="text-white font-bold">cutting-edge technology</span> and
-                        <span className="text-white font-bold"> real-world impact</span>.
-                    </p>
+        {/* Bottom Section */}
+        <AnimateOnView animation="fade-up" delay={100}>
+          <h3 className="text-xl font-black text-[#112337] dark:text-white mb-5 uppercase tracking-tighter">What I Bring to the Table</h3>
+        </AnimateOnView>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {highlights.map((h, i) => (
+            <AnimateOnView key={i} animation="fade-up" delay={i * 80}>
+              <div className="card solais-glass p-6 h-full !border-red-600/10 group hover:!border-red-600/50">
+                <div className={`p-2.5 rounded-xl ${h.bg} border ${h.border} w-fit mb-4 group-hover:scale-110 transition-transform`}>
+                  <h.icon className={`w-5 h-5 ${h.color}`} />
                 </div>
-
-                {/* Main Content Grid */}
-                <div className="grid lg:grid-cols-2 gap-12 mb-16">
-                    {/* Left: Story */}
-                    <div className={`transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-                        <div className="relative p-8 rounded-[2.5rem] bg-slate-900/50 backdrop-blur-sm border border-slate-800 overflow-hidden group hover:border-indigo-500/50 transition-all duration-500">
-                            {/* Shine effect — desktop only (expensive on mobile) */}
-                            <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 hidden md:block" />
-
-                            <div className="relative z-10">
-                                <div className="flex items-center gap-3 mb-6">
-                                    <div className="p-3 rounded-xl bg-linear-to-br from-indigo-500/20 to-purple-500/20 border border-indigo-500/30">
-                                        <Sparkles className="w-6 h-6 text-indigo-400" />
-                                    </div>
-                                    <h3 className="text-2xl font-black text-white">My Journey</h3>
-                                </div>
-
-                                <div className="space-y-4 text-slate-300 leading-relaxed">
-                                    <p>
-                                        I'm <span className="text-white font-bold">Krishnendu Ghosal</span>, a software engineer
-                                        currently working at <span className="text-indigo-400 font-bold">Ironbook AI</span>, where
-                                        I architect AI-powered solutions that process millions of data points daily.
-                                    </p>
-                                    <p>
-                                        My journey began with a curiosity about how systems work, which evolved into a passion for
-                                        building them. From <span className="text-emerald-400 font-semibold">government tech infrastructure</span> to
-                                        <span className="text-purple-400 font-semibold"> fintech platforms</span>, I've delivered solutions
-                                        across diverse domains.
-                                    </p>
-                                    <p>
-                                        What drives me? The thrill of <span className="text-amber-400 font-semibold">solving complex problems</span>,
-                                        the satisfaction of <span className="text-rose-400 font-semibold">optimizing performance</span>, and
-                                        the impact of creating technology that genuinely improves people's lives.
-                                    </p>
-                                </div>
-
-                                {/* Key Values */}
-                                <div className="mt-8 pt-8 border-t border-slate-800">
-                                    <p className="text-sm font-black uppercase tracking-wider text-slate-500 mb-4">Core Values</p>
-                                    <div className="flex flex-wrap gap-3">
-                                        {["Innovation", "Quality", "Scalability", "User-Centric"].map((value) => (
-                                            <span
-                                                key={value}
-                                                className="px-4 py-2 rounded-xl bg-slate-800/50 border border-slate-700 text-sm font-bold text-slate-300 hover:border-indigo-500/50 hover:text-white transition-all cursor-default"
-                                            >
-                                                {value}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Right: Stats */}
-                    <div className={`transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-                        <div className="grid grid-cols-2 gap-4 mb-6">
-                            {stats.map((stat, idx) => (
-                                <div
-                                    key={idx}
-                                    className="relative p-6 rounded-3xl bg-slate-900/50 border border-slate-800 overflow-hidden group hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1"
-                                >
-                                    <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity hidden md:block" />
-                                    <div className="relative z-10">
-                                        <div className={`mb-3 ${stat.color}`}>
-                                            {stat.icon}
-                                        </div>
-                                        <p className="text-4xl font-black text-white mb-2">{stat.value}</p>
-                                        <p className="text-sm font-bold text-slate-400">{stat.label}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* Philosophy Quote */}
-                        <div className="relative p-8 rounded-[2.5rem] bg-linear-to-br from-indigo-950/50 to-purple-950/50 border border-indigo-500/30 overflow-hidden">
-                            <div className="absolute top-4 left-4 text-indigo-500/20 text-6xl font-black">"</div>
-                            <div className="absolute bottom-4 right-4 text-indigo-500/20 text-6xl font-black rotate-180">"</div>
-
-                            <div className="relative z-10">
-                                <p className="text-lg text-white font-medium leading-relaxed mb-4 italic">
-                                    Code is poetry, systems are symphonies, and great software is the intersection
-                                    of engineering excellence and user delight.
-                                </p>
-                                <p className="text-sm font-bold text-indigo-400">— My Engineering Philosophy</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Expertise Highlights */}
-                <div className={`transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    <h3 className="text-3xl font-black text-white text-center mb-8">What I Bring to the Table</h3>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {highlights.map((highlight, idx) => (
-                            <div
-                                key={idx}
-                                onMouseEnter={() => setActiveCard(idx)}
-                                onMouseLeave={() => setActiveCard(null)}
-                                className={`relative p-6 rounded-3xl bg-linear-to-br ${highlight.gradient} border ${highlight.border} overflow-hidden cursor-pointer transition-all duration-300 ${activeCard === idx ? 'scale-105 shadow-2xl shadow-indigo-500/20' : 'hover:scale-[1.02]'
-                                    }`}
-                            >
-                                {/* Shine effect — desktop only */}
-                                <div className={`absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 hidden md:block ${activeCard === idx ? 'translate-x-full' : '-translate-x-full'
-                                    }`} />
-
-                                <div className="relative z-10">
-                                    <div className="mb-4 text-indigo-400">
-                                        {highlight.icon}
-                                    </div>
-                                    <h4 className="text-lg font-black text-white mb-2">{highlight.title}</h4>
-                                    <p className="text-sm text-slate-400 leading-relaxed">{highlight.description}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Scroll Indicator */}
-                <div className={`flex justify-center mt-16 transition-all duration-700 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-                    <div className="flex flex-col items-center gap-2 text-slate-500 hover:text-indigo-400 transition-colors cursor-pointer group">
-                        <p className="text-sm font-bold uppercase tracking-wider">Explore More</p>
-                        <ChevronDown className="w-6 h-6 animate-bounce group-hover:text-indigo-400" />
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+                <h4 className="text-xs font-black text-[#112337] dark:text-white mb-2 uppercase tracking-wide">{h.title}</h4>
+                <p className="text-[11px] text-[#585e6a] dark:text-[#94a3b8] leading-relaxed">{h.desc}</p>
+              </div>
+            </AnimateOnView>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }

@@ -61,7 +61,7 @@ export default function Contact() {
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        body: JSON.stringify({ ...values, company }),
+        body: JSON.stringify({ ...values, botcheck: company }),
         headers: { "Content-Type": "application/json" },
       });
       if (response.ok) {
@@ -170,12 +170,18 @@ export default function Contact() {
           <Reveal delay={0.1}>
             <form onSubmit={handleSubmit} noValidate className="glass space-y-4 rounded-[2rem] p-6 md:p-8">
               <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
-                <label htmlFor="company">Company</label>
+                {/* Honeypot. Deliberately not called "company"/"website"/etc: Chrome
+                    autofills those from the visitor's profile despite autoComplete="off",
+                    which silently dropped real messages. */}
+                <label htmlFor="hp-botcheck">Leave this field empty</label>
                 <input
-                  id="company"
-                  name="company"
+                  id="hp-botcheck"
+                  name="hp-botcheck"
+                  type="text"
                   tabIndex={-1}
-                  autoComplete="off"
+                  autoComplete="new-password"
+                  data-1p-ignore
+                  data-lpignore="true"
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
                 />

@@ -14,7 +14,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const escapeHtml = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 
-type Body = { name?: unknown; email?: unknown; message?: unknown; company?: unknown };
+type Body = { name?: unknown; email?: unknown; message?: unknown; botcheck?: unknown };
 
 export async function POST(req: Request) {
   const key = process.env.RESEND_API_KEY;
@@ -30,9 +30,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 
-  // Honeypot: the "company" field is hidden from people, so only bots fill it.
-  // Pretend it worked so they don't retry.
-  if (typeof body.company === "string" && body.company.trim()) {
+  // Honeypot: the "botcheck" field is hidden from people, so only bots fill it.
+  // Pretend it worked so they don't retry. (It used to be "company", which
+  // Chrome autofilled for real visitors, silently dropping their messages.)
+  if (typeof body.botcheck === "string" && body.botcheck.trim()) {
+    console.warn("Contact form: honeypot filled, message dropped");
     return NextResponse.json({ success: true });
   }
 

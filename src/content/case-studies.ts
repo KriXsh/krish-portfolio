@@ -101,76 +101,35 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
   },
   {
-    slug: "aaizel-uass-b2g",
-    title: "Upper Atmosphere Sounding System for a government client",
-    company: "Aaizel International Technologies",
-    period: "Mar 2025 – Jul 2025",
-    disciplines: ["full-stack", "devops"],
-    summary:
-      "Led end-to-end delivery of a B2G atmospheric system: domain models, microservices, fault-tolerant AWS infrastructure and IAM-backed access control.",
-    context:
-      "Aaizel builds solutions for government (B2G) clients. I led the end-to-end build of the Upper Atmosphere Sounding System (UASS), a system centred on thermodynamic logic and atmospheric data models.",
-    challenge:
-      "Government workloads leave little room for failure. The system had to handle high-throughput operations, stay available if an instance went down, and enforce strict access control at every layer, from the UI to the infrastructure.",
-    approach: [
-      {
-        title: "Model the domain",
-        detail:
-          "Implemented the thermodynamic logic and atmospheric data models at the heart of UASS, so the science lives in well-defined services rather than scattered code.",
-      },
-      {
-        title: "Split into microservices",
-        detail:
-          "Designed a microservices architecture with Nginx routing between services, and optimised database queries for high-throughput operations.",
-      },
-      {
-        title: "Design for failure",
-        detail:
-          "Put an AWS Application Load Balancer in front of multiple EC2 instances, so traffic keeps flowing when a single instance fails.",
-      },
-      {
-        title: "Secure every layer",
-        detail:
-          "Built role-based access control integrated with AWS IAM policies across the frontend, backend and infrastructure layers.",
-      },
-      {
-        title: "Own the lifecycle",
-        detail: "Ran the complete DevOps lifecycle, from CI/CD automation to production monitoring.",
-      },
-    ],
-    architecture: [
-      { label: "Users", nodes: ["Operators", "Administrators"] },
-      { label: "Edge", nodes: ["AWS ALB", "Nginx routing"] },
-      { label: "Services", nodes: ["Microservices", "Atmospheric models"] },
-      { label: "Platform", nodes: ["Optimised database", "IAM-backed RBAC", "Monitoring"] },
-    ],
-    stack: ["Microservices", "Nginx", "AWS ALB", "AWS EC2", "AWS IAM", "RBAC", "CI/CD", "Monitoring"],
-    highlights: [
-      "Fault tolerance through an ALB across multiple EC2 instances",
-      "Access control enforced from UI to infrastructure via AWS IAM",
-      "Full DevOps ownership: CI/CD automation and production monitoring",
-    ],
-  },
-  {
     slug: "aaizel-news-crawlers",
-    title: "Real-time news intelligence from 50+ newspapers",
+    title: "Real-time media monitoring for 60 government ministries",
     company: "Aaizel International Technologies",
     period: "Mar 2025 – Jul 2025",
-    disciplines: ["data"],
+    disciplines: ["data", "ai"],
     summary:
-      "Built intelligent crawlers that index 50+ Indian newspapers in real time and turn unstructured articles into structured data.",
+      "Built the crawlers, data pipelines and AI layer behind a media-monitoring platform for 60 ministries of the Government of India: 200+ newspapers, YouTube, Twitter/X and more, with speech-to-text, text-to-speech and prompt-engineered AI.",
     context:
-      "Alongside the UASS work at Aaizel, I built the data side of a news-intelligence capability for government use.",
+      "At Aaizel I built the data and AI side of a media-monitoring platform used by 60 ministries of the Government of India, tracking coverage across print, video and social media.",
     challenge:
-      "Every newspaper publishes differently. Getting timely, searchable information meant collecting from dozens of sources with different layouts and turning free-form articles into consistent, structured records.",
+      "Every source publishes differently. Getting timely, searchable information meant collecting from hundreds of newspapers plus video and social platforms, each with its own format, and turning free-form content into consistent, structured records.",
     approach: [
       {
         title: "Crawl at scale",
-        detail: "Developed intelligent web crawlers covering 50+ Indian newspapers.",
+        detail: "Developed intelligent crawlers covering 200+ Indian newspapers, YouTube videos, Twitter/X and other social platforms.",
       },
       {
         title: "Extract structure",
-        detail: "Pulled structured data out of each article, so different sources land in one consistent shape.",
+        detail: "Pulled structured data out of each article, video and post, so different sources land in one consistent shape.",
+      },
+      {
+        title: "Pipeline every source",
+        detail:
+          "Built the data pipelines that carry output from all the crawlers through processing and into the platform, so every source flows through one consistent path.",
+      },
+      {
+        title: "Add speech and AI",
+        detail:
+          "Built speech-to-text and text-to-speech APIs, and did the prompt engineering for the platform's AI features.",
       },
       {
         title: "Index in real time",
@@ -178,14 +137,31 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
     ],
     architecture: [
-      { label: "Sources", nodes: ["50+ newspapers"] },
+      { label: "Sources", nodes: ["200+ newspapers", "YouTube", "Twitter / X", "Social platforms"] },
       { label: "Collection", nodes: ["Intelligent crawlers"] },
-      { label: "Processing", nodes: ["Structured extraction"] },
+      { label: "Processing", nodes: ["Data pipelines", "Structured extraction"] },
+      { label: "AI", nodes: ["Speech-to-Text", "Text-to-Speech", "Prompt engineering"] },
       { label: "Output", nodes: ["Real-time index"] },
     ],
-    stack: ["Web crawlers", "Data extraction", "Real-time indexing"],
-    metrics: [{ value: "50+", label: "Indian newspapers crawled and indexed" }],
-    highlights: ["Unstructured articles normalised into structured records", "New coverage indexed in real time"],
+    stack: [
+      "Web crawlers",
+      "Data pipelines",
+      "Data extraction",
+      "Speech-to-Text",
+      "Text-to-Speech",
+      "Prompt engineering",
+      "Real-time indexing",
+    ],
+    metrics: [
+      { value: "200+", label: "Newspapers monitored, plus video & social" },
+      { value: "60", label: "Government ministries served" },
+    ],
+    highlights: [
+      "Print, video and social sources normalised into one structured record format",
+      "One pipeline layer shared by every crawler",
+      "Speech-to-text and text-to-speech APIs, plus prompt engineering for the AI features",
+      "New coverage indexed in real time",
+    ],
   },
   {
     slug: "ironbook-voice-ai",

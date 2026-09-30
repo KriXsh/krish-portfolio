@@ -70,18 +70,22 @@ const jobs: Job[] = [
     date: "March 2025 - July 2025",
     tenure: "5 mos",
     categories: ["gov-tech", "b2c", "cloud-devops"],
-    stack: ["Microservices", "Nginx", "AWS ALB", "EC2", "AWS IAM", "RBAC", "Web Crawlers", "CI/CD"],
-    metrics: [{ value: "50+", label: "Newspapers crawled in real time" }],
+    stack: ["Microservices", "Nginx", "AWS ALB", "EC2", "AWS IAM", "RBAC", "Web Crawlers", "Data Pipelines", "STT / TTS", "Prompt Engineering", "CI/CD"],
+    metrics: [
+      { value: "200+", label: "Newspapers monitored in real time" },
+      { value: "60", label: "Government ministries served" },
+    ],
     roles: [
       {
         title: "Full-stack Developer",
         date: "March 2025 - July 2025",
         tenure: "5 mos",
         bullets: [
-          "Led end-to-end B2G solutions, including the Upper Atmosphere Sounding System (UASS), focusing on thermodynamic logic and atmospheric data models.",
+          "Led end-to-end B2G solutions for government clients, from domain modelling through to production.",
           "Designed microservices architecture using Nginx routing and optimized database queries for high-throughput operations.",
           "Engineered scalable infrastructure using AWS Application Load Balancer (ALB) across multiple EC2 instances for fault tolerance.",
-          "Developed intelligent web crawlers for 50+ Indian newspapers for real-time indexing and structured data extraction.",
+          "Built the crawlers behind a media-monitoring platform for 60 Indian government ministries, covering 200+ newspapers, YouTube, Twitter/X and more with real-time indexing and structured extraction.",
+          "Engineered the data pipelines for all crawlers, built speech-to-text and text-to-speech APIs, and led prompt engineering for the platform's AI features.",
           "Built a secure RBAC system integrated with AWS IAM policies across frontend, backend, and infrastructure layers.",
           "Oversaw the complete DevOps lifecycle, including CI/CD automation and production monitoring.",
         ],

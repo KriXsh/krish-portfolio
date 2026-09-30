@@ -1,84 +1,65 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
-import { MoveLeft, Home, Terminal, AlertCircle } from "lucide-react";
+import { ArrowUpRight, FolderGit2, Home, Mail } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Page not found | Krishnendu Ghosal",
+  robots: { index: false },
+};
+
+// A tiny graph with no path between the two highlighted nodes - the page you
+// wanted isn't reachable from here.
+const NODES = [
+  { x: 40, y: 60 }, { x: 120, y: 30 }, { x: 200, y: 70 }, { x: 90, y: 130 },
+  { x: 170, y: 150 }, { x: 260, y: 120 }, { x: 320, y: 50 }, { x: 330, y: 160 },
+];
+const EDGES: [number, number][] = [[0, 1], [1, 2], [0, 3], [3, 4], [2, 4], [5, 6], [5, 7], [6, 7]];
 
 export default function NotFound() {
-    return (
-        <main className="min-h-screen bg-slate-950 flex items-center justify-center px-6 overflow-hidden relative">
-            {/* Background Subtle Tech Grid */}
-            <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
-                <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#6366f1" strokeWidth="1" />
-                        </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#grid)" />
-                </svg>
-            </div>
+  return (
+    <main id="main" className="relative flex min-h-[calc(100svh-2rem)] items-center justify-center overflow-hidden px-6 pt-28 pb-20">
+      <div aria-hidden className="pointer-events-none absolute inset-0 grid-lines mask-fade-b opacity-70" />
+      <div aria-hidden className="pointer-events-none absolute top-1/4 left-1/2 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-primary/15 blur-[140px]" />
 
-            {/* Animated gradient orbs */}
-            <div className="absolute top-1/4 -left-32 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+      <div className="relative w-full max-w-2xl text-center">
+        <svg viewBox="0 0 370 200" className="mx-auto mb-10 w-full max-w-sm text-ink" aria-hidden>
+          {EDGES.map(([a, b]) => (
+            <line key={`${a}-${b}`} x1={NODES[a].x} y1={NODES[a].y} x2={NODES[b].x} y2={NODES[b].y} stroke="currentColor" strokeOpacity={0.18} strokeWidth={1.5} />
+          ))}
+          {/* the missing bridge */}
+          <line x1={NODES[4].x} y1={NODES[4].y} x2={NODES[5].x} y2={NODES[5].y} stroke="#f43f5e" strokeWidth={1.5} strokeDasharray="4 6" />
+          {NODES.map((n, i) => (
+            <circle
+              key={i}
+              cx={n.x}
+              cy={n.y}
+              r={i === 0 || i === 7 ? 9 : 5}
+              fill={i === 0 ? "#6366f1" : i === 7 ? "#06b6d4" : "currentColor"}
+              fillOpacity={i === 0 || i === 7 ? 1 : 0.35}
+            />
+          ))}
+        </svg>
 
-            <div className="relative z-10 text-center max-w-2xl mx-auto">
-                {/* Animated Icon Section */}
-                <div className="relative inline-block mb-8">
-                    <div className="absolute inset-0 bg-indigo-600/20 blur-3xl rounded-full animate-pulse" />
-                    <div className="relative bg-slate-900 border border-slate-800 p-6 rounded-[2.5rem] shadow-2xl animate-bounce duration-3000">
-                        <Terminal className="w-16 h-16 text-indigo-400" />
-                        <div className="absolute -top-2 -right-2 bg-rose-500 text-white p-1.5 rounded-full shadow-lg">
-                            <AlertCircle className="w-4 h-4" />
-                        </div>
-                    </div>
-                </div>
+        <p className="font-mono text-xs tracking-[0.25em] text-subtle uppercase">Error 404 · route not found</p>
+        <h1 className="mt-4 font-display text-display-lg font-bold text-foreground">
+          No path to <span className="text-gradient">this page.</span>
+        </h1>
+        <p className="mx-auto mt-5 max-w-md text-muted-foreground md:text-lg">
+          Even Dijkstra couldn&apos;t route you here. The page may have moved, or the link has a typo.
+        </p>
 
-                {/* Error Code */}
-                <h1 className="text-[12rem] font-black leading-none tracking-tighter text-white/5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
-                    404
-                </h1>
-
-                {/* Messaging */}
-                <div className="relative">
-                    <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
-                        System <span className="text-indigo-400">Timeout</span>
-                    </h2>
-                    <p className="text-lg text-slate-400 font-medium mb-12 max-w-md mx-auto leading-relaxed">
-                        The endpoint you are trying to reach does not exist or has been migrated to a new production environment.
-                    </p>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <Link
-                        href="/"
-                        className="w-full sm:w-auto px-8 py-4 bg-white text-slate-950 font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-indigo-500 hover:text-white transition-all shadow-xl shadow-slate-900/50 group"
-                    >
-                        <MoveLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                        Go Back Home
-                    </Link>
-                    <Link
-                        href="/#contact"
-                        className="w-full sm:w-auto px-8 py-4 bg-slate-900 border border-slate-800 text-white font-bold rounded-2xl flex items-center justify-center gap-2 hover:border-indigo-500 hover:text-indigo-400 transition-all"
-                    >
-                        <Home className="w-4 h-4" />
-                        Report Issue
-                    </Link>
-                </div>
-
-                {/* Bottom Status Bar */}
-                <div className="mt-20 pt-8 border-t border-slate-800 flex justify-center gap-12">
-                    <div className="text-center">
-                        <p className="text-slate-500 text-[10px] uppercase font-black tracking-widest">Error Type</p>
-                        <p className="text-white font-bold">ROUTE_NOT_FOUND</p>
-                    </div>
-                    <div className="text-center">
-                        <p className="text-slate-500 text-[10px] uppercase font-black tracking-widest">Status</p>
-                        <p className="text-rose-500 font-bold italic underline decoration-rose-500/20">Disconnected</p>
-                    </div>
-                </div>
-            </div>
-        </main>
-    );
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <Link href="/" className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-semibold text-background">
+            <Home className="h-4 w-4" /> Back home
+          </Link>
+          <Link href="/projects" className="glass inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold text-foreground">
+            <FolderGit2 className="h-4 w-4" /> Browse projects
+          </Link>
+          <Link href="/#contact" className="inline-flex items-center gap-2 rounded-full px-5 py-3.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+            <Mail className="h-4 w-4" /> Report a broken link <ArrowUpRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+      </div>
+    </main>
+  );
 }

@@ -1,0 +1,83 @@
+/* Syntax highlighting for blog code blocks (highlight.js classes from
+   rehype-highlight). Light palette by default, html.dark overrides. */
+
+.blog-code {
+  --hl-comment: #6b7280;
+  --hl-keyword: #7c3aed;
+  --hl-string: #047857;
+  --hl-number: #b45309;
+  --hl-title: #1d4ed8;
+  --hl-attr: #0e7490;
+  --hl-meta: #be185d;
+  --hl-text: #1f2937;
+}
+
+html.dark .blog-code {
+  --hl-comment: #7d8aa0;
+  --hl-keyword: #c4b5fd;
+  --hl-string: #86efac;
+  --hl-number: #fdba74;
+  --hl-title: #93c5fd;
+  --hl-attr: #67e8f9;
+  --hl-meta: #f9a8d4;
+  --hl-text: #e2e8f0;
+}
+
+.blog-code pre,
+.blog-code code.hljs {
+  color: var(--hl-text);
+  background: transparent;
+  font-family: var(--font-mono);
+}
+
+.blog-code .hljs-comment,
+.blog-code .hljs-quote {
+  color: var(--hl-comment);
+  font-style: italic;
+}
+.blog-code .hljs-keyword,
+.blog-code .hljs-selector-tag,
+.blog-code .hljs-built_in,
+.blog-code .hljs-literal,
+.blog-code .hljs-type {
+  color: var(--hl-keyword);
+}
+.blog-code .hljs-string,
+.blog-code .hljs-regexp,
+.blog-code .hljs-addition {
+  color: var(--hl-string);
+}
+.blog-code .hljs-number,
+.blog-code .hljs-symbol,
+.blog-code .hljs-bullet {
+  color: var(--hl-number);
+}
+.blog-code .hljs-title,
+.blog-code .hljs-title.function_,
+.blog-code .hljs-section,
+.blog-code .hljs-name {
+  color: var(--hl-title);
+}
+.blog-code .hljs-attr,
+.blog-code .hljs-attribute,
+.blog-code .hljs-variable,
+.blog-code .hljs-template-variable,
+.blog-code .hljs-property {
+  color: var(--hl-attr);
+}
+.blog-code .hljs-meta,
+.blog-code .hljs-tag,
+.blog-code .hljs-deletion {
+  color: var(--hl-meta);
+}
+.blog-code .hljs-emphasis {
+  font-style: italic;
+}
+.blog-code .hljs-strong {
+  font-weight: 600;
+}
+
+/* Blockquote TL;DR paragraphs sit tight inside their card. */
+.blog-prose blockquote > p {
+  margin: 1rem 0;
+}

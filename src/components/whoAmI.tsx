@@ -1,218 +1,146 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Code2, Rocket, Sparkles, Zap, ChevronDown, Terminal, Award, TrendingUp, Target } from "lucide-react";
-
-const stats = [
-    { label: "Years Experience", value: "3+", icon: <TrendingUp className="w-5 h-5" />, color: "text-indigo-400" },
-    { label: "Projects Delivered", value: "50+", icon: <Target className="w-5 h-5" />, color: "text-emerald-400" },
-    { label: "Technologies", value: "25+", icon: <Code2 className="w-5 h-5" />, color: "text-amber-400" },
-    { label: "Certifications", value: "5+", icon: <Award className="w-5 h-5" />, color: "text-rose-400" },
-];
+import { useRef } from "react";
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Code2, Rocket, Sparkles, Terminal } from "lucide-react";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
+import { TiltCard } from "@/components/ui/tilt-card";
 
 const highlights = [
-    {
-        title: "Full-Stack Architect",
-        description: "Crafting end-to-end solutions from React frontends to scalable Node.js backends",
-        icon: <Code2 className="w-6 h-6" />,
-        gradient: "from-blue-500/20 to-indigo-500/20",
-        border: "border-blue-500/30"
-    },
-    {
-        title: "AI/ML Engineer",
-        description: "Building intelligent systems with LLMs, RAG architectures, and ML pipelines",
-        icon: <Sparkles className="w-6 h-6" />,
-        gradient: "from-purple-500/20 to-pink-500/20",
-        border: "border-purple-500/30"
-    },
-    {
-        title: "Cloud & DevOps",
-        description: "Deploying on AWS, orchestrating with K8s, and automating CI/CD workflows",
-        icon: <Rocket className="w-6 h-6" />,
-        gradient: "from-emerald-500/20 to-teal-500/20",
-        border: "border-emerald-500/30"
-    },
-    {
-        title: "System Designer",
-        description: "Architecting high-throughput, fault-tolerant systems for enterprise scale",
-        icon: <Terminal className="w-6 h-6" />,
-        gradient: "from-amber-500/20 to-orange-500/20",
-        border: "border-amber-500/30"
-    }
+  {
+    title: "Full-Stack Architect",
+    description: "End-to-end products from React/Next.js frontends to scalable Node.js and Python backends.",
+    icon: Code2,
+    glow: "rgba(99,102,241,0.25)",
+  },
+  {
+    title: "AI/ML Engineer",
+    description: "Intelligent systems with LLMs, RAG architectures, agents and ML pipelines on SageMaker & Bedrock.",
+    icon: Sparkles,
+    glow: "rgba(139,92,246,0.25)",
+  },
+  {
+    title: "Cloud & DevOps",
+    description: "Shipping on AWS, orchestrating with Kubernetes and automating CI/CD from commit to production.",
+    icon: Rocket,
+    glow: "rgba(6,182,212,0.25)",
+  },
+  {
+    title: "System Designer",
+    description: "High-throughput, fault-tolerant, event-driven systems built for enterprise scale.",
+    icon: Terminal,
+    glow: "rgba(165,180,252,0.22)",
+  },
 ];
 
+const values = ["Innovation", "Quality", "Scalability", "User-Centric"];
+
 export default function WhoAmI() {
-    const [isVisible, setIsVisible] = useState(false);
-    const [activeCard, setActiveCard] = useState<number | null>(null);
+  const photoRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: photoRef, offset: ["start end", "end start"] });
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
+  const frameRotate = useTransform(scrollYProgress, [0, 1], [-6, 6]);
 
-    useEffect(() => {
-        const timer = setTimeout(() => setIsVisible(true), 100);
-        return () => clearTimeout(timer);
-    }, []);
+  return (
+    <div className="relative py-28 md:py-36">
+      <SectionHeading
+        index="01"
+        eyebrow="Introduction"
+        title={
+          <>
+            Engineer by craft,
+            <br />
+            <span className="text-gradient">builder by instinct.</span>
+          </>
+        }
+      />
 
-    return (
-        <section className="relative py-24 overflow-hidden bg-linear-to-b from-slate-950 via-slate-900 to-slate-950">
-            {/*
-              * MOBILE PERFORMANCE FIX:
-              * — Blur orbs are hidden on mobile (hidden md:block) — they're the #1 GPU killer on low-end phones.
-              * — Dot grid pattern removed on mobile (hidden md:block) — reduces paint complexity.
-              * — animate-pulse only runs on desktop where GPU can handle it.
-            */}
-            <div className="absolute inset-0 opacity-30 hidden md:block">
-                <div className="absolute top-20 left-10 w-72 h-72 bg-indigo-600/20 rounded-full blur-[100px] animate-pulse" />
-                <div className="absolute bottom-20 right-10 w-72 h-72 bg-purple-600/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
+      <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
+        {/* Portrait with parallax */}
+        <Reveal className="lg:col-span-5">
+          <div ref={photoRef} className="relative mx-auto aspect-[4/5] w-full max-w-sm">
+            <motion.div
+              style={{ rotate: frameRotate }}
+              className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-primary/40 via-violet/20 to-cyan/30 blur-2xl"
+            />
+            <div className="glass relative h-full overflow-hidden rounded-[2rem] p-2">
+              <div className="relative h-full overflow-hidden rounded-[1.6rem]">
+                {/* Parallax on a wrapper so next/image can serve a resized, modern-format
+                    version instead of the 3024×4032 original (~1.1 MB). */}
+                <motion.div style={{ y: imgY }} className="absolute inset-0 h-[124%] w-full -translate-y-[12%]">
+                  <Image
+                    src="/krish.jpeg"
+                    alt="Krishnendu Ghosal in a suit"
+                    fill
+                    sizes="(min-width: 1024px) 384px, 90vw"
+                    className="object-cover"
+                  />
+                </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                <div className="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-2xl glass px-4 py-3">
+                  <div>
+                    <p className="font-display text-sm font-semibold text-foreground">Krishnendu Ghosal</p>
+                    <p className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Open to remote</p>
+                  </div>
+                  <span className="flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_2px_rgba(52,211,153,0.6)]" />
+                </div>
+              </div>
             </div>
+          </div>
+        </Reveal>
 
-            {/* Dot Grid Pattern — desktop only */}
-            <div className="absolute inset-0 opacity-[0.02] hidden md:block">
-                <div className="absolute inset-0" style={{
-                    backgroundImage: 'radial-gradient(circle, #6366f1 1px, transparent 1px)',
-                    backgroundSize: '40px 40px'
-                }} />
-            </div>
+        {/* Story */}
+        <div className="space-y-8 lg:col-span-7">
+          <Reveal>
+            <p className="font-display text-2xl leading-snug font-medium text-foreground md:text-3xl">
+              I&apos;m a software engineer who architects <span className="text-gradient">AI-powered platforms</span>,
+              event-driven data pipelines and cloud infrastructure built to scale.
+            </p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+              My journey began with a curiosity about how systems work and grew into a passion for building them. From
+              government-tech infrastructure to fintech platforms, I&apos;ve delivered across diverse domains, driven by
+              the thrill of solving complex problems, the satisfaction of optimizing performance, and the impact of
+              technology that genuinely improves people&apos;s lives.
+            </p>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <blockquote className="border-l-2 border-primary/60 pl-6 text-lg text-foreground/90 italic">
+              &ldquo;Code is poetry, systems are symphonies, and great software is the intersection of engineering
+              excellence and user delight.&rdquo;
+            </blockquote>
+          </Reveal>
+          <Reveal delay={0.16} className="flex flex-wrap gap-2">
+            {values.map((v) => (
+              <span key={v} className="glass rounded-full px-4 py-2 text-sm font-medium text-muted-foreground">
+                {v}
+              </span>
+            ))}
+          </Reveal>
+        </div>
+      </div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-6">
-                {/* Section Header */}
-                <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-black uppercase tracking-wider mb-6">
-                        <Zap className="w-4 h-4" />
-                        Introduction
-                    </div>
-                    <h2 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter">
-                        Who Am I<span className="text-indigo-400">?</span>
-                    </h2>
-                    <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-                        A passionate engineer who transforms complex problems into elegant solutions,
-                        bridging the gap between <span className="text-white font-bold">cutting-edge technology</span> and
-                        <span className="text-white font-bold"> real-world impact</span>.
-                    </p>
+      <RevealGroup className="mt-24 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {highlights.map(({ title, description, icon: Icon, glow }, i) => (
+          <RevealItem key={title}>
+            <TiltCard glowColor={glow} className="p-7">
+              <div className="flex h-full flex-col">
+                <div className="mb-10 flex items-center justify-between">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-ink/[0.05] ring-1 ring-ink/10">
+                    <Icon className="h-5 w-5 text-glow" />
+                  </span>
+                  <span className="font-mono text-xs text-subtle">0{i + 1}</span>
                 </div>
-
-                {/* Main Content Grid */}
-                <div className="grid lg:grid-cols-2 gap-12 mb-16">
-                    {/* Left: Story */}
-                    <div className={`transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-                        <div className="relative p-8 rounded-[2.5rem] bg-slate-900/50 backdrop-blur-sm border border-slate-800 overflow-hidden group hover:border-indigo-500/50 transition-all duration-500">
-                            {/* Shine effect — desktop only (expensive on mobile) */}
-                            <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 hidden md:block" />
-
-                            <div className="relative z-10">
-                                <div className="flex items-center gap-3 mb-6">
-                                    <div className="p-3 rounded-xl bg-linear-to-br from-indigo-500/20 to-purple-500/20 border border-indigo-500/30">
-                                        <Sparkles className="w-6 h-6 text-indigo-400" />
-                                    </div>
-                                    <h3 className="text-2xl font-black text-white">My Journey</h3>
-                                </div>
-
-                                <div className="space-y-4 text-slate-300 leading-relaxed">
-                                    <p>
-                                        I'm <span className="text-white font-bold">Krishnendu Ghosal</span>, a software engineer
-                                        currently working at <span className="text-indigo-400 font-bold">Ironbook AI</span>, where
-                                        I architect AI-powered solutions that process millions of data points daily.
-                                    </p>
-                                    <p>
-                                        My journey began with a curiosity about how systems work, which evolved into a passion for
-                                        building them. From <span className="text-emerald-400 font-semibold">government tech infrastructure</span> to
-                                        <span className="text-purple-400 font-semibold"> fintech platforms</span>, I've delivered solutions
-                                        across diverse domains.
-                                    </p>
-                                    <p>
-                                        What drives me? The thrill of <span className="text-amber-400 font-semibold">solving complex problems</span>,
-                                        the satisfaction of <span className="text-rose-400 font-semibold">optimizing performance</span>, and
-                                        the impact of creating technology that genuinely improves people's lives.
-                                    </p>
-                                </div>
-
-                                {/* Key Values */}
-                                <div className="mt-8 pt-8 border-t border-slate-800">
-                                    <p className="text-sm font-black uppercase tracking-wider text-slate-500 mb-4">Core Values</p>
-                                    <div className="flex flex-wrap gap-3">
-                                        {["Innovation", "Quality", "Scalability", "User-Centric"].map((value) => (
-                                            <span
-                                                key={value}
-                                                className="px-4 py-2 rounded-xl bg-slate-800/50 border border-slate-700 text-sm font-bold text-slate-300 hover:border-indigo-500/50 hover:text-white transition-all cursor-default"
-                                            >
-                                                {value}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Right: Stats */}
-                    <div className={`transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-                        <div className="grid grid-cols-2 gap-4 mb-6">
-                            {stats.map((stat, idx) => (
-                                <div
-                                    key={idx}
-                                    className="relative p-6 rounded-3xl bg-slate-900/50 border border-slate-800 overflow-hidden group hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1"
-                                >
-                                    <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity hidden md:block" />
-                                    <div className="relative z-10">
-                                        <div className={`mb-3 ${stat.color}`}>
-                                            {stat.icon}
-                                        </div>
-                                        <p className="text-4xl font-black text-white mb-2">{stat.value}</p>
-                                        <p className="text-sm font-bold text-slate-400">{stat.label}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* Philosophy Quote */}
-                        <div className="relative p-8 rounded-[2.5rem] bg-linear-to-br from-indigo-950/50 to-purple-950/50 border border-indigo-500/30 overflow-hidden">
-                            <div className="absolute top-4 left-4 text-indigo-500/20 text-6xl font-black">"</div>
-                            <div className="absolute bottom-4 right-4 text-indigo-500/20 text-6xl font-black rotate-180">"</div>
-
-                            <div className="relative z-10">
-                                <p className="text-lg text-white font-medium leading-relaxed mb-4 italic">
-                                    Code is poetry, systems are symphonies, and great software is the intersection
-                                    of engineering excellence and user delight.
-                                </p>
-                                <p className="text-sm font-bold text-indigo-400">— My Engineering Philosophy</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Expertise Highlights */}
-                <div className={`transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    <h3 className="text-3xl font-black text-white text-center mb-8">What I Bring to the Table</h3>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {highlights.map((highlight, idx) => (
-                            <div
-                                key={idx}
-                                onMouseEnter={() => setActiveCard(idx)}
-                                onMouseLeave={() => setActiveCard(null)}
-                                className={`relative p-6 rounded-3xl bg-linear-to-br ${highlight.gradient} border ${highlight.border} overflow-hidden cursor-pointer transition-all duration-300 ${activeCard === idx ? 'scale-105 shadow-2xl shadow-indigo-500/20' : 'hover:scale-[1.02]'
-                                    }`}
-                            >
-                                {/* Shine effect — desktop only */}
-                                <div className={`absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 hidden md:block ${activeCard === idx ? 'translate-x-full' : '-translate-x-full'
-                                    }`} />
-
-                                <div className="relative z-10">
-                                    <div className="mb-4 text-indigo-400">
-                                        {highlight.icon}
-                                    </div>
-                                    <h4 className="text-lg font-black text-white mb-2">{highlight.title}</h4>
-                                    <p className="text-sm text-slate-400 leading-relaxed">{highlight.description}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Scroll Indicator */}
-                <div className={`flex justify-center mt-16 transition-all duration-700 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-                    <div className="flex flex-col items-center gap-2 text-slate-500 hover:text-indigo-400 transition-colors cursor-pointer group">
-                        <p className="text-sm font-bold uppercase tracking-wider">Explore More</p>
-                        <ChevronDown className="w-6 h-6 animate-bounce group-hover:text-indigo-400" />
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+                <h3 className="font-display text-xl font-semibold text-foreground">{title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{description}</p>
+              </div>
+            </TiltCard>
+          </RevealItem>
+        ))}
+      </RevealGroup>
+    </div>
+  );
 }

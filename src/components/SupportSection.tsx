@@ -1,106 +1,109 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Coffee, Github } from "lucide-react";
+import { CoffeeCup } from "@/components/coffee/CoffeeCup";
+import { Reveal } from "@/components/ui/reveal";
+import { MENU, SPONSORS_URL } from "@/lib/coffee";
+import { cn } from "@/lib/utils";
 
+const repos = [
+  { name: "catoff-reclaim-integration", link: "https://github.com/KriXsh/catoff-reclaim-integration-proposal" },
+  { name: "bridge-backend", link: "https://github.com/KriXsh/bridge-backend" },
+];
+
+/** Homepage teaser for the coffee bar: hover a drink and the cup pours it. */
 export default function SupportSection() {
-    const projects = [
-        { name: "catoff-reclaim-integration", link: "https://github.com/KriXsh/catoff-reclaim-integration-proposal" },
-        { name: "bridge-backend", link: "https://github.com/KriXsh/bridge-backend" },
-    ];
+  const [hovered, setHovered] = useState(1);
+  const level = MENU[hovered].fill;
 
-    return (
-        <section id="support" className="py-20 px-4">
-            <div className="max-w-6xl mx-auto bg-linear-to-br from-slate-950 via-slate-900 to-indigo-950 rounded-[3.5rem] p-8 md:p-16 border border-slate-800 relative overflow-hidden group">
+  return (
+    <div className="py-20">
+      <Reveal>
+        <div className="relative overflow-hidden rounded-[2.5rem] border border-border bg-surface">
+          <div aria-hidden className="absolute -top-32 -left-20 h-[26rem] w-[26rem] rounded-full bg-[#c08457]/15 blur-[120px]" />
+          <div aria-hidden className="absolute inset-0 grid-lines opacity-30" />
 
-                {/*
-                  * MOBILE PERFORMANCE FIX:
-                  * — Replaced raw style={{ animation: '...' }} inline strings with Tailwind's animate-pulse.
-                  * — Hidden on mobile (hidden md:block) to avoid heavy blur on low-end GPUs.
-                */}
-                <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-[120px] -mr-64 -mt-64 bg-indigo-600/10 animate-pulse hidden md:block" />
-                <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-[100px] -ml-48 -mb-48 bg-purple-600/10 animate-pulse hidden md:block" />
-
-                <div className="relative z-10">
-                    <div className="text-center mb-12">
-                        <h3 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
-                            Fuel the <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-400 to-cyan-400">Open Source</span> Journey
-                        </h3>
-                        <p className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
-                            My work on projects like <span className="text-indigo-300 font-mono italic">bridge-backend</span> is fueled by the community.
-                            Whether it's a star or a coffee, every bit counts.
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-8 items-stretch">
-
-                        {/* GitHub Sponsors Card */}
-                        <div className="flex flex-col p-8 rounded-[2.5rem] bg-slate-900/30 border border-slate-800 backdrop-blur-sm hover:bg-slate-900/50 hover:border-pink-500/30 transition-all duration-500 group/card">
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-400 border border-pink-500/30 group-hover/card:scale-110 transition-transform">
-                                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" /></svg>
-                                </div>
-                                <h4 className="text-2xl font-bold text-white">GitHub Sponsors</h4>
-                            </div>
-
-                            <p className="text-slate-400 mb-8 grow">
-                                Support my open-source contributions and help me maintain long-term projects.
-                            </p>
-
-                            <div className="flex flex-wrap gap-2 mb-8">
-                                {projects.map((project) => (
-                                    <Link
-                                        key={project.name}
-                                        href={project.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 hover:bg-indigo-500/20 transition-colors"
-                                    >
-                                        {project.name}
-                                    </Link>
-                                ))}
-                            </div>
-
-                            <Link
-                                href="https://github.com/sponsors/KriXsh"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-full py-4 px-6 rounded-2xl bg-white text-slate-950 font-black text-center hover:bg-pink-500 hover:text-white transition-all duration-300 transform active:scale-95"
-                            >
-                                SPONSOR ON GITHUB
-                            </Link>
-                        </div>
-
-                        {/* One-time Support Card */}
-                        <div className="flex flex-col p-8 rounded-[2.5rem] bg-slate-900/30 border border-indigo-500/30 backdrop-blur-sm hover:border-indigo-500/50 hover:bg-slate-900/50 transition-all duration-500 group/card">
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 border border-indigo-500/30 group-hover/card:scale-110 transition-transform">
-                                    <span className="text-2xl">☕</span>
-                                </div>
-                                <h4 className="text-2xl font-bold text-white">Quick Tip</h4>
-                            </div>
-
-                            <p className="text-slate-400 mb-8 grow">
-                                A quick one-time support via UPI. Perfect for saying thanks for a specific repo or help!
-                            </p>
-
-                            <div className="bg-slate-950/50 rounded-2xl p-4 mb-8 border border-slate-800">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-                                    <span className="text-xs font-mono text-slate-300 tracking-widest uppercase">UPI Payments Enabled</span>
-                                </div>
-                            </div>
-
-                            <Link
-                                href="/support"
-                                className="w-full py-4 px-6 rounded-2xl bg-linear-to-r from-indigo-600 to-purple-600 text-white font-black text-center shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40 transition-all transform active:scale-95"
-                            >
-                                SUPPORT VIA UPI
-                            </Link>
-                        </div>
-
-                    </div>
-                </div>
+          <div className="relative grid items-center gap-10 p-8 md:p-14 lg:grid-cols-12">
+            <div className="lg:col-span-5">
+              <p className="mb-4 font-mono text-xs tracking-[0.25em] text-[#e0a47a] uppercase">Support</p>
+              <h2 className="font-display text-display-md font-bold text-foreground">
+                Fuel the{" "}
+                <span className="bg-gradient-to-r from-[#f0c9a4] to-[#c08457] bg-clip-text text-transparent">open source</span>
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                Projects like <span className="font-mono text-foreground">bridge-backend</span> run on caffeine and
+                community. Buy a coffee over UPI, or sponsor on GitHub.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {repos.map((r) => (
+                  <a
+                    key={r.name}
+                    href={r.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full border border-border px-3 py-1 font-mono text-[11px] text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {r.name}
+                  </a>
+                ))}
+              </div>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <Link
+                  href="/support"
+                  className="group inline-flex items-center gap-2 rounded-full bg-[#f5efe6] px-6 py-3 text-sm font-semibold text-[#2a1a10] transition-transform hover:scale-[1.03]"
+                >
+                  <Coffee className="h-4 w-4 transition-transform group-hover:-rotate-12" /> Buy me a coffee
+                </Link>
+                <a
+                  href={SPONSORS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Github className="h-4 w-4" /> Sponsor on GitHub <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              </div>
             </div>
-        </section>
-    );
+
+            <div className="mx-auto w-44 md:w-52 lg:col-span-3">
+              <CoffeeCup level={level} className="w-full drop-shadow-[0_20px_40px_rgba(192,132,87,0.25)]" />
+            </div>
+
+            <ul className="space-y-2 lg:col-span-4">
+              {MENU.map((m, i) => (
+                <li key={m.id}>
+                  <Link
+                    href={`/support?item=${m.id}`}
+                    onMouseEnter={() => setHovered(i)}
+                    onFocus={() => setHovered(i)}
+                    className={cn(
+                      "group relative flex items-center gap-4 rounded-2xl px-4 py-3 transition-colors",
+                      hovered === i ? "text-foreground" : "text-muted-foreground",
+                    )}
+                  >
+                    {hovered === i && (
+                      <motion.span
+                        layoutId="coffee-teaser"
+                        className="absolute inset-0 rounded-2xl bg-ink/[0.05] ring-1 ring-[#c08457]/40"
+                        transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                      />
+                    )}
+                    <span className="relative flex-1">
+                      <span className="block font-display font-semibold">{m.name}</span>
+                      <span className="block text-xs text-subtle">{m.blurb}</span>
+                    </span>
+                    <span className="relative font-mono text-sm">₹{m.price}</span>
+                    <ArrowUpRight className="relative h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  );
 }

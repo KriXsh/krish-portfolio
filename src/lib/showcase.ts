@@ -30,7 +30,7 @@ export const LIVE_PROJECTS: LiveProject[] = [
   {
     repo: "Pathfinding-Visualizer",
     title: "Pathfinding Visualizer",
-    url: "https://pathfinding-visualizer-chi-lyart.vercel.app",
+    url: "https://pathfinding-visualizer-theta-puce.vercel.app",
     tryHref: "/projects/pathfinding",
     blurb: "Draw walls, drop start and end nodes, and watch Dijkstra find the shortest path in real time.",
     tags: ["React", "Algorithms", "Graphs"],

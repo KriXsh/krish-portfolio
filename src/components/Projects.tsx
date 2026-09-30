@@ -39,7 +39,7 @@ const projects = [
     description:
       "A dynamic visualization tool built to demonstrate Dijkstra's Algorithm. Features an interactive grid where users can set start/end points and draw walls to see real-time shortest-path calculations.",
     tech: ["React.js", "Algorithms", "CSS3"],
-    link: "https://pathfinding-visualizer-chi-lyart.vercel.app/",
+    link: "https://pathfinding-visualizer-theta-puce.vercel.app/",
     type: "Live Demo",
     // Native, on-site version of the visualizer.
     tryHref: "/projects/pathfinding",

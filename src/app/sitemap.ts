@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "", priority: 1, changeFrequency: "weekly" },
     { path: "/projects", priority: 0.9, changeFrequency: "weekly" },
     { path: "/projects/pathfinding", priority: 0.7, changeFrequency: "monthly" },
-    { path: "/projects/pathfinding", priority: 0.7, changeFrequency: "monthly" },
+    { path: "/projects/sorting", priority: 0.7, changeFrequency: "monthly" },
     { path: "/case-studies", priority: 0.9, changeFrequency: "monthly" },
     ...CASE_STUDY_SLUGS.map((slug) => ({ path: `/case-studies/${slug}`, priority: 0.8, changeFrequency: "monthly" as const })),
     ...(TESTIMONIALS.length ? [{ path: "/testimonials", priority: 0.6, changeFrequency: "monthly" as const }] : []),

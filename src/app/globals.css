@@ -312,3 +312,83 @@ html.dark {
   border: 3px solid var(--color-primary);
   box-shadow: 0 0 14px rgb(99 102 241 / 0.6);
 }
+
+/* ---------------------------------------------------------------------------
+   Sorting visualizer (/projects/sorting)
+   Same approach as the pathfinding board: surfaces follow the site theme,
+   bar-state colours deepen in light mode so labels stay readable on white.
+   Utilities: bg-sf-*, text-sf-*, animate-sf-*.
+   --------------------------------------------------------------------------- */
+@theme {
+  --color-sf-canvas: #fbfbfe;
+  --color-sf-surface: #ffffff;
+  --color-sf-panel: #ffffff;
+  --color-sf-line: rgb(11 16 32 / 0.07);
+
+  --color-sf-compare: #f59e0b;
+  --color-sf-swap: #f43f5e;
+  --color-sf-pivot: #d946ef;
+  --color-sf-sorted: #10b981;
+
+  --animate-sf-blink: sf-blink 1.4s ease-in-out infinite;
+  --animate-sf-rise: sf-rise 0.7s var(--ease-out-expo) backwards;
+}
+
+html.dark {
+  --color-sf-canvas: #0a0d14;
+  --color-sf-surface: #121721;
+  --color-sf-panel: #1a202c;
+  --color-sf-line: rgb(255 255 255 / 0.06);
+  --color-sf-compare: #fbbf24;
+  --color-sf-swap: #fb7185;
+  --color-sf-pivot: #e879f9;
+  --color-sf-sorted: #34d399;
+}
+
+@keyframes sf-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* Bars grow in from the floor when a new array arrives. */
+@keyframes sf-rise {
+  from { transform: scaleY(0); opacity: 0; }
+  to { transform: scaleY(1); opacity: 1; }
+}
+
+/* Sliders: gradient fill up to the thumb via --sf-fill (0-100%). */
+.sf-range {
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, var(--color-primary), var(--color-cyan)) 0 / var(--sf-fill, 50%) 100% no-repeat,
+    color-mix(in srgb, var(--color-ink) 10%, transparent);
+  cursor: pointer;
+}
+.sf-range:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+.sf-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: #fff;
+  border: 3px solid var(--color-primary);
+  box-shadow: 0 0 0 4px rgb(99 102 241 / 0.18), 0 0 14px rgb(99 102 241 / 0.6);
+  transition: transform 0.2s var(--ease-out-expo);
+}
+.sf-range:hover::-webkit-slider-thumb,
+.sf-range:focus-visible::-webkit-slider-thumb {
+  transform: scale(1.2);
+}
+.sf-range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #fff;
+  border: 3px solid var(--color-primary);
+  box-shadow: 0 0 14px rgb(99 102 241 / 0.6);
+}

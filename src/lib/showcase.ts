@@ -32,15 +32,16 @@ export const LIVE_PROJECTS: LiveProject[] = [
     title: "Pathfinding Visualizer",
     url: "https://pathfinding-visualizer-theta-puce.vercel.app",
     tryHref: "/projects/pathfinding",
-    blurb: "Draw walls, drop start and end nodes, and watch Dijkstra find the shortest path in real time.",
-    tags: ["React", "Algorithms", "Graphs"],
+    blurb: "Watch Dijkstra, A*, BFS and DFS explore a grid node by node. Draw walls and weights, generate mazes, and drag markers to re-route live.",
+    tags: ["Next.js", "TypeScript", "Graph algorithms"],
   },
   {
     repo: "SortFusion-UI",
     title: "Sort-Fusion",
     url: "https://sort-fusion-ui.vercel.app",
-    blurb: "Interactive visualizer for sorting algorithms, showing every swap and comparison as it happens.",
-    tags: ["React", "Data structures", "Tailwind"],
+    tryHref: "/projects/sorting",
+    blurb: "Eight sorting algorithms animated step by step, with live pseudocode, a scrubbable timeline and your own numbers.",
+    tags: ["Next.js", "TypeScript", "Sorting algorithms"],
   },
 ];
 

@@ -37,14 +37,27 @@ const projects = [
     title: "Pathfinding Visualizer",
     date: "June 2022 - Dec 2022",
     description:
-      "A dynamic visualization tool built to demonstrate Dijkstra's Algorithm. Features an interactive grid where users can set start/end points and draw walls to see real-time shortest-path calculations.",
-    tech: ["React.js", "Algorithms", "CSS3"],
+      "An interactive visualizer for Dijkstra, A*, BFS and DFS. Draw walls and weighted terrain, generate mazes, and watch each search explore the grid node by node, then drag the start or target to re-route live.",
+    tech: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
     link: "https://pathfinding-visualizer-theta-puce.vercel.app/",
     type: "Live Demo",
     // Native, on-site version of the visualizer.
     tryHref: "/projects/pathfinding",
     image: "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=1400&q=80&auto=format&fit=crop",
     tint: "from-primary/40",
+  },
+  {
+    title: "SortFusion",
+    date: "Live",
+    description:
+      "An interactive visualizer for eight sorting algorithms, from Bubble to Quick, Merge and Heap sort. Step through every compare and swap, scrub the timeline, follow the highlighted pseudocode, or sort your own numbers.",
+    tech: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
+    link: "https://sort-fusion-ui.vercel.app/",
+    type: "Live Demo",
+    // Native, on-site version of the visualizer.
+    tryHref: "/projects/sorting",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&q=80&auto=format&fit=crop",
+    tint: "from-violet/40",
   },
   {
     title: "Weather-App",

@@ -92,6 +92,33 @@ const skillCategories = [
 
 const allSkills = skillCategories.flatMap((c) => c.items);
 
+// Brand logos are long inline paths and each one shows up several times (its
+// card plus both marquee rows, doubled to loop). Drawing each once as a symbol
+// and pointing every copy at it keeps the page HTML small.
+const iconId = (name: string) => `skill-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+
+function IconSprite() {
+  return (
+    <svg aria-hidden width="0" height="0" className="absolute">
+      <defs>
+        {allSkills.map(({ name, icon: SkillIcon }) => (
+          <symbol key={name} id={iconId(name)} viewBox="0 0 24 24">
+            <SkillIcon size="24" />
+          </symbol>
+        ))}
+      </defs>
+    </svg>
+  );
+}
+
+function SkillGlyph({ name, className }: { name: string; className: string }) {
+  return (
+    <svg aria-hidden fill="currentColor" className={className}>
+      <use href={`#${iconId(name)}`} />
+    </svg>
+  );
+}
+
 /** Bento card with a spotlight that follows the cursor. */
 function SpotlightCard({
   accent,
@@ -135,6 +162,7 @@ function SpotlightCard({
 export default function Skills() {
   return (
     <div className="py-28 md:py-36">
+      <IconSprite />
       <SectionHeading
         index="02"
         eyebrow="Technical Arsenal"
@@ -161,12 +189,12 @@ export default function Skills() {
                 <span className="ml-auto font-mono text-xs text-subtle">{String(items.length).padStart(2, "0")}</span>
               </div>
               <div className="flex flex-wrap gap-2">
-                {items.map(({ name, icon: SkillIcon }) => (
+                {items.map(({ name }) => (
                   <span
                     key={name}
                     className="inline-flex items-center gap-2 rounded-full border border-border bg-ink/[0.02] px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors duration-300 hover:border-ink/20 hover:text-foreground"
                   >
-                    <SkillIcon className="h-3.5 w-3.5" />
+                    <SkillGlyph name={name} className="h-3.5 w-3.5" />
                     {name}
                   </span>
                 ))}
@@ -184,12 +212,12 @@ export default function Skills() {
               className="flex w-max animate-marquee gap-4 [--marquee-duration:60s]"
               style={{ animationDirection: reverse ? "reverse" : "normal" }}
             >
-              {[...allSkills, ...allSkills].map(({ name, icon: SkillIcon }, i) => (
+              {[...allSkills, ...allSkills].map(({ name }, i) => (
                 <span
                   key={`${name}-${i}`}
-                  className="glass flex items-center gap-3 rounded-2xl px-5 py-3 text-sm font-medium whitespace-nowrap text-muted-foreground"
+                  className="glass flex items-center gap-3 rounded-2xl px-5 py-3 [-webkit-backdrop-filter:none]! [backdrop-filter:none]! text-sm font-medium whitespace-nowrap text-muted-foreground"
                 >
-                  <SkillIcon className="h-4 w-4 text-glow" />
+                  <SkillGlyph name={name} className="h-4 w-4 text-glow" />
                   {name}
                 </span>
               ))}

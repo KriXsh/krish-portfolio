@@ -4,7 +4,7 @@ import { ArrowUpRight, Download, FileText } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { Magnetic } from "@/components/ui/magnetic";
-import { RESUME_DOWNLOAD_URL, RESUME_URL } from "@/lib/site";
+import { RESUME_DOWNLOAD_URL, RESUME_PREVIEW_URL, RESUME_URL } from "@/lib/site";
 
 const highlights = [
   { k: "5", v: "Companies" },
@@ -12,35 +12,24 @@ const highlights = [
   { k: "25+", v: "Technologies" },
 ];
 
-/** A stylised page standing in for the PDF: name, title, and ruled lines. */
+/** The live PDF, embedded from Drive. The iframe ignores the pointer so the
+    tilt still tracks it and a click opens the full resume in Drive. */
 function PaperPreview() {
   return (
     <TiltCard max={12} glowColor="rgba(139,92,246,0.25)" className="mx-auto w-full max-w-sm rounded-[1.75rem] p-3">
       <a href={RESUME_URL} target="_blank" rel="noopener noreferrer" aria-label="Open resume" className="block">
-        <div className="relative aspect-[1/1.3] overflow-hidden rounded-[1.25rem] bg-gradient-to-b from-[#f8fafc] to-[#e2e8f0] p-7 text-background">
-          <div className="flex items-start justify-between">
-            <div>
-              <p className="font-display text-xl leading-none font-bold">Krishnendu Ghosal</p>
-              <p className="mt-2 text-[11px] font-semibold tracking-wide text-primary uppercase">Software Engineer · AI / Cloud</p>
-            </div>
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-background text-foreground">
-              <FileText className="h-4 w-4" />
-            </span>
+        <div className="relative aspect-[1/1.3] overflow-hidden rounded-[1.25rem] bg-gradient-to-b from-[#f8fafc] to-[#e2e8f0]">
+          <div className="absolute inset-0 flex items-center justify-center text-background/40">
+            <FileText className="h-8 w-8" />
           </div>
-          <div className="mt-6 h-px bg-background/15" />
-          {[
-            [92, 80, 86],
-            [70, 95, 60, 84],
-            [88, 76, 64],
-          ].map((block, b) => (
-            <div key={b} className="mt-6">
-              <div className="mb-3 h-2 w-20 rounded-full bg-primary/60" />
-              {block.map((w, i) => (
-                <div key={i} className="mb-2 h-1.5 rounded-full bg-background/15" style={{ width: `${w}%` }} />
-              ))}
-            </div>
-          ))}
-          <div className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 bg-gradient-to-t from-[#cbd5e1] to-transparent pt-16 pb-5 text-xs font-semibold opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+          <iframe
+            src={RESUME_PREVIEW_URL}
+            title="Krishnendu Ghosal resume"
+            loading="lazy"
+            tabIndex={-1}
+            className="pointer-events-none absolute inset-0 h-full w-full border-0"
+          />
+          <div className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 bg-gradient-to-t from-[#cbd5e1] to-transparent pt-16 pb-5 text-xs font-semibold text-background opacity-0 transition-opacity duration-500 group-hover:opacity-100">
             Open full resume <ArrowUpRight className="h-3.5 w-3.5" />
           </div>
         </div>

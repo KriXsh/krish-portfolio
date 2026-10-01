@@ -1,6 +1,7 @@
-const RESUME_ID = "17IshLoqvq43ccBGErfJb_26s0oQ0feUK";
+const RESUME_ID = "1ElBn_2o2yrUpcNsGh5gn5Rs17s_KyXfL";
 
 export const RESUME_URL = `https://drive.google.com/file/d/${RESUME_ID}/view?usp=sharing`;
+export const RESUME_PREVIEW_URL = `https://drive.google.com/file/d/${RESUME_ID}/preview`;
 export const RESUME_DOWNLOAD_URL = `https://drive.google.com/uc?export=download&id=${RESUME_ID}`;
 export const LEETCODE_URL = "https://leetcode.com/u/KriXsh999/";
 

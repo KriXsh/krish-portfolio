@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion, useInView, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowDown, ArrowUpRight, FileText, Github, Linkedin, Send } from "lucide-react";
@@ -40,6 +40,34 @@ function readTenure() {
   return `${years}y ${months}m`;
 }
 
+/** Data saver or a slow connection: skip the WebGL scene, the gradients stand in. */
+const readSkip3d = () => {
+  const c = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+  return !!c && (c.saveData === true || /(^|-)(2g|3g)$/.test(c.effectiveType ?? ""));
+};
+
+/** True once the page has loaded and the main thread is idle, so the large
+    three.js chunk never competes with the first paint or hydration. */
+function useAfterLoad() {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    let idle = 0;
+    let timer = 0;
+    const go = () => {
+      if ("requestIdleCallback" in window) idle = window.requestIdleCallback(() => setReady(true), { timeout: 2500 });
+      else timer = setTimeout(() => setReady(true), 300) as unknown as number;
+    };
+    if (document.readyState === "complete") go();
+    else window.addEventListener("load", go, { once: true });
+    return () => {
+      window.removeEventListener("load", go);
+      if (idle) window.cancelIdleCallback(idle);
+      clearTimeout(timer);
+    };
+  }, []);
+  return ready;
+}
+
 const readLite = () =>
   window.matchMedia("(max-width: 768px)").matches || (navigator.hardwareConcurrency ?? 8) <= 4;
 
@@ -48,6 +76,8 @@ export default function Hero() {
   const inView = useInView(ref, { margin: "0px 0px -10% 0px" });
   const tenure = useClientValue(readTenure, "3y+");
   const lite = useClientValue(readLite, false);
+  const skip3d = useClientValue(readSkip3d, true);
+  const loaded = useAfterLoad();
 
   // Scroll-linked exit: text drifts up and dissolves, the 3D scene sinks and scales.
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
@@ -82,7 +112,7 @@ export default function Hero() {
           className="h-full w-full"
         >
           <div className="h-full w-full opacity-50 md:opacity-100">
-            <HeroScene active={inView} lite={lite} theme="dark" />
+            {loaded && !skip3d && <HeroScene active={inView} lite={lite} theme="dark" />}
           </div>
         </motion.div>
       </motion.div>

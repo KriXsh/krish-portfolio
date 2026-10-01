@@ -25,6 +25,8 @@ type Role = { title: string; date: string; tenure: string; bullets: string[] };
 type Job = {
   company: string;
   short: string;
+  /** Anchor id of the entry, linked from the hero's domain marquee. */
+  id: string;
   /** "YYYY-MM"; `end` omitted means present. */
   start: string;
   end?: string;
@@ -40,6 +42,7 @@ const jobs: Job[] = [
   {
     company: "Ironbook AI",
     short: "Ironbook AI",
+    id: "exp-ironbook",
     start: "2025-08",
     date: "Aug 2025 - Present",
     tenure: "Current",
@@ -65,6 +68,7 @@ const jobs: Job[] = [
   {
     company: "Aaizel International Technologies Pvt Ltd",
     short: "Aaizel Tech",
+    id: "exp-aaizel",
     start: "2025-03",
     end: "2025-07",
     date: "March 2025 - July 2025",
@@ -95,6 +99,7 @@ const jobs: Job[] = [
   {
     company: "Floxify",
     short: "Floxify",
+    id: "exp-floxify",
     start: "2025-01",
     end: "2025-02",
     date: "Jan 2025 - Feb 2025",
@@ -119,6 +124,7 @@ const jobs: Job[] = [
   {
     company: "Invincible Ocean Pvt Ltd",
     short: "Invincible Ocean",
+    id: "exp-invincible-ocean",
     start: "2023-06",
     end: "2024-12",
     date: "June 2023 - Dec 2024",
@@ -160,6 +166,7 @@ const jobs: Job[] = [
   {
     company: "EPAM Systems",
     short: "EPAM Systems",
+    id: "exp-epam",
     start: "2023-01",
     end: "2023-05",
     date: "Jan 2023 - May 2023",
@@ -289,155 +296,6 @@ function JobDetails({ job, index }: { job: Job; index: number }) {
   );
 }
 
-const INDUSTRIES: Category[] = ["gov-tech", "fintech", "b2b", "b2c"];
-
-/** Which industries were delivered where. Rows are industries, columns are
-    companies in journey order; Cloud & DevOps sits underneath as the practice
-    that runs through all of them. */
-function DomainMap({ onJump }: { onJump: (index: number) => void }) {
-  const [row, setRow] = useState<Category | null>(null);
-  const [col, setCol] = useState<number | null>(null);
-  const rows: Category[] = [...INDUSTRIES, "cloud-devops"];
-  const lit = (c: Category, i: number) => journey[i].categories.includes(c);
-
-  return (
-    <Reveal id="domains" className="mb-16 scroll-mt-28">
-      <div className="rounded-[2rem] border border-border bg-surface/70 p-5 md:p-8">
-        <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <p className="font-mono text-[11px] tracking-[0.25em] text-subtle uppercase">Domain map</p>
-            <h3 className="mt-2 font-display text-2xl font-bold text-foreground md:text-3xl">
-              4 industries, <span className="text-gradient">5 teams.</span>
-            </h3>
-          </div>
-          <p className="max-w-sm text-sm text-muted-foreground">
-            Where each domain was delivered.{" "}
-            <span className="hidden md:inline">Hover to trace it, click a company to jump to the work.</span>
-            <span className="md:hidden">Tap a company to jump to the work.</span>
-          </p>
-        </div>
-
-        {/* Desktop: matrix */}
-        <div className="hidden md:block" onPointerLeave={() => { setRow(null); setCol(null); }}>
-          <div className="grid grid-cols-[minmax(11rem,1.2fr)_repeat(5,minmax(0,1fr))_4rem] items-center">
-            <span />
-            {journey.map((j, i) => (
-              <button
-                key={j.short}
-                type="button"
-                onClick={() => onJump(i)}
-                onPointerEnter={() => { setCol(i); setRow(null); }}
-                className={cn(
-                  "rounded-xl px-2 py-3 text-center transition-colors",
-                  col === i ? "bg-ink/[0.05] text-foreground" : "text-muted-foreground hover:text-foreground",
-                )}
-              >
-                <span className="block font-display text-sm font-semibold leading-tight">{j.short}</span>
-                <span className="mt-1 block font-mono text-[10px] text-subtle">
-                  {j.start.slice(0, 4)}
-                  {j.end ? (j.end.slice(0, 4) !== j.start.slice(0, 4) ? `–${j.end.slice(2, 4)}` : "") : "–now"}
-                </span>
-              </button>
-            ))}
-            <span className="text-right font-mono text-[10px] text-subtle uppercase">Teams</span>
-
-            {rows.map((c) => {
-              const { icon: Icon, label, color } = categoryStyles[c];
-              const count = journey.filter((_, i) => lit(c, i)).length;
-              const practice = c === "cloud-devops";
-              return (
-                <div
-                  key={c}
-                  onPointerEnter={() => { setRow(c); setCol(null); }}
-                  className={cn(
-                    "col-span-7 grid grid-cols-subgrid items-center rounded-2xl transition-colors",
-                    practice && "mt-3 border-t border-dashed border-border pt-3",
-                    row === c && "bg-ink/[0.03]",
-                  )}
-                >
-                  <span className="flex items-center gap-3 px-3 py-3">
-                    <span
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg"
-                      style={{ color: `color-mix(in oklab, rgb(${color}) 55%, var(--color-foreground))`, background: `rgba(${color},0.1)`, boxShadow: `inset 0 0 0 1px rgba(${color},0.25)` }}
-                    >
-                      <Icon className="h-4 w-4" />
-                    </span>
-                    <span>
-                      <span className="block text-sm font-semibold text-foreground">{label}</span>
-                      {practice && <span className="block text-[11px] text-subtle">Practice across every team</span>}
-                    </span>
-                  </span>
-                  {journey.map((j, i) => {
-                    const on = lit(c, i);
-                    const focus = (row === c || col === i) && on;
-                    const dim = (row !== null && row !== c) || (col !== null && col !== i);
-                    return (
-                      <button
-                        key={j.short}
-                        type="button"
-                        disabled={!on}
-                        onClick={() => onJump(i)}
-                        aria-label={on ? `${label} at ${j.company}` : `${j.company}: not ${label}`}
-                        className="flex h-full items-center justify-center py-3 disabled:cursor-default"
-                      >
-                        {on ? (
-                          <motion.span
-                            animate={{ scale: focus ? 1.35 : 1, opacity: dim ? 0.35 : 1 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 22 }}
-                            className="h-3.5 w-3.5 rounded-full"
-                            style={{
-                              background: `rgb(${color})`,
-                              boxShadow: focus ? `0 0 18px 4px rgba(${color},0.55)` : `0 0 8px rgba(${color},0.35)`,
-                            }}
-                          />
-                        ) : (
-                          <span className={cn("h-px w-3 bg-ink/10 transition-opacity", dim && "opacity-40")} />
-                        )}
-                      </button>
-                    );
-                  })}
-                  <span className="pr-3 text-right font-mono text-sm text-muted-foreground">{count}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Mobile: one card per industry */}
-        <div className="grid gap-3 md:hidden">
-          {rows.map((c) => {
-            const { icon: Icon, label, color } = categoryStyles[c];
-            return (
-              <div key={c} className="rounded-2xl border border-border bg-background/40 p-4">
-                <div className="mb-3 flex items-center gap-2.5">
-                  <Icon className="h-4 w-4" style={{ color: `color-mix(in oklab, rgb(${color}) 55%, var(--color-foreground))` }} />
-                  <span className="text-sm font-semibold text-foreground">{label}</span>
-                  {c === "cloud-devops" && <span className="text-[11px] text-subtle">· every team</span>}
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {journey.map((j, i) =>
-                    lit(c, i) ? (
-                      <button
-                        key={j.short}
-                        type="button"
-                        onClick={() => onJump(i)}
-                        className="rounded-full px-3 py-1 text-xs font-medium"
-                        style={{ color: `color-mix(in oklab, rgb(${color}) 55%, var(--color-foreground))`, background: `rgba(${color},0.08)`, boxShadow: `inset 0 0 0 1px rgba(${color},0.25)` }}
-                      >
-                        {j.short}
-                      </button>
-                    ) : null,
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </Reveal>
-  );
-}
-
 export default function Experience() {
   const lenis = useLenis();
   const container = useRef<HTMLDivElement>(null);
@@ -515,8 +373,6 @@ export default function Experience() {
         Read the case studies: how the work actually got done
         <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
       </Link>
-
-      <DomainMap onJump={jumpTo} />
 
       {/* Sticky journey bar */}
       <div className="sticky top-20 z-30 mb-14 md:top-24">
@@ -614,6 +470,7 @@ export default function Experience() {
         {journey.map((job, i) => (
           <section
             key={job.company}
+            id={job.id}
             ref={(n) => {
               entryRefs.current[i] = n;
             }}

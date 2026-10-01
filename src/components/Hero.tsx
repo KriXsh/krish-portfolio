@@ -16,15 +16,16 @@ const HeroScene = dynamic(() => import("@/components/three/HeroScene"), { ssr: f
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
+/** Each domain links to the experience entry that best shows it. */
 const domains = [
-  "B2G / Gov-Tech",
-  "FinOps / Fintech",
-  "B2B Enterprise",
-  "B2C Digital",
-  "AI-ML & MLOps",
-  "Cloud & DevOps",
-  "System Design",
-  "Event-Driven Architecture",
+  { label: "B2G / Gov-Tech", href: "#exp-aaizel" },
+  { label: "FinOps / Fintech", href: "#exp-invincible-ocean" },
+  { label: "B2B Enterprise", href: "#exp-ironbook" },
+  { label: "B2C Digital", href: "#exp-ironbook" },
+  { label: "AI-ML & MLOps", href: "#exp-ironbook" },
+  { label: "Cloud & DevOps", href: "#exp-epam" },
+  { label: "System Design", href: "#exp-aaizel" },
+  { label: "Event-Driven Architecture", href: "#exp-ironbook" },
 ];
 
 function readTenure() {
@@ -174,7 +175,7 @@ export default function Hero() {
           <div className="grid w-full grid-cols-4 gap-3 sm:flex sm:w-auto sm:flex-wrap sm:gap-x-12 sm:gap-y-6">
             {[
               { k: tenure, v: "Active engineering", href: "#experience", label: "See my experience" },
-              { k: "4+", v: "Industry domains", href: "#domains", label: "See the domain map" },
+              { k: "4+", v: "Industry domains", href: "#experience", label: "See my experience" },
               { k: "25+", v: "Technologies", href: "#skills", label: "See my skills" },
               { k: "5", v: "Companies", href: "#experience", label: "See the companies I worked at" },
             ].map((s) => (
@@ -218,10 +219,16 @@ export default function Hero() {
 
       {/* Domain marquee */}
       <div className="relative z-10 border-y border-border bg-surface/60 py-5 backdrop-blur-sm mask-fade-x">
-        <div className="flex w-max animate-marquee gap-12 [--marquee-duration:45s]">
+        <div className="flex w-max animate-marquee gap-12 [--marquee-duration:45s] hover:[animation-play-state:paused]">
           {[...domains, ...domains].map((d, i) => (
-            <span key={i} className="flex items-center gap-12 font-display text-lg font-semibold whitespace-nowrap text-muted-foreground">
-              {d}
+            <span key={i} aria-hidden={i >= domains.length || undefined} className="flex items-center gap-12 font-display text-lg font-semibold whitespace-nowrap text-muted-foreground">
+              <a
+                href={d.href}
+                tabIndex={i >= domains.length ? -1 : undefined}
+                className="transition-colors hover:text-foreground focus-visible:text-foreground"
+              >
+                {d.label}
+              </a>
               <span className="text-glow">✦</span>
             </span>
           ))}

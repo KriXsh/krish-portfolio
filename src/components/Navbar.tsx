@@ -5,7 +5,7 @@ import { useLenis } from "lenis/react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, FileText, Github, Linkedin, Menu, X } from "lucide-react";
+import { ArrowUpRight, FileText, Github, Linkedin, Mail, Menu, X } from "lucide-react";
 import { SiLeetcode } from "react-icons/si";
 import { LEETCODE_URL, RESUME_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -24,10 +24,17 @@ export const navLinks = [
 
 /** Homepage sections that live in the footer rather than the top bar. */
 export const moreLinks = [
-  { name: "Services", href: "#freelance" },
+  { name: "Services", href: "/services" },
   { name: "Education", href: "#education" },
   { name: "Resume", href: "#resume" },
   { name: "Buy me a coffee", href: "/support" },
+];
+
+const socials = [
+  { icon: Github, href: "https://github.com/KriXsh", label: "GitHub" },
+  { icon: Linkedin, href: "https://linkedin.com/in/krish-me", label: "LinkedIn" },
+  { icon: SiLeetcode, href: LEETCODE_URL, label: "LeetCode" },
+  { icon: Mail, href: "mailto:krishnendughosal999@gmail.com", label: "Email" },
 ];
 
 /** Homepage anchors ("#skills") only exist on "/". From any other page they
@@ -213,9 +220,9 @@ export default function Navbar() {
             animate={{ clipPath: "circle(150% at 100% 0%)" }}
             exit={{ clipPath: "circle(0% at 100% 0%)" }}
             transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-40 flex flex-col justify-center bg-background/95 px-8 backdrop-blur-2xl lg:hidden"
+            className="fixed inset-0 z-40 flex flex-col overflow-y-auto bg-background/95 px-8 pt-28 pb-10 backdrop-blur-2xl lg:hidden [@media(max-height:640px)]:pt-24"
           >
-            <ul className="space-y-2">
+            <ul className="space-y-1">
               {navLinks.map((link, i) => (
                 <motion.li
                   key={link.name}
@@ -226,7 +233,7 @@ export default function Navbar() {
                   <NavAnchor
                     href={resolve(link.href)}
                     onClick={() => setIsOpen(false)}
-                    className="flex items-baseline gap-4 font-display text-5xl font-bold tracking-tight text-foreground"
+                    className="flex items-baseline gap-4 py-1.5 font-display text-[1.75rem] leading-tight font-bold tracking-tight whitespace-nowrap text-foreground sm:text-4xl [@media(max-height:640px)]:py-0.5"
                   >
                     <span className="font-mono text-xs text-subtle">0{i + 1}</span>
                     {link.name}
@@ -234,17 +241,35 @@ export default function Navbar() {
                 </motion.li>
               ))}
             </ul>
-            <motion.a
-              href={RESUME_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="mt-10 inline-flex w-fit items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background"
+              className="mt-8 flex shrink-0 flex-col items-start gap-4 [@media(max-height:640px)]:mt-5"
             >
-              <FileText className="h-4 w-4" /> View resume
-            </motion.a>
+              <a
+                href={RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background"
+              >
+                <FileText className="h-4 w-4" /> View resume
+              </a>
+              <div className="flex items-center gap-3">
+                {socials.map(({ icon: Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target={href.startsWith("mailto:") ? undefined : "_blank"}
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="glass flex h-11 w-11 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    <Icon className="h-4 w-4" />
+                  </a>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

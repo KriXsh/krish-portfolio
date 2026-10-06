@@ -8,6 +8,7 @@ import SmoothScroll from "@/components/providers/SmoothScroll";
 import MotionProvider from "@/components/providers/MotionProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Kai from "@/components/chat/Kai";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -94,6 +95,7 @@ export default function RootLayout({
             <Navbar />
             {children}
             <Footer />
+            <Kai />
           </SmoothScroll>
         </MotionProvider>
         <Analytics />

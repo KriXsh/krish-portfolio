@@ -216,7 +216,7 @@ export default function Hero() {
               </div>
             ))}
           </div>
-          <div className="hidden items-center gap-3 sm:flex">
+          <div className="flex items-center gap-3">
             {[
               { icon: Github, href: "https://github.com/KriXsh", label: "GitHub" },
               { icon: Linkedin, href: "https://linkedin.com/in/krish-me", label: "LinkedIn" },
@@ -228,7 +228,7 @@ export default function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="glass flex h-12 w-12 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground"
+                  className="glass flex h-11 w-11 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground sm:h-12 sm:w-12"
                 >
                   <Icon className="h-5 w-5" />
                 </a>

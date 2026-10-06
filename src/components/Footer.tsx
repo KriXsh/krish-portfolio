@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLenis } from "lenis/react";
-import { ArrowUp, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUp, ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 import { moreLinks, navLinks, useNavHref } from "@/components/Navbar";
 import { TESTIMONIALS } from "@/content/testimonials";
@@ -86,6 +86,13 @@ export default function Footer() {
                 <span className="text-sm font-semibold text-foreground">Available now</span>
               </div>
               <p className="text-sm text-muted-foreground">Currently looking for new projects and remote roles.</p>
+              <Link
+                href="/services"
+                className="group mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-foreground"
+              >
+                View services
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+              </Link>
             </div>
           </div>
         </div>

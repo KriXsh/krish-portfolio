@@ -67,7 +67,7 @@ const achievements: Achievement[] = [
 export default function Certifications() {
   return (
     <div className="pb-28 md:pb-36">
-      <SectionHeading index="07" eyebrow="Recognition" title={<>Certifications &amp; <span className="text-gradient">achievements.</span></>} />
+      <SectionHeading index="06" eyebrow="Recognition" title={<>Certifications &amp; <span className="text-gradient">achievements.</span></>} />
       <RevealGroup className="divide-y divide-border border-y border-border" stagger={0.06}>
         {achievements.map(({ title, org, icon: Icon, link, type, verify, featured }, i) => (
           <RevealItem key={title}>

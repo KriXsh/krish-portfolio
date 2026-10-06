@@ -1,16 +1,12 @@
 import { createHash } from "node:crypto";
-import { Redis } from "@upstash/redis";
+import { redis } from "@/lib/redis";
 
 // Real like counts for blog posts, stored in Upstash Redis.
-// Env: UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN (see .env.example).
+// Env: UPSTASH_REDIS_REST_URL/_TOKEN or KV_REST_API_URL/_TOKEN (see .env.example).
 // Without them, likes are disabled server-side and the UI falls back to a
 // private, local-only like with no public count.
 
-const url = process.env.UPSTASH_REDIS_REST_URL;
-const token = process.env.UPSTASH_REDIS_REST_TOKEN;
-
-export const likesEnabled = Boolean(url && token);
-const redis = likesEnabled ? new Redis({ url: url!, token: token! }) : null;
+export const likesEnabled = Boolean(redis);
 
 const countKey = (slug: string) => `blog:likes:${slug}`;
 const voterKey = (slug: string, voter: string) => `blog:liked:${slug}:${voter}`;

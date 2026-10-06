@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/case-studies", priority: 0.9, changeFrequency: "monthly" },
     ...CASE_STUDY_SLUGS.map((slug) => ({ path: `/case-studies/${slug}`, priority: 0.8, changeFrequency: "monthly" as const })),
     ...(TESTIMONIALS.length ? [{ path: "/testimonials", priority: 0.6, changeFrequency: "monthly" as const }] : []),
+    { path: "/services", priority: 0.8, changeFrequency: "monthly" },
     { path: "/support", priority: 0.5, changeFrequency: "monthly" },
   ];
   const blog = blogSitemapEntries().map((e) => ({

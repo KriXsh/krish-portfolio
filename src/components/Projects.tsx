@@ -4,86 +4,12 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Github, Globe, Play } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Reveal } from "@/components/ui/reveal";
 import Image from "next/image";
 import Link from "next/link";
-import { Magnetic } from "@/components/ui/magnetic";
+import { FloatingCta } from "@/components/ui/floating-cta";
+import { PROJECTS } from "@/content/projects";
 
-// Homepage showcase, hand-picked. Everything else is on /projects.
-const projects = [
-  {
-    title: "StockX AI Portal",
-    date: "Live",
-    description:
-      "A professional stock research platform with live pricing, AI-generated market recaps, news with AI sentiment, advanced charting, earnings analysis and watchlists, all in one unified portal.",
-    tech: ["Next.js", "AI Recaps", "AI Sentiment", "Live Market Data", "Vercel"],
-    link: "https://stock-x-ai.vercel.app/",
-    type: "Live Demo",
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1400&q=80&auto=format&fit=crop",
-    tint: "from-emerald-400/40",
-  },
-  {
-    title: "LMS Portal",
-    date: "Live",
-    description:
-      "A hybrid online-learning portal: a production-level EdTech platform for courses and learners, built on the modern Next.js stack with TypeScript, Tailwind CSS and MongoDB.",
-    tech: ["Next.js 15", "TypeScript", "Tailwind CSS", "MongoDB"],
-    link: "https://lms-ed-teach-eight.vercel.app/",
-    type: "Live Demo",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1400&q=80&auto=format&fit=crop",
-    tint: "from-cyan/40",
-  },
-  {
-    title: "Pathfinding Visualizer",
-    date: "June 2022 - Dec 2022",
-    description:
-      "An interactive visualizer for Dijkstra, A*, BFS and DFS. Draw walls and weighted terrain, generate mazes, and watch each search explore the grid node by node, then drag the start or target to re-route live.",
-    tech: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
-    link: "https://pathfinding-visualizer-theta-puce.vercel.app/",
-    type: "Live Demo",
-    // Native, on-site version of the visualizer.
-    tryHref: "/projects/pathfinding",
-    image: "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=1400&q=80&auto=format&fit=crop",
-    tint: "from-primary/40",
-  },
-  {
-    title: "SortFusion",
-    date: "Live",
-    description:
-      "An interactive visualizer for eight sorting algorithms, from Bubble to Quick, Merge and Heap sort. Step through every compare and swap, scrub the timeline, follow the highlighted pseudocode, or sort your own numbers.",
-    tech: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
-    link: "https://sort-fusion-ui.vercel.app/",
-    type: "Live Demo",
-    // Native, on-site version of the visualizer.
-    tryHref: "/projects/sorting",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&q=80&auto=format&fit=crop",
-    tint: "from-violet/40",
-  },
-  {
-    title: "Weather-App",
-    date: "June 2022 - July 2022",
-    description:
-      "A full-stack weather forecasting tool providing real-time updates on temperature, precipitation, and wind speed. Features hourly and weekly forecasts via API integration.",
-    tech: ["Node.js", "Express.js", "React.js", "HBS", "CSS"],
-    link: "https://weather-app-krish.onrender.com/",
-    type: "Live Demo",
-    image: "https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=1400&q=80&auto=format&fit=crop",
-    tint: "from-sky-400/40",
-  },
-  {
-    title: "Car Rental System",
-    date: "Aug 2024",
-    description:
-      "A robust Java-based application designed to manage car inventories, customer records, and rental transactions. Handles core functionalities like booking, availability checks, and returns.",
-    tech: ["Java", "OOPs", "Car Inventory Management"],
-    link: "https://github.com/KriXsh/Car-rental-system-Java",
-    type: "GitHub",
-    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1400&q=80&auto=format&fit=crop",
-    tint: "from-violet/40",
-  },
-];
-
-type Project = (typeof projects)[number];
+type Project = (typeof PROJECTS)[number];
 
 /** One card in the sticky stack. As the cards after it slide over, it recedes:
     scales down, tips back in 3D and dims. */
@@ -185,7 +111,7 @@ export default function Projects() {
   return (
     <div className="pt-28 md:pt-36">
       <SectionHeading
-        index="05"
+        index="04"
         eyebrow="Selected Work"
         title={
           <>
@@ -196,45 +122,29 @@ export default function Projects() {
       />
 
       <div ref={container} className="relative">
-        {projects.map((p, i) => (
-          <StackCard key={p.title} project={p} i={i} total={projects.length} progress={scrollYProgress} />
+        {PROJECTS.map((p, i) => (
+          <StackCard key={p.title} project={p} i={i} total={PROJECTS.length} progress={scrollYProgress} />
         ))}
       </div>
 
-      <Reveal className="mt-16">
-        <div className="relative overflow-hidden rounded-[2rem] border border-border bg-surface px-8 py-16 text-center md:py-24">
-          <div aria-hidden className="absolute inset-0 grid-lines opacity-60 mask-fade-b" />
-          <div aria-hidden className="absolute top-full left-1/2 h-[30rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/30 blur-[120px]" />
-          <div className="relative">
-            <h3 className="font-display text-display-md font-bold text-foreground">
-              Hungry for more <span className="text-gradient">project stories?</span>
-            </h3>
-            <p className="mx-auto mt-5 mb-10 max-w-2xl text-muted-foreground md:text-lg">
-              I&apos;m constantly building, experimenting, and breaking things. See every public repo, live demos you can
-              try in the browser, and my GitHub contribution history in one place.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              <Magnetic>
-                <Link
-                  href="/projects"
-                  className="group inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-4 text-sm font-semibold text-background"
-                >
-                  See all projects &amp; activity
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </Magnetic>
-              <a
-                href="https://github.com/KriXsh"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="glass inline-flex items-center gap-2 rounded-full px-6 py-4 text-sm font-semibold text-foreground"
-              >
-                <Github className="h-4 w-4" /> GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-      </Reveal>
+      <FloatingCta
+        className="mt-16"
+        href="/projects"
+        eyebrow="Every repo, demo & commit"
+        title={<>Hungry for more <span className="text-gradient">project stories?</span></>}
+        cta="See all projects & activity"
+        chips={["Public repos", "Live demos", "Visualizers", "Commit history"]}
+        aside={
+          <a
+            href="https://github.com/KriXsh"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <Github className="h-4 w-4" /> github.com/KriXsh
+          </a>
+        }
+      />
     </div>
   );
 }

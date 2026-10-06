@@ -1,7 +1,7 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowUpRight, Briefcase, CheckCircle2, CloudCog, Cpu, Layers, Rocket } from "lucide-react";
-import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { Magnetic } from "@/components/ui/magnetic";
@@ -35,18 +35,7 @@ const services = [
 
 export default function Freelance() {
   return (
-    <div className="py-28 md:py-36">
-      <SectionHeading
-        index="04"
-        eyebrow="Collaboration"
-        title={
-          <>
-            Need a technical <span className="text-gradient">partner?</span>
-          </>
-        }
-        description="Part-time development and project-based services for businesses looking to scale with precision."
-      />
-
+    <div>
       <RevealGroup className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
         {services.map(({ title, desc, icon: Icon, features }, i) => (
           <RevealItem key={title}>
@@ -92,13 +81,13 @@ export default function Freelance() {
             </div>
             <div className="flex flex-wrap items-center gap-3">
               <Magnetic>
-                <a
-                  href="#contact"
+                <Link
+                  href="/#contact"
                   className="group inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-4 text-sm font-semibold text-background"
                 >
                   Hire for a project
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
-                </a>
+                </Link>
               </Magnetic>
               <span className="glass inline-flex items-center gap-2 rounded-full px-5 py-4 text-sm font-medium text-foreground">
                 <Briefcase className="h-4 w-4 text-glow" />

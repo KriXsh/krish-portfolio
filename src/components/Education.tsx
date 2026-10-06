@@ -29,7 +29,7 @@ const educationData = [
 export default function Education() {
   return (
     <div className="py-28 md:py-36">
-      <SectionHeading index="06" eyebrow="Education" title={<>Foundations.</>} />
+      <SectionHeading index="05" eyebrow="Education" title={<>Foundations.</>} />
       <RevealGroup className="grid gap-5 md:grid-cols-2">
         {educationData.map(({ institution, degree, date, grade, unit, label, icon: Icon }) => (
           <RevealItem key={institution}>

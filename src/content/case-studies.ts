@@ -6,11 +6,11 @@
 export type Discipline = "full-stack" | "data" | "event-driven" | "ai" | "devops";
 
 export const DISCIPLINES: { id: Discipline; label: string; rgb: string }[] = [
-  { id: "full-stack", label: "Full-stack", rgb: "99 102 241" },
-  { id: "data", label: "Data engineering", rgb: "16 185 129" },
-  { id: "event-driven", label: "Event-driven", rgb: "245 158 11" },
-  { id: "ai", label: "AI", rgb: "139 92 246" },
-  { id: "devops", label: "Deployment & DevOps", rgb: "6 182 212" },
+  { id: "full-stack", label: "Full-stack", rgb: "200 71 92" },
+  { id: "data", label: "Data engineering", rgb: "217 167 127" },
+  { id: "event-driven", label: "Event-driven", rgb: "192 112 72" },
+  { id: "ai", label: "AI", rgb: "232 140 160" },
+  { id: "devops", label: "Deployment & DevOps", rgb: "170 96 140" },
 ];
 
 export const disciplineMeta = (id: Discipline) => DISCIPLINES.find((d) => d.id === id)!;

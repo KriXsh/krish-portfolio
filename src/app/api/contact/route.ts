@@ -48,7 +48,7 @@ export async function POST(req: Request) {
 
   const html = `
     <div style="font-family:-apple-system,Segoe UI,sans-serif;max-width:560px;margin:0 auto;padding:24px;border:1px solid #e5e7eb;border-radius:12px">
-      <p style="margin:0 0 4px;color:#6366f1;font-size:12px;letter-spacing:.12em;text-transform:uppercase">New portfolio lead</p>
+      <p style="margin:0 0 4px;color:#a3293d;font-size:12px;letter-spacing:.12em;text-transform:uppercase">New portfolio lead</p>
       <h2 style="margin:0 0 20px;color:#0f172a">${escapeHtml(name)}</h2>
       <p style="margin:0 0 6px;color:#475569"><strong>Email:</strong> <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p>
       <div style="margin-top:16px;padding:16px;background:#f8fafc;border-radius:8px;color:#0f172a;white-space:pre-wrap;line-height:1.6">${escapeHtml(message)}</div>

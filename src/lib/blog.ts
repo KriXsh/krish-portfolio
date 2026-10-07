@@ -34,7 +34,7 @@ export const POSTS: PostMeta[] = [
     date: "2026-09-30",
     tags: ["AI Engineering", "RAG", "LLMs"],
     cover: "rag",
-    palette: ["#6366f1", "#06b6d4"],
+    palette: ["#a3293d", "#d9a77f"],
   },
   {
     slug: "kafka-event-driven-architecture",
@@ -44,7 +44,7 @@ export const POSTS: PostMeta[] = [
     date: "2026-09-30",
     tags: ["Kafka", "Event-Driven", "Backend"],
     cover: "kafka",
-    palette: ["#f59e0b", "#ef4444"],
+    palette: ["#e8a9a1", "#5e1422"],
   },
   {
     slug: "data-migrations-argo-workflows",
@@ -54,7 +54,7 @@ export const POSTS: PostMeta[] = [
     date: "2026-09-30",
     tags: ["Data Engineering", "Kubernetes", "Argo"],
     cover: "argo",
-    palette: ["#10b981", "#0ea5e9"],
+    palette: ["#c8475c", "#2a0910"],
   },
   {
     slug: "low-latency-voice-ai-pipeline",
@@ -64,7 +64,7 @@ export const POSTS: PostMeta[] = [
     date: "2026-09-30",
     tags: ["AI Engineering", "Voice AI", "Streaming"],
     cover: "voice",
-    palette: ["#ec4899", "#8b5cf6"],
+    palette: ["#8e2236", "#e3c4ab"],
   },
   {
     slug: "rbac-done-right",
@@ -74,7 +74,7 @@ export const POSTS: PostMeta[] = [
     date: "2026-09-30",
     tags: ["Security", "Auth", "Backend"],
     cover: "rbac",
-    palette: ["#3b82f6", "#6366f1"],
+    palette: ["#b13a4e", "#c08457"],
   },
   {
     slug: "redis-caching-patterns",
@@ -84,7 +84,7 @@ export const POSTS: PostMeta[] = [
     date: "2026-09-30",
     tags: ["Redis", "Performance", "Backend"],
     cover: "redis",
-    palette: ["#ef4444", "#f97316"],
+    palette: ["#9e4a6a", "#e8a9a1"],
   },
   {
     slug: "zero-downtime-deploys",
@@ -94,7 +94,7 @@ export const POSTS: PostMeta[] = [
     date: "2026-09-30",
     tags: ["DevOps", "Kubernetes", "CI/CD"],
     cover: "deploy",
-    palette: ["#0ea5e9", "#22c55e"],
+    palette: ["#6e1626", "#d9a77f"],
   },
   {
     slug: "evaluating-llm-features",
@@ -104,7 +104,7 @@ export const POSTS: PostMeta[] = [
     date: "2026-09-30",
     tags: ["AI Engineering", "LLMs", "Evals"],
     cover: "evals",
-    palette: ["#8b5cf6", "#14b8a6"],
+    palette: ["#c08457", "#7a1a2c"],
   },
 ];
 

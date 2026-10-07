@@ -10,22 +10,22 @@ import type { GridStore } from "./engine/grid-store";
 
 // Fill colours are literal (not CSS variables) so framer-motion can tween them.
 const C = {
-  wall: "rgba(71, 85, 105, 1)",
-  weight: "rgba(139, 92, 246, 0.16)",
-  frontier: "rgba(34, 211, 238, 0.95)",
-  path: "rgba(245, 158, 11, 1)",
+  wall: "rgba(74, 52, 56, 1)",
+  weight: "rgba(192, 132, 87, 0.2)",
+  frontier: "rgba(232, 169, 161, 0.95)",
+  path: "rgba(255, 207, 158, 1)",
   // Idle cells still carry a colour: without a known start value framer-motion
   // falls back to getComputedStyle, which forces a style recalc per cell.
-  none: "rgba(34, 211, 238, 0)",
+  none: "rgba(232, 169, 161, 0)",
 };
 const NO_GLOW = "0 0 0px rgba(0, 0, 0, 0)";
 const SPRING = { type: "spring", stiffness: 300, damping: 20 } as const;
 
-/** Exploration order → colour: deep violet near the start, vibrant blue at the edge. */
+/** Exploration order → colour: deep wine near the start, warming to rose at the edge. */
 const RAMP = [
-  [124, 58, 237],
-  [99, 102, 241],
-  [59, 130, 246],
+  [94, 20, 34],
+  [142, 34, 54],
+  [200, 71, 92],
 ];
 function toneColor(tone: number) {
   const t = (tone / 255) * (RAMP.length - 1);
@@ -49,7 +49,7 @@ function fillFor(kind: number, vis: number, tone: number): { animate: TargetAndT
         scale: [1, 1.3, 1],
         borderRadius: "22%",
         backgroundColor: C.path,
-        boxShadow: "0 0 15px rgba(245, 158, 11, 0.85)",
+        boxShadow: "0 0 15px rgba(255, 207, 158, 0.85)",
       },
       transition: { scale: { duration: 0.45, times: [0, 0.4, 1], ease: "easeOut" }, default: { duration: 0.3 } },
     };
@@ -153,11 +153,11 @@ function Marker({ kind, index, cols, dragging }: { kind: "start" | "end"; index:
           className={cn("absolute inset-0 animate-pf-pulse rounded-full", start ? "bg-pf-start/50" : "bg-pf-target/50")}
         />
         {start ? (
-          <span className="relative flex size-[92%] items-center justify-center rounded-full bg-gradient-to-br from-emerald-300 to-emerald-500 shadow-[0_0_14px_rgba(52,211,153,0.85)] ring-2 ring-emerald-200/60">
-            <ChevronsRight aria-hidden strokeWidth={3} className="size-[72%] text-emerald-950" />
+          <span className="relative flex size-[92%] items-center justify-center rounded-full bg-gradient-to-br from-[#f3dccb] to-[#c08457] shadow-[0_0_14px_rgba(227,196,171,0.85)] ring-2 ring-[#f3dccb]/60">
+            <ChevronsRight aria-hidden strokeWidth={3} className="size-[72%] text-[#2a0910]" />
           </span>
         ) : (
-          <span className="relative flex size-[96%] items-center justify-center rounded-full bg-gradient-to-br from-rose-400 to-rose-600 shadow-[0_0_14px_rgba(251,113,133,0.9)] ring-2 ring-rose-200/60">
+          <span className="relative flex size-[96%] items-center justify-center rounded-full bg-gradient-to-br from-[#ff7a8d] to-[#a3293d] shadow-[0_0_14px_rgba(255,92,116,0.9)] ring-2 ring-[#ffc2cb]/60">
             <Crosshair aria-hidden strokeWidth={2.6} className="size-[80%] animate-pf-spin text-white" />
           </span>
         )}

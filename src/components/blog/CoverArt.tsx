@@ -20,7 +20,7 @@ export function CoverArt({
   return (
     <div
       className={cn("relative overflow-hidden", className)}
-      style={{ background: `radial-gradient(120% 120% at 0% 0%, ${a}, transparent 60%), radial-gradient(120% 120% at 100% 100%, ${b}, transparent 60%), #0b1020` }}
+      style={{ background: `radial-gradient(120% 120% at 0% 0%, ${a}, transparent 60%), radial-gradient(120% 120% at 100% 100%, ${b}, transparent 60%), #12080b` }}
       role={label ? "img" : undefined}
       aria-label={label}
       aria-hidden={label ? undefined : true}

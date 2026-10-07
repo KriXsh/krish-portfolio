@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ArrowUpRight, Check, Github, Landmark, Mail, ShieldCheck } from "lucide-react";
 import { CoffeeBar } from "@/components/coffee/CoffeeBar";
 import { BANK_REQUEST_MAILTO, SPONSORS_URL, USD_BANK } from "@/lib/coffee";
+import { Petals } from "@/components/ui/petals";
 
 export const metadata: Metadata = {
   title: "Buy me a coffee | Krishnendu Ghosal",
@@ -14,7 +15,16 @@ export default async function SupportPage({ searchParams }: { searchParams: Prom
   const { item } = await searchParams;
 
   return (
-    <main id="main" className="relative min-h-screen overflow-hidden bg-background px-6 pt-28 pb-24 md:px-12 md:pt-36 md:pb-32">
+    <main id="main" className="relative isolate min-h-screen overflow-hidden bg-background px-6 pt-28 pb-24 md:px-12 md:pt-36 md:pb-32">
+      <Petals
+        name="support-page"
+        scroll
+        className="-z-10"
+        petals={[
+          { className: "-right-6 top-24 h-24 w-20 md:right-[6%] md:top-32 md:h-36 md:w-28", rotate: 35, duration: 15 },
+          { className: "-left-8 top-[30rem] hidden h-16 w-14 md:block", rotate: -140, duration: 12, blur: true },
+        ]}
+      />
       <div aria-hidden className="pointer-events-none absolute inset-0 grid-lines mask-fade-b opacity-50" />
       <div aria-hidden className="pointer-events-none absolute -top-40 left-1/3 h-[34rem] w-[34rem] rounded-full bg-[#c08457]/15 blur-[140px]" />
       <div aria-hidden className="pointer-events-none absolute right-0 bottom-0 h-[28rem] w-[28rem] rounded-full bg-primary/15 blur-[140px]" />
@@ -22,7 +32,7 @@ export default async function SupportPage({ searchParams }: { searchParams: Prom
       <div className="relative mx-auto max-w-6xl">
 
         <div className="mb-12 max-w-4xl">
-          <p className="mb-4 font-mono text-xs tracking-[0.25em] text-[#e0a47a] uppercase">Open · Brewing daily</p>
+          <p className="mb-4 eyebrow text-[#e0a47a] uppercase">Open · Brewing daily</p>
           <h1 className="font-display text-display-lg font-bold text-foreground">
             Krish&apos;s{" "}
             <span className="bg-gradient-to-r from-[#f0c9a4] via-[#c08457] to-[#e0a47a] bg-clip-text text-transparent">
@@ -41,7 +51,7 @@ export default async function SupportPage({ searchParams }: { searchParams: Prom
         <section className="mt-16">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
             <div>
-              <p className="font-mono text-xs tracking-[0.25em] text-[#e0a47a] uppercase">Outside India</p>
+              <p className="eyebrow text-[#e0a47a] uppercase">Outside India</p>
               <h2 className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">Pay in USD</h2>
             </div>
             <p className="max-w-sm text-sm text-muted-foreground">Cards through GitHub, or a US bank transfer for larger payments and invoices.</p>

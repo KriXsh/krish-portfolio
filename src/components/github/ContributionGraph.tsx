@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import type { ContributionDay } from "@/lib/github";
 import { cn } from "@/lib/utils";
 
-// GitHub's greens, level 0 through 4 (light and dark palettes live in globals.css).
+// Contribution levels 0 through 4, grown as a rose garden (light and dark palettes live in globals.css).
 const LEVELS = [0, 1, 2, 3, 4].map((l) => `var(--color-gh-${l})`);
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -64,7 +64,7 @@ export function ContributionGraph({ days, totals }: { days: ContributionDay[]; t
     <div className="rounded-[2rem] border border-border bg-surface/80 p-5 md:p-8">
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="font-mono text-[11px] tracking-[0.25em] text-subtle uppercase">Contribution graph</p>
+          <p className="eyebrow text-subtle uppercase">Contribution graph</p>
           <p className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">
             {(totals[year] ?? 0).toLocaleString()}
             <span className="ml-3 font-sans text-base font-normal text-muted-foreground">contributions in {year}</span>
@@ -136,7 +136,7 @@ export function ContributionGraph({ days, totals }: { days: ContributionDay[]; t
                       className="h-3 w-3 rounded-[3px] transition-transform duration-150 hover:scale-150"
                       style={{
                         background: LEVELS[day.level],
-                        boxShadow: day.level >= 3 ? `0 0 ${day.level === 4 ? 10 : 6}px rgba(57,211,83,${day.level === 4 ? 0.55 : 0.3})` : undefined,
+                        boxShadow: day.level >= 3 ? `0 0 ${day.level === 4 ? 10 : 6}px rgba(232,169,161,${day.level === 4 ? 0.55 : 0.3})` : undefined,
                       }}
                     />
                   ) : (

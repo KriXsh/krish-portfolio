@@ -10,8 +10,8 @@ const STATUS: Record<Status, { label: string; tone: string; dot: string; live?: 
   idle: { label: "Idle", tone: "border-border text-muted-foreground", dot: "bg-subtle" },
   building: { label: "Building maze", tone: "border-violet/30 bg-violet/10 text-violet", dot: "bg-violet", live: true },
   exploring: { label: "Exploring", tone: "border-cyan/30 bg-cyan/10 text-cyan", dot: "bg-cyan", live: true },
-  paused: { label: "Paused", tone: "border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400", dot: "bg-amber-500" },
-  found: { label: "Path found", tone: "border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400", dot: "bg-emerald-500" },
+  paused: { label: "Paused", tone: "border-[#c08457]/30 bg-[#c08457]/10 text-[#a8754d] dark:text-[#d9a77f]", dot: "bg-[#c08457]" },
+  found: { label: "Path found", tone: "border-champagne/30 bg-champagne/10 text-champagne", dot: "bg-champagne" },
   unreachable: { label: "Unreachable", tone: "border-rose-500/30 bg-rose-500/10 text-rose-600 dark:text-rose-400", dot: "bg-rose-500" },
 };
 
@@ -99,15 +99,15 @@ const LEGEND = [
   {
     label: "Start",
     swatch: (
-      <Swatch className="rounded-full border-0 bg-gradient-to-br from-emerald-300 to-emerald-500 shadow-[0_0_10px_rgba(52,211,153,0.8)]">
-        <ChevronsRight strokeWidth={3} className="size-3.5 text-emerald-950" />
+      <Swatch className="rounded-full border-0 bg-gradient-to-br from-[#f3dccb] to-[#c08457] shadow-[0_0_10px_rgba(227,196,171,0.8)]">
+        <ChevronsRight strokeWidth={3} className="size-3.5 text-[#2a0910]" />
       </Swatch>
     ),
   },
   {
     label: "Target",
     swatch: (
-      <Swatch className="rounded-full border-0 bg-gradient-to-br from-rose-400 to-rose-600 shadow-[0_0_10px_rgba(251,113,133,0.8)]">
+      <Swatch className="rounded-full border-0 bg-gradient-to-br from-[#ff7a8d] to-[#a3293d] shadow-[0_0_10px_rgba(255,92,116,0.8)]">
         <Crosshair strokeWidth={2.6} className="size-3.5 text-white" />
       </Swatch>
     ),
@@ -121,9 +121,9 @@ const LEGEND = [
       </Swatch>
     ),
   },
-  { label: "Frontier", swatch: <Swatch className="rounded-full border-0 bg-pf-frontier shadow-[0_0_8px_rgba(34,211,238,0.6)]" /> },
-  { label: "Visited", swatch: <Swatch className="border-0 bg-gradient-to-br from-violet-600 via-indigo-500 to-blue-500" /> },
-  { label: "Shortest path", swatch: <Swatch className="border-0 bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.8)]" /> },
+  { label: "Frontier", swatch: <Swatch className="rounded-full border-0 bg-pf-frontier shadow-[0_0_8px_rgba(232,169,161,0.6)]" /> },
+  { label: "Visited", swatch: <Swatch className="border-0 bg-gradient-to-br from-[#5e1422] via-[#8e2236] to-[#c8475c]" /> },
+  { label: "Shortest path", swatch: <Swatch className="border-0 bg-pf-path shadow-[0_0_10px_rgba(255,207,158,0.8)]" /> },
 ];
 
 export function Legend({ className }: { className?: string }) {
@@ -164,7 +164,7 @@ export function AlgorithmPanel({ ui }: { ui: UiSnapshot }) {
             <span className={cn("rounded-md border px-2 py-0.5 font-mono text-[10.5px]", a.weighted ? "border-violet/30 text-violet" : "border-border text-muted-foreground")}>
               {a.weighted ? "weighted" : "ignores weights"}
             </span>
-            <span className={cn("rounded-md border px-2 py-0.5 font-mono text-[10.5px]", a.shortest ? "border-emerald-500/30 text-emerald-600 dark:text-emerald-400" : "border-rose-500/30 text-rose-600 dark:text-rose-400")}>
+            <span className={cn("rounded-md border px-2 py-0.5 font-mono text-[10.5px]", a.shortest ? "border-champagne/30 text-champagne" : "border-rose-500/30 text-rose-600 dark:text-rose-400")}>
               {a.shortest ? (a.weighted ? "optimal path" : "fewest steps") : "not optimal"}
             </span>
             <span className="rounded-md border border-border px-2 py-0.5 font-mono text-[10.5px] text-foreground">{a.complexity}</span>

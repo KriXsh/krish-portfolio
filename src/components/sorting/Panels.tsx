@@ -22,13 +22,13 @@ const STATUS: Record<Status, { label: string; tone: string; dot: string; live?: 
   },
   paused: {
     label: "Paused",
-    tone: "border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400",
-    dot: "bg-amber-500",
+    tone: "border-[#c08457]/30 bg-[#c08457]/10 text-[#a8754d] dark:text-[#d9a77f]",
+    dot: "bg-[#c08457]",
   },
   sorted: {
     label: "Sorted",
-    tone: "border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
-    dot: "bg-emerald-500",
+    tone: "border-champagne/30 bg-champagne/10 text-champagne",
+    dot: "bg-champagne",
   },
 };
 
@@ -164,7 +164,7 @@ const LEGEND = [
     swatch: (
       <Swatch
         style={{
-          background: "linear-gradient(to top, hsl(265 70% 50%), hsl(188 90% 70%))",
+          background: "linear-gradient(to top, hsl(345 55% 26%), hsl(25 65% 74%))",
         }}
       />
     ),
@@ -222,7 +222,7 @@ export function AlgorithmPanel({ ui }: { ui: UiSnapshot }) {
               className={cn(
                 "rounded-md border px-2 py-0.5 font-mono text-[10.5px]",
                 a.stable
-                  ? "border-emerald-500/30 text-emerald-600 dark:text-emerald-400"
+                  ? "border-champagne/30 text-champagne"
                   : "border-rose-500/30 text-rose-600 dark:text-rose-400",
               )}
             >
@@ -330,7 +330,7 @@ export function CustomInput({ controller }: { controller: Controller }) {
               "h-10 w-full rounded-xl border bg-ink/[0.03] px-3 font-mono text-sm text-foreground outline-none transition-all placeholder:text-subtle",
               error
                 ? "border-rose-400/50 focus:border-rose-400"
-                : "border-border focus:border-primary/60 focus:shadow-[0_0_0_4px_rgb(99_102_241/0.12)]",
+                : "border-border focus:border-primary/60 focus:shadow-[0_0_0_4px_rgb(163_41_61/0.12)]",
             )}
           />
         </label>

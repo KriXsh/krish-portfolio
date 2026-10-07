@@ -3,7 +3,7 @@
 
 .blog-code {
   --hl-comment: #6b7280;
-  --hl-keyword: #7c3aed;
+  --hl-keyword: #8f2436;
   --hl-string: #047857;
   --hl-number: #b45309;
   --hl-title: #1d4ed8;
@@ -14,11 +14,11 @@
 
 html.dark .blog-code {
   --hl-comment: #7d8aa0;
-  --hl-keyword: #c4b5fd;
+  --hl-keyword: #e8b4ab;
   --hl-string: #86efac;
   --hl-number: #fdba74;
   --hl-title: #93c5fd;
-  --hl-attr: #67e8f9;
+  --hl-attr: #e6c3a2;
   --hl-meta: #f9a8d4;
   --hl-text: #e2e8f0;
 }

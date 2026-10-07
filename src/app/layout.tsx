@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#090a0f",
+  themeColor: "#0b0708",
 };
 
 // Structured data so search engines understand who the site is about.
@@ -56,7 +56,7 @@ const personJsonLd = {
   "@type": "Person",
   name: SITE_NAME,
   url: SITE_URL,
-  image: `${SITE_URL}/Krish1.jpg`,
+  image: `${SITE_URL}/krish-portrait.webp`,
   jobTitle: "Software Engineer",
   description: SITE_DESCRIPTION,
   sameAs: ["https://github.com/KriXsh", "https://www.linkedin.com/in/krish-me", LEETCODE_URL],

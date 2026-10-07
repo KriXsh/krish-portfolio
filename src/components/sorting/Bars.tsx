@@ -8,10 +8,10 @@ import { type Controller, opsPerSecond, type UiSnapshot } from "./engine/control
 type BarState = "idle" | "compare" | "swap" | "pivot" | "sorted";
 
 const STATE_CLASS: Record<Exclude<BarState, "idle">, string> = {
-  compare: "bg-gradient-to-t from-amber-500 to-sf-compare shadow-[0_0_18px_-2px_rgb(251_191_36/0.8)]",
-  swap: "bg-gradient-to-t from-rose-600 to-sf-swap shadow-[0_0_18px_-2px_rgb(251_113_133/0.85)]",
-  pivot: "bg-gradient-to-t from-fuchsia-600 to-sf-pivot shadow-[0_0_16px_-2px_rgb(232_121_249/0.8)]",
-  sorted: "bg-gradient-to-t from-emerald-600 to-sf-sorted",
+  compare: "bg-gradient-to-t from-[#a8754d] to-sf-compare shadow-[0_0_18px_-2px_rgb(243_220_203/0.75)]",
+  swap: "bg-gradient-to-t from-[#8e2236] to-sf-swap shadow-[0_0_18px_-2px_rgb(255_92_116/0.85)]",
+  pivot: "bg-gradient-to-t from-[#9e4a6a] to-sf-pivot shadow-[0_0_16px_-2px_rgb(240_166_160/0.8)]",
+  sorted: "bg-gradient-to-t from-[#a8754d] to-sf-sorted",
 };
 
 const LABEL_CLASS: Record<BarState, string> = {
@@ -22,10 +22,11 @@ const LABEL_CLASS: Record<BarState, string> = {
   sorted: "text-sf-sorted",
 };
 
-/** Unsorted bars take a violet → cyan hue by height, so order shows at a glance. */
+/** Unsorted bars shade from deep wine (short) to champagne (tall), so order
+    shows at a glance in the site's rose palette. */
 const idleFill = (t: number) => {
-  const h = 265 - 77 * t;
-  return `linear-gradient(to top, hsl(${h} 70% 50%), hsl(${h} 90% 70%))`;
+  const h = (345 + 40 * t) % 360;
+  return `linear-gradient(to top, hsl(${h} 55% ${26 + 22 * t}%), hsl(${h} 65% ${44 + 30 * t}%))`;
 };
 
 function barState(ui: UiSnapshot, i: number): BarState {

@@ -49,7 +49,7 @@ export function CoffeeBar({ initialItem }: { initialItem?: string }) {
         <div aria-hidden className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-[#c08457]/15 blur-[90px]" />
         <div className="relative grid items-center gap-8 md:grid-cols-[1fr_auto]">
           <div>
-            <p className="font-mono text-[11px] tracking-[0.25em] text-subtle uppercase">Menu</p>
+            <p className="eyebrow text-subtle uppercase">Menu</p>
             <ul className="mt-5 space-y-2" role="radiogroup" aria-label="Choose a coffee">
               {[...MENU, { id: "custom", name: "Custom pour", price: 0, blurb: "Pick your own amount.", fill: 0 }].map((m) => {
                 const selected = m.id === itemId;

@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 function Section({ index, label, children }: { index: string; label: string; children: React.ReactNode }) {
   return (
     <section className="grid gap-4 border-t border-border py-12 md:grid-cols-[12rem_1fr] md:gap-10 md:py-16">
-      <p className="flex items-center gap-3 font-mono text-xs tracking-[0.25em] text-muted-foreground uppercase md:flex-col md:items-start md:gap-2">
+      <p className="flex items-center gap-3 eyebrow text-muted-foreground uppercase md:flex-col md:items-start md:gap-2">
         <span className="text-glow">{index}</span>
         {label}
       </p>

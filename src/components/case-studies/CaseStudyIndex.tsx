@@ -4,6 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { RoseCorner } from "@/components/ui/rose-corner";
+import { WaxSeal } from "@/components/ui/wax-seal";
 import { CASE_STUDIES, COMPANIES, DISCIPLINES, type CaseStudy, type Discipline } from "@/content/case-studies";
 import { DisciplineChip } from "./DisciplineChip";
 import { cn } from "@/lib/utils";
@@ -26,11 +28,14 @@ function Card({ cs }: { cs: CaseStudy }) {
   return (
     <Link
       href={`/case-studies/${cs.slug}`}
-      className="group flex h-full flex-col rounded-3xl border border-border bg-surface p-6 transition-all duration-300 hover:-translate-y-1 hover:border-border-strong hover:shadow-[0_24px_60px_-30px_rgb(99_102_241/0.45)]"
+      className="group relative isolate flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-surface p-6 transition-all duration-500 hover:-translate-y-1 hover:border-rose/40 hover:shadow-[0_24px_60px_-30px_rgba(163,41,61,0.55)]"
     >
-      <div className="mb-4 flex items-center justify-between gap-3">
+      {/* wine light rises from the floor of the card on hover */}
+      <span aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_50%_110%,rgba(163,41,61,0.22),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      <RoseCorner className="absolute right-5 bottom-14" />
+      <div className="relative mb-4 flex items-center justify-between gap-3">
         <p className="min-w-0 truncate font-mono text-[11px] tracking-wider text-subtle uppercase">{cs.company}</p>
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-300 group-hover:rotate-45 group-hover:border-transparent group-hover:bg-foreground group-hover:text-background">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-300 group-hover:rotate-45 group-hover:border-transparent group-hover:bg-rose group-hover:text-white">
           <ArrowUpRight className="h-4 w-4" />
         </span>
       </div>
@@ -55,12 +60,14 @@ function Featured({ cs }: { cs: CaseStudy }) {
       href={`/case-studies/${cs.slug}`}
       className="group relative block overflow-hidden rounded-[2rem] border border-border bg-surface p-7 transition-colors hover:border-border-strong md:p-10"
     >
-      <div aria-hidden className="pointer-events-none absolute -top-32 -right-24 h-80 w-80 rounded-full bg-primary/15 blur-[100px]" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_70%_at_100%_0%,rgba(163,41,61,0.25),transparent_70%)]" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 grain opacity-[0.05] mix-blend-overlay" />
+      <WaxSeal label="FEATURED" className="pointer-events-none absolute top-5 right-5 w-20 md:top-7 md:right-8 md:w-24" />
       <div aria-hidden className="pointer-events-none absolute inset-0 grid-lines opacity-50 mask-fade-b" />
       <div className="relative grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-end">
         <div>
-          <p className="mb-4 flex flex-wrap items-center gap-2 font-mono text-[11px] tracking-[0.2em] text-subtle uppercase">
-            <span className="rounded-full bg-primary/10 px-2.5 py-1 text-glow">Featured</span>
+          <p className="mb-4 flex flex-wrap items-center gap-2 pr-24 font-mono text-[11px] tracking-[0.2em] text-subtle uppercase md:pr-0">
+            <span className="font-script text-2xl tracking-normal text-rose normal-case">the featured story</span>
             {cs.company} · {cs.period}
           </p>
           <h2 className="font-display text-display-md font-bold text-foreground">{cs.title}</h2>
@@ -70,7 +77,7 @@ function Featured({ cs }: { cs: CaseStudy }) {
               <DisciplineChip key={d} id={d} />
             ))}
           </div>
-          <span className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background">
+          <span className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-rose to-primary bg-[length:200%_auto] px-5 py-3 text-sm font-semibold text-white shadow-[0_18px_40px_-14px_rgba(163,41,61,0.8)] transition-[background-position] duration-700 group-hover:bg-[position:100%_center]">
             Read the case study
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
           </span>

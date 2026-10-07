@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils";
 import { Reveal } from "./reveal";
 
+/** Editorial section header: a tracked small-caps label with a ✦ mark, a hairline,
+    and a large serif title. Titles can italicise or tint a word with `text-gradient`. */
 export function SectionHeading({
   index,
   eyebrow,
@@ -19,18 +21,24 @@ export function SectionHeading({
   return (
     <div
       className={cn(
-        "mb-14 flex flex-col gap-5 md:mb-20",
+        "mb-14 flex flex-col gap-6 md:mb-20",
         align === "center" && "items-center text-center",
         className,
       )}
     >
-      <Reveal className="flex items-center gap-3 font-mono text-xs tracking-[0.25em] text-muted-foreground uppercase">
-        {index && <span className="text-glow">{index}</span>}
-        <span className="h-px w-10 bg-gradient-to-r from-primary to-transparent" />
-        {eyebrow}
+      <Reveal
+        className={cn(
+          "flex w-full items-center gap-4 eyebrow text-muted-foreground",
+          align === "center" && "justify-center",
+        )}
+      >
+        {index && <span className="font-display text-base tracking-normal text-champagne">{index}</span>}
+        <span>{eyebrow}</span>
+        <span className="text-rose">✦</span>
+        {align === "left" && <span className="h-px flex-1 bg-gradient-to-r from-border-strong to-transparent" />}
       </Reveal>
       <Reveal delay={0.05}>
-        <h2 className="font-display text-display-lg font-bold text-foreground">{title}</h2>
+        <h2 className="font-display text-display-lg font-normal text-foreground">{title}</h2>
       </Reveal>
       {description && (
         <Reveal delay={0.1}>

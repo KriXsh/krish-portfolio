@@ -34,13 +34,13 @@ export default function NotFound() {
               cx={n.x}
               cy={n.y}
               r={i === 0 || i === 7 ? 9 : 5}
-              fill={i === 0 ? "#6366f1" : i === 7 ? "#06b6d4" : "currentColor"}
+              fill={i === 0 ? "#a3293d" : i === 7 ? "#d9a77f" : "currentColor"}
               fillOpacity={i === 0 || i === 7 ? 1 : 0.35}
             />
           ))}
         </svg>
 
-        <p className="font-mono text-xs tracking-[0.25em] text-subtle uppercase">Error 404 · route not found</p>
+        <p className="eyebrow text-subtle uppercase">Error 404 · route not found</p>
         <h1 className="mt-4 font-display text-display-lg font-bold text-foreground">
           No path to <span className="text-gradient">this page.</span>
         </h1>

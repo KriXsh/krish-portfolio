@@ -27,7 +27,7 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
 
   return (
     <nav aria-label="Table of contents">
-      <p className="mb-4 font-mono text-[11px] tracking-[0.25em] text-subtle uppercase">On this page</p>
+      <p className="mb-4 eyebrow text-subtle uppercase">On this page</p>
       <ol className="space-y-1 border-l border-border">
         {items.map((item) => (
           <li key={item.id}>

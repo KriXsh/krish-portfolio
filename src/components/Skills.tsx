@@ -1,6 +1,7 @@
 "use client";
 
-import { useMotionTemplate, useMotionValue, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { BrainCircuit, Cloud, Database, Layout, Terminal } from "lucide-react";
 import {
   SiNextdotjs, SiReact, SiNodedotjs, SiExpress, SiSelenium, SiTailwindcss, SiBootstrap,
@@ -11,15 +12,13 @@ import {
 } from "react-icons/si";
 import { VscTerminalBash } from "react-icons/vsc";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { cn } from "@/lib/utils";
 
 const skillCategories = [
   {
     title: "Web Tech",
     icon: Layout,
-    span: "lg:col-span-2",
-    accent: "99,102,241",
+    accent: "200,71,92",
     items: [
       { name: "Next.js", icon: SiNextdotjs },
       { name: "React.js", icon: SiReact },
@@ -34,8 +33,7 @@ const skillCategories = [
   {
     title: "AI & ML",
     icon: BrainCircuit,
-    span: "",
-    accent: "139,92,246",
+    accent: "232,169,161",
     items: [
       { name: "LLM (Gemini/GPT-4)", icon: SiOpenai },
       { name: "Vector DBs", icon: Database },
@@ -48,8 +46,7 @@ const skillCategories = [
   {
     title: "Cloud & DevOps",
     icon: Cloud,
-    span: "lg:row-span-2",
-    accent: "6,182,212",
+    accent: "217,167,127",
     items: [
       { name: "AWS", icon: SiAmazonwebservices },
       { name: "Kubernetes", icon: SiKubernetes },
@@ -65,8 +62,7 @@ const skillCategories = [
   {
     title: "Databases",
     icon: Database,
-    span: "",
-    accent: "52,211,153",
+    accent: "196,128,112",
     items: [
       { name: "MongoDB", icon: SiMongodb },
       { name: "Redis", icon: SiRedis },
@@ -77,8 +73,7 @@ const skillCategories = [
   {
     title: "Languages & OS",
     icon: Terminal,
-    span: "lg:col-span-2",
-    accent: "236,72,153",
+    accent: "184,62,94",
     items: [
       { name: "Python", icon: SiPython },
       { name: "JavaScript", icon: SiJavascript },
@@ -92,9 +87,8 @@ const skillCategories = [
 
 const allSkills = skillCategories.flatMap((c) => c.items);
 
-// Brand logos are long inline paths and each one shows up several times (its
-// card plus both marquee rows, doubled to loop). Drawing each once as a symbol
-// and pointing every copy at it keeps the page HTML small.
+// Brand logos are long inline paths. Drawing each once as a symbol and pointing
+// every use at it keeps the page HTML small.
 const iconId = (name: string) => `skill-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 
 function IconSprite() {
@@ -119,47 +113,125 @@ function SkillGlyph({ name, className }: { name: string; className: string }) {
   );
 }
 
-/** Bento card with a spotlight that follows the cursor. */
-function SpotlightCard({
-  accent,
-  className,
-  children,
-}: {
-  accent: string;
-  className?: string;
-  children: React.ReactNode;
-}) {
-  const x = useMotionValue(-400);
-  const y = useMotionValue(-400);
-  const background = useMotionTemplate`radial-gradient(380px circle at ${x}px ${y}px, rgba(${accent},0.16), transparent 60%)`;
-  const border = useMotionTemplate`radial-gradient(260px circle at ${x}px ${y}px, rgba(${accent},0.7), transparent 60%)`;
+const PETAL = "M0 -30C48 -52 72 -130 0 -184C-72 -130 -48 -52 0 -30Z";
+const INNER = "M0 -14C22 -26 34 -62 0 -88C-34 -62 -22 -26 0 -14Z";
+const SPIRAL = "M0 -6c6-3 12 2 9 8-3 7-14 7-17-1-4-9 5-18 15-16 12 2 18 15 12 26-7 12-25 14-35 4-11-11-8-30 6-38";
+const LABEL_R = 26; // % of the box from centre to where each petal's button sits
+const ease = [0.16, 1, 0.3, 1] as const;
+
+/** The categories as the five petals of one rose. The outline draws itself in,
+    the inner bloom turns with scroll, and the chosen petal fills with wine.
+    Each petal's button sits on the petal so it is a real 44px tap target. */
+function SkillRose({ active, onPick }: { active: number; onPick: (i: number) => void }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const turn = useTransform(scrollYProgress, [0, 1], [-40, 40]);
+  const draw = reduced
+    ? {}
+    : { initial: { pathLength: 0 }, whileInView: { pathLength: 1 }, viewport: { once: true, margin: "-10% 0px" } };
 
   return (
-    <div
-      onPointerMove={(e) => {
-        const r = e.currentTarget.getBoundingClientRect();
-        x.set(e.clientX - r.left);
-        y.set(e.clientY - r.top);
-      }}
-      className={cn("group relative h-full overflow-hidden rounded-3xl bg-surface p-px", className)}
-    >
-      <div className="absolute inset-0 rounded-3xl bg-border" />
-      <motion.div
-        style={{ background: border }}
-        className="absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-      />
-      <div className="relative h-full rounded-[calc(1.5rem-1px)] bg-surface">
-        <motion.div
-          style={{ background }}
-          className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        />
-        <div className="relative h-full p-7">{children}</div>
-      </div>
+    <div ref={ref} className="relative mx-auto aspect-square w-full max-w-[22rem] md:max-w-[30rem]">
+      <svg viewBox="-200 -200 400 400" aria-hidden className="absolute inset-0 h-full w-full overflow-visible">
+        <defs>
+          <radialGradient id="skill-petal-on" cx="50%" cy="85%" r="90%">
+            <stop offset="0%" stopColor="#c8475c" />
+            <stop offset="55%" stopColor="#7a1a2c" />
+            <stop offset="100%" stopColor="#2a0910" />
+          </radialGradient>
+          <radialGradient id="skill-halo" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="rgba(163,41,61,0.28)" />
+            <stop offset="100%" stopColor="rgba(163,41,61,0)" />
+          </radialGradient>
+        </defs>
+        <circle r="200" fill="url(#skill-halo)" />
+        <circle r="192" fill="none" stroke="var(--color-border-strong)" strokeWidth="0.6" strokeDasharray="2 6" />
+
+        {skillCategories.map((c, i) => {
+          const on = i === active;
+          return (
+            <g key={c.title} transform={`rotate(${i * 72})`}>
+              <motion.path
+                d={PETAL}
+                animate={{ scale: on ? 1.06 : 1, opacity: on ? 1 : 0.9 }}
+                transition={{ duration: 0.6, ease }}
+                fill={on ? "url(#skill-petal-on)" : `rgba(${c.accent},0.06)`}
+                stroke={on ? "#e8a9a1" : "var(--color-champagne)"}
+                strokeOpacity={on ? 0.8 : 0.45}
+                strokeWidth="1.2"
+                style={{ transformOrigin: "0px 0px", transition: "fill 0.6s" }}
+                {...draw}
+              />
+              <motion.path d="M0 -36C-4 -90 -2 -140 0 -176" stroke="var(--color-champagne)" strokeOpacity="0.2" fill="none" {...draw} />
+            </g>
+          );
+        })}
+
+        <motion.g style={reduced ? undefined : { rotate: turn }}>
+          {[0, 1, 2, 3, 4].map((i) => (
+            <path key={i} d={INNER} transform={`rotate(${i * 72 + 36})`} fill="rgba(200,71,92,0.12)" stroke="var(--color-rose)" strokeOpacity="0.5" strokeWidth="1" />
+          ))}
+          <motion.path d={SPIRAL} transform="scale(1.3)" stroke="var(--color-rose)" strokeWidth="1.4" fill="none" strokeLinecap="round" {...draw} />
+        </motion.g>
+      </svg>
+
+      {skillCategories.map(({ title, icon: Icon, accent }, i) => {
+        const a = (i * 72 * Math.PI) / 180;
+        const on = i === active;
+        return (
+          <button
+            key={title}
+            type="button"
+            role="tab"
+            aria-label={title}
+            aria-selected={on}
+            aria-controls="skill-panel"
+            onClick={() => onPick(i)}
+            onMouseEnter={() => onPick(i)}
+            onFocus={() => onPick(i)}
+            className="group absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1.5"
+            style={{ left: `${50 + LABEL_R * Math.sin(a)}%`, top: `${50 - LABEL_R * Math.cos(a)}%` }}
+          >
+            <span
+              className={cn(
+                "flex h-11 w-11 items-center justify-center rounded-full border backdrop-blur-[2px] transition-all duration-500",
+                on ? "scale-110 border-[#e8a9a1]/70 bg-[#2a0910]/60 text-[#f6d6cf]" : "border-border bg-surface/70 text-muted-foreground group-hover:text-foreground",
+              )}
+              style={on ? { boxShadow: `0 0 24px rgba(${accent},0.45)` } : undefined}
+            >
+              <Icon className="h-[18px] w-[18px]" />
+            </span>
+            <span className={cn("hidden text-[10px] tracking-[0.18em] whitespace-nowrap uppercase transition-colors sm:block", on ? "text-champagne" : "text-subtle")}>
+              {title}
+            </span>
+          </button>
+        );
+      })}
     </div>
   );
 }
 
 export default function Skills() {
+  const [active, setActive] = useState(0);
+  const [auto, setAuto] = useState(true);
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { margin: "-20% 0px" });
+  const reduced = useReducedMotion();
+  const cat = skillCategories[active];
+
+  // Let the rose bloom petal by petal until someone picks one themselves.
+  useEffect(() => {
+    if (!auto || !inView || reduced) return;
+    const t = setInterval(() => setActive((i) => (i + 1) % skillCategories.length), 3800);
+    return () => clearInterval(t);
+  }, [auto, inView, reduced]);
+
+  const pick = (i: number) => {
+    setAuto(false);
+    setActive(i);
+  };
+
   return (
     <div className="py-28 md:py-36">
       <IconSprite />
@@ -171,59 +243,55 @@ export default function Skills() {
             The stack I <span className="text-gradient">ship with.</span>
           </>
         }
-        description="25+ tools across the whole lifecycle: interfaces, intelligence, infrastructure and data."
+        description="25+ tools across the whole lifecycle: interfaces, intelligence, infrastructure and data. Pick a petal."
       />
 
-      <RevealGroup className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {skillCategories.map(({ title, icon: Icon, items, span, accent }) => (
-          <RevealItem key={title} className={span}>
-            <SpotlightCard accent={accent}>
-              <div className="mb-6 flex items-center gap-3">
-                <span
-                  className="flex h-10 w-10 items-center justify-center rounded-xl ring-1 ring-ink/10"
-                  style={{ background: `rgba(${accent},0.12)`, color: `color-mix(in oklab, rgb(${accent}) 55%, var(--color-foreground))` }}
-                >
-                  <Icon className="h-5 w-5" />
-                </span>
-                <h3 className="font-display text-lg font-semibold text-foreground">{title}</h3>
-                <span className="ml-auto font-mono text-xs text-subtle">{String(items.length).padStart(2, "0")}</span>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {items.map(({ name }) => (
-                  <span
-                    key={name}
-                    className="inline-flex items-center gap-2 rounded-full border border-border bg-ink/[0.02] px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors duration-300 hover:border-ink/20 hover:text-foreground"
-                  >
-                    <SkillGlyph name={name} className="h-3.5 w-3.5" />
-                    {name}
-                  </span>
-                ))}
-              </div>
-            </SpotlightCard>
-          </RevealItem>
-        ))}
-      </RevealGroup>
+      <div ref={ref} className="grid items-center gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+        <div role="tablist" aria-label="Skill categories">
+          <SkillRose active={active} onPick={pick} />
+        </div>
 
-      {/* Icon marquee, two rows in opposite directions */}
-      <div className="mt-16 space-y-4 mask-fade-x">
-        {[false, true].map((reverse) => (
-          <div key={String(reverse)} className="flex overflow-hidden">
-            <div
-              className="flex w-max animate-marquee gap-4 [--marquee-duration:60s]"
-              style={{ animationDirection: reverse ? "reverse" : "normal" }}
+        <div id="skill-panel" role="tabpanel" aria-live="polite" className="relative min-h-[17rem] md:min-h-[19rem]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={cat.title}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.45, ease }}
             >
-              {[...allSkills, ...allSkills].map(({ name }, i) => (
-                <span
-                  key={`${name}-${i}`}
-                  className="glass flex items-center gap-3 rounded-2xl px-5 py-3 [-webkit-backdrop-filter:none]! [backdrop-filter:none]! text-sm font-medium whitespace-nowrap text-muted-foreground"
-                >
-                  <SkillGlyph name={name} className="h-4 w-4 text-glow" />
-                  {name}
-                </span>
-              ))}
-            </div>
+              <p className="eyebrow text-champagne">
+                <span className="text-rose">✦</span> {String(active + 1).padStart(2, "0")} / {String(skillCategories.length).padStart(2, "0")}
+              </p>
+              <h3 className="mt-3 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-none text-foreground">
+                {cat.title.split(" ").slice(0, -1).join(" ")}{" "}
+                <span className="text-gradient italic">{cat.title.split(" ").slice(-1)}</span>
+              </h3>
+              <p className="mt-3 font-script text-3xl text-rose">{cat.items.length} in bloom</p>
+              <ul className="mt-6 flex flex-wrap gap-2">
+                {cat.items.map(({ name }, i) => (
+                  <motion.li
+                    key={name}
+                    initial={{ opacity: 0, y: 10, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 0.4, ease, delay: 0.05 + i * 0.04 }}
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-ink/[0.02] px-3.5 py-2 text-sm text-muted-foreground transition-colors duration-300 hover:border-rose/50 hover:text-foreground"
+                  >
+                    <SkillGlyph name={name} className="h-4 w-4 text-glow" />
+                    {name}
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* petal pager for small screens, where the rose labels are hidden */}
+          <div className="mt-8 flex gap-2 sm:hidden" aria-hidden>
+            {skillCategories.map((c, i) => (
+              <span key={c.title} className={cn("h-1 flex-1 rounded-full transition-colors duration-500", i === active ? "bg-rose" : "bg-ink/10")} />
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );

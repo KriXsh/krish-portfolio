@@ -5,7 +5,9 @@ import { cn } from "@/lib/utils";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-/** Fades and lifts its children in the first time they scroll into view. */
+/** Fades and lifts its children in the first time they scroll into view.
+    Opacity + transform only: both run on the compositor, so dozens of reveals
+    stay smooth on phones (an animated blur filter repaints every frame). */
 export function Reveal({
   delay = 0,
   y = 28,
@@ -15,8 +17,8 @@ export function Reveal({
 }: HTMLMotionProps<"div"> & { delay?: number; y?: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y, filter: "blur(6px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -12% 0px" }}
       transition={{ duration: 0.9, ease: EASE, delay }}
       className={className}

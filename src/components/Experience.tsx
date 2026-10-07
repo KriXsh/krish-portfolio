@@ -12,11 +12,11 @@ import { cn } from "@/lib/utils";
 import { JOBS, type Category, type Job } from "@/content/experience";
 
 const categoryStyles = {
-  "gov-tech": { icon: ShieldCheck, label: "B2G / Gov-Tech", color: "96,165,250" },
-  fintech: { icon: PieChart, label: "FinOps / Fintech", color: "52,211,153" },
-  b2b: { icon: Zap, label: "B2B Enterprise", color: "251,191,36" },
-  b2c: { icon: Users, label: "B2C Digital", color: "251,113,133" },
-  "cloud-devops": { icon: Code, label: "Cloud & DevOps", color: "129,140,248" },
+  "gov-tech": { icon: ShieldCheck, label: "B2G / Gov-Tech", color: "214,164,120" },
+  fintech: { icon: PieChart, label: "FinOps / Fintech", color: "168,186,150" },
+  b2b: { icon: Zap, label: "B2B Enterprise", color: "232,190,120" },
+  b2c: { icon: Users, label: "B2C Digital", color: "232,140,150" },
+  "cloud-devops": { icon: Code, label: "Cloud & DevOps", color: "200,150,190" },
 } as const satisfies Record<Category, unknown>;
 
 /** Oldest first: the journey reads left to right, ending at "Now". */
@@ -254,7 +254,7 @@ export default function Experience() {
             })}
             <motion.div
               style={{ width: fill }}
-              className="pointer-events-none absolute top-1/2 left-0 h-1 -translate-y-1/2 rounded-full bg-gradient-to-r from-primary via-violet to-cyan shadow-[0_0_16px_rgba(99,102,241,0.7)]"
+              className="pointer-events-none absolute top-1/2 left-0 h-1 -translate-y-1/2 rounded-full bg-gradient-to-r from-primary via-violet to-cyan shadow-[0_0_16px_rgba(163,41,61,0.7)]"
             />
             {journey.map((j, i) => (
               <span
@@ -268,7 +268,7 @@ export default function Experience() {
               />
             ))}
             <motion.div style={{ left: fill }} className="pointer-events-none absolute top-1/2 -translate-x-1/2 -translate-y-1/2">
-              <span className="block h-4 w-4 rounded-full border-2 border-white bg-cyan shadow-[0_0_20px_4px_rgba(6,182,212,0.6)]" />
+              <span className="block h-4 w-4 rounded-full border-2 border-white bg-cyan shadow-[0_0_20px_4px_rgba(217,167,127,0.6)]" />
             </motion.div>
           </div>
 
@@ -305,7 +305,7 @@ export default function Experience() {
               aria-hidden
               className={cn(
                 "absolute top-2 left-0 hidden h-[15px] w-[15px] rounded-full border-2 transition-all duration-500 md:block",
-                i <= active ? "border-cyan bg-cyan shadow-[0_0_14px_3px_rgba(6,182,212,0.5)]" : "border-border-strong bg-background",
+                i <= active ? "border-cyan bg-cyan shadow-[0_0_14px_3px_rgba(217,167,127,0.5)]" : "border-border-strong bg-background",
               )}
             />
             <Reveal>

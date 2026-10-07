@@ -84,7 +84,7 @@ function IconButton({
         whileTap={{ scale: 0.92 }}
         className={cn(
           "flex size-10 items-center justify-center rounded-xl border border-border bg-ink/[0.03] text-muted-foreground transition-colors hover:border-primary/40 hover:bg-primary/[0.08] hover:text-foreground disabled:pointer-events-none disabled:opacity-40",
-          pressed && "border-primary/40 bg-primary/15 text-foreground shadow-[0_0_16px_-4px_rgb(99_102_241/0.6)]",
+          pressed && "border-primary/40 bg-primary/15 text-foreground shadow-[0_0_16px_-4px_rgb(163_41_61/0.6)]",
         )}
       >
         {children}
@@ -111,7 +111,7 @@ function PlayButton({ ui, onClick }: { ui: UiSnapshot; onClick: () => void }) {
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.96 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="relative flex h-10 min-w-[7.5rem] items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-primary via-violet to-primary bg-[length:200%_100%] px-4 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgb(99_102_241/0.8)] transition-[background-position] duration-500 hover:bg-[position:100%_0]"
+        className="relative flex h-10 min-w-[7.5rem] items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-primary via-violet to-primary bg-[length:200%_100%] px-4 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgb(163_41_61/0.8)] transition-[background-position] duration-500 hover:bg-[position:100%_0]"
       >
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.span

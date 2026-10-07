@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Clock, Heart, Search } from "lucide-react";
+import { RoseCorner } from "@/components/ui/rose-corner";
+import { WaxSeal } from "@/components/ui/wax-seal";
 import { formatPostDate, type Cover } from "@/lib/blog";
 import { CoverArt } from "./CoverArt";
 import { cn } from "@/lib/utils";
@@ -99,11 +101,14 @@ export function BlogIndex({ posts, tags }: { posts: PostCard[]; tags: string[] }
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
           <Link
             href={`/blog/${featured.slug}`}
-            className="group mb-10 grid overflow-hidden rounded-[2rem] border border-border bg-surface transition-colors hover:border-border-strong md:grid-cols-2"
+            className="group mb-10 grid overflow-hidden rounded-[2rem] border border-border bg-surface transition-colors duration-500 hover:border-rose/40 md:grid-cols-2"
           >
-            <CoverArt cover={featured.cover} palette={featured.palette} className="aspect-[16/10] md:aspect-auto md:min-h-[340px]" />
+            <div className="relative">
+              <CoverArt cover={featured.cover} palette={featured.palette} className="aspect-[16/10] h-full md:aspect-auto md:min-h-[340px]" />
+              <WaxSeal label="LATEST" className="pointer-events-none absolute right-4 bottom-4 w-20 md:w-24" />
+            </div>
             <div className="flex flex-col p-7 md:p-10">
-              <span className="mb-4 w-fit rounded-full bg-primary/10 px-3 py-1 font-mono text-[10px] tracking-widest text-glow uppercase">Latest</span>
+              <span className="mb-3 font-script text-3xl text-rose">fresh off the press</span>
               <h2 className="font-display text-2xl leading-tight font-bold text-foreground transition-colors group-hover:text-glow md:text-3xl">
                 {featured.title}
               </h2>
@@ -138,9 +143,11 @@ export function BlogIndex({ posts, tags }: { posts: PostCard[]; tags: string[] }
             >
               <Link
                 href={`/blog/${post.slug}`}
-                className="group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-border bg-surface transition-all hover:-translate-y-1 hover:border-border-strong hover:shadow-[0_24px_60px_-30px_rgba(11,16,32,0.35)]"
+                className="group relative isolate flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-border bg-surface transition-all duration-500 hover:-translate-y-1 hover:border-rose/40 hover:shadow-[0_24px_60px_-30px_rgba(163,41,61,0.55)]"
               >
                 <CoverArt cover={post.cover} palette={post.palette} className="aspect-[16/9]" />
+                <span aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_110%,rgba(163,41,61,0.22),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <RoseCorner className="absolute right-4 bottom-4" />
                 <div className="flex flex-1 flex-col p-6">
                   <div className="mb-3 flex flex-wrap gap-1.5">
                     {post.tags.slice(0, 2).map((t) => (

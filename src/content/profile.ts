@@ -49,6 +49,7 @@ export const EDUCATION = [
 ];
 
 export const CERTIFICATIONS = [
+  "Claude Certified Developer – Foundations (Anthropic), Credly verified",
   "Claude Certified Associate – Foundations (Anthropic), verifiable on Credly",
   "Jumpstart – Competitive Coding award (PublicSapients)",
   "Java Foundations (HackerRank)",

@@ -136,7 +136,7 @@ export function RepoExplorer({ repos, now }: { repos: Repo[]; now: number }) {
                   href={r.htmlUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="min-w-0 font-mono text-sm font-semibold break-words text-[#0969da] dark:text-[#58a6ff] after:absolute after:inset-0 hover:underline"
+                  className="min-w-0 font-mono text-sm font-semibold break-words text-champagne after:absolute after:inset-0 hover:underline"
                 >
                   {r.name}
                 </a>

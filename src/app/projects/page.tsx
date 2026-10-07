@@ -7,6 +7,9 @@ import { RepoExplorer } from "@/components/github/RepoExplorer";
 import { GITHUB_USER, getContributions, getProfile, getRepos } from "@/lib/github";
 import { LIVE_PROJECTS, languageColor } from "@/lib/showcase";
 import { CoffeeButton } from "@/components/coffee/CoffeeButton";
+import { Petals } from "@/components/ui/petals";
+import { Vine } from "@/components/ui/vine";
+import { RoseCorner } from "@/components/ui/rose-corner";
 
 export const revalidate = 3600;
 
@@ -20,10 +23,12 @@ export const metadata: Metadata = {
 function SectionTitle({ index, eyebrow, title }: { index: string; eyebrow: string; title: React.ReactNode }) {
   return (
     <div className="mb-8 md:mb-10">
-      <p className="mb-3 flex items-center gap-3 font-mono text-xs tracking-[0.25em] text-muted-foreground uppercase">
-        <span className="text-gh-accent">{index}</span>
-        <span className="h-px w-10 bg-gradient-to-r from-gh-accent to-transparent" />
+      <Vine className="mb-12 md:mb-16" />
+      <p className="mb-3 flex items-center gap-3 eyebrow text-muted-foreground uppercase">
+        <span className="font-display text-base text-champagne normal-case">{index}</span>
+        <span className="h-px w-10 bg-gradient-to-r from-rose to-transparent" />
         {eyebrow}
+        <span className="text-rose">✦</span>
       </p>
       <h2 className="font-display text-display-md font-bold text-foreground">{title}</h2>
     </div>
@@ -54,10 +59,19 @@ export default async function ProjectsPage() {
   ];
 
   return (
-    <main id="main" className="relative min-h-screen overflow-x-clip bg-background px-6 pt-28 pb-24 md:px-12 md:pt-36 md:pb-32">
+    <main id="main" className="relative isolate min-h-screen overflow-x-clip bg-background px-6 pt-28 pb-24 md:px-12 md:pt-36 md:pb-32">
+      <Petals
+        name="projects-page"
+        scroll
+        className="-z-10"
+        petals={[
+          { className: "-right-6 top-24 h-24 w-20 md:right-[3%] md:top-28 md:h-32 md:w-28", rotate: -40, duration: 15 },
+          { className: "-left-8 top-[40rem] hidden h-20 w-16 md:block", rotate: 130, duration: 13, blur: true },
+        ]}
+      />
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[40rem] grid-lines mask-fade-b opacity-60" />
-      <div aria-hidden className="pointer-events-none absolute -top-40 left-1/4 h-[36rem] w-[36rem] rounded-full bg-gh-accent/10 blur-[150px]" />
-      <div aria-hidden className="pointer-events-none absolute top-40 right-0 h-[30rem] w-[30rem] rounded-full bg-primary/15 blur-[150px]" />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[48rem] bg-[radial-gradient(ellipse_50%_55%_at_25%_0%,rgba(163,41,61,0.22),transparent_70%),radial-gradient(ellipse_40%_45%_at_95%_20%,rgba(192,132,87,0.12),transparent_70%)]" />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[48rem] grain opacity-[0.05] mix-blend-overlay" />
 
       <div className="relative mx-auto max-w-6xl">
 
@@ -65,7 +79,7 @@ export default async function ProjectsPage() {
         <header className="mb-20 grid items-center gap-10 lg:grid-cols-[auto_1fr]">
           {profile && (
             <div className="relative mx-auto h-36 w-36 lg:mx-0 lg:h-44 lg:w-44">
-              <div aria-hidden className="absolute -inset-3 rounded-full bg-[conic-gradient(from_0deg,#39d353,#0e4429,#6366f1,#39d353)] opacity-60 blur-xl" />
+              <div aria-hidden className="absolute -inset-2 animate-[spin_14s_linear_infinite] rounded-full bg-[conic-gradient(from_0deg,var(--color-primary),var(--color-rose),var(--color-champagne),var(--color-violet),var(--color-primary))]" />
               <Image
                 src={profile.avatarUrl}
                 alt={`${GITHUB_USER} on GitHub`}
@@ -76,12 +90,13 @@ export default async function ProjectsPage() {
             </div>
           )}
           <div className="text-center lg:text-left">
-            <p className="mb-3 font-mono text-xs tracking-[0.25em] text-gh-accent uppercase">Projects · Open source</p>
+            <p className="mb-3 eyebrow text-champagne uppercase"><span className="text-rose">✦</span> Projects · Open source</p>
             <h1 className="font-display text-display-lg font-bold text-foreground">
-              Everything I&apos;ve <span className="bg-gradient-to-r from-gh-accent via-gh-3 to-cyan bg-clip-text text-transparent">shipped.</span>
+              Everything I&apos;ve <span className="text-gradient italic">shipped.</span>
             </h1>
+            <p className="mt-2 font-script text-3xl text-rose md:text-4xl">a garden of things I&apos;ve grown</p>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground md:text-lg lg:mx-0">
-              Live demos you can use right here, {repos.length} public repositories, and the contribution history behind them.
+              Live demos, {repos.length} public repositories, and the contribution history behind them.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
               <a
@@ -100,7 +115,8 @@ export default async function ProjectsPage() {
 
         <dl className="mb-20 grid grid-cols-2 gap-3 md:grid-cols-4">
           {stats.map(({ icon: Icon, k, v }) => (
-            <div key={v} className="rounded-2xl border border-border bg-surface/80 p-5">
+            <div key={v} className="group relative overflow-hidden rounded-2xl border border-border bg-surface/80 p-5 transition-colors duration-500 hover:border-rose/40">
+              <RoseCorner className="absolute top-3 right-3" />
               <Icon className="mb-4 h-4 w-4 text-gh-accent" />
               <dt className="font-display text-3xl font-bold text-foreground">{k}</dt>
               <dd className="mt-1 font-mono text-[10px] tracking-widest text-subtle uppercase">{v}</dd>
@@ -115,11 +131,11 @@ export default async function ProjectsPage() {
             eyebrow="Live demos"
             title={
               <>
-                Try them <span className="bg-gradient-to-r from-gh-accent to-cyan bg-clip-text text-transparent">right here.</span>
+                See them <span className="text-gradient italic">live.</span>
               </>
             }
           />
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2">
             {LIVE_PROJECTS.map((p) => {
               const repo = byName.get(p.repo);
               return <LivePreview key={p.repo} project={p} stars={repo?.stars} language={repo?.language} repoUrl={repo?.htmlUrl} />;
@@ -129,7 +145,7 @@ export default async function ProjectsPage() {
 
         {/* Activity */}
         <section className="mb-24">
-          <SectionTitle index="02" eyebrow="GitHub activity" title={<>Commit history.</>} />
+          <SectionTitle index="02" eyebrow="GitHub activity" title={<>Commit <span className="text-gradient italic">garden.</span></>} />
           {contributions ? (
             <ContributionGraph days={contributions.days} totals={contributions.totals} />
           ) : (
@@ -142,7 +158,7 @@ export default async function ProjectsPage() {
           <div className="mt-6 grid gap-6 lg:grid-cols-2">
             {/* Languages */}
             <div className="rounded-[2rem] border border-border bg-surface/80 p-6 md:p-8">
-              <p className="mb-5 font-mono text-[11px] tracking-[0.25em] text-subtle uppercase">Languages across repos</p>
+              <p className="mb-5 eyebrow text-subtle uppercase">Languages across repos</p>
               <div className="mb-6 flex h-3 overflow-hidden rounded-full">
                 {langs.map(([l, n]) => (
                   <span key={l} title={`${l}: ${n}`} style={{ width: `${(n / langTotal) * 100}%`, background: languageColor(l) }} />
@@ -161,12 +177,12 @@ export default async function ProjectsPage() {
 
             {/* Recently pushed */}
             <div className="rounded-[2rem] border border-border bg-surface/80 p-6 md:p-8">
-              <p className="mb-5 font-mono text-[11px] tracking-[0.25em] text-subtle uppercase">Recently pushed</p>
+              <p className="mb-5 eyebrow text-subtle uppercase">Recently pushed</p>
               <ol className="relative space-y-4 border-l border-border pl-5">
                 {recent.map((r) => (
                   <li key={r.name} className="relative">
                     <span className="absolute top-1.5 -left-[25px] h-2.5 w-2.5 rounded-full border-2 border-surface bg-gh-accent" />
-                    <a href={r.htmlUrl} target="_blank" rel="noopener noreferrer" className="font-mono text-sm text-[#0969da] dark:text-[#58a6ff] hover:underline">
+                    <a href={r.htmlUrl} target="_blank" rel="noopener noreferrer" className="font-mono text-sm text-champagne hover:underline">
                       {r.name}
                     </a>
                     <p className="font-mono text-[11px] text-subtle">
@@ -187,7 +203,7 @@ export default async function ProjectsPage() {
             eyebrow="Repositories"
             title={
               <>
-                All the <span className="bg-gradient-to-r from-gh-accent to-cyan bg-clip-text text-transparent">work.</span>
+                All the <span className="text-gradient italic">work.</span>
               </>
             }
           />

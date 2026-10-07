@@ -70,7 +70,7 @@ function PlayButton({ ui, onClick }: { ui: UiSnapshot; onClick: () => void }) {
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.96 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="relative flex h-10 min-w-[8.5rem] items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-primary via-violet to-primary bg-[length:200%_100%] px-4 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgb(99_102_241/0.8)] transition-[background-position] duration-500 hover:bg-[position:100%_0] disabled:opacity-50"
+        className="relative flex h-10 min-w-[8.5rem] items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-primary via-violet to-primary bg-[length:200%_100%] px-4 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgb(163_41_61/0.8)] transition-[background-position] duration-500 hover:bg-[position:100%_0] disabled:opacity-50"
       >
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.span
@@ -113,7 +113,7 @@ function ToolSwitch({ tool, onChange }: { tool: Tool; onChange: (t: Tool) => voi
               <motion.span
                 layoutId="pf-tool-pill"
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="absolute inset-0 rounded-lg border border-primary/30 bg-primary/15 shadow-[0_0_16px_-4px_rgb(99_102_241/0.6)]"
+                className="absolute inset-0 rounded-lg border border-primary/30 bg-primary/15 shadow-[0_0_16px_-4px_rgb(163_41_61/0.6)]"
               />
             )}
             <Icon aria-hidden className="relative size-3.5" />

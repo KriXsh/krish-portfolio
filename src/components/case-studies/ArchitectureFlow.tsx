@@ -14,7 +14,7 @@ function Connector({ index }: { index: number }) {
       {/* vertical (mobile) */}
       <div className="relative h-8 w-px bg-border-strong md:hidden">
         <motion.span
-          className="absolute left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_10px_2px_rgb(99_102_241/0.5)]"
+          className="absolute left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_10px_2px_rgb(163_41_61/0.5)]"
           animate={{ top: ["0%", "100%"], opacity: [0, 1, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, delay: index * 0.35, ease: "easeInOut" }}
         />
@@ -22,7 +22,7 @@ function Connector({ index }: { index: number }) {
       {/* horizontal (desktop) */}
       <div className="relative hidden h-px w-full bg-border-strong md:block">
         <motion.span
-          className="absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_10px_2px_rgb(99_102_241/0.5)]"
+          className="absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_10px_2px_rgb(163_41_61/0.5)]"
           animate={{ left: ["0%", "100%"], opacity: [0, 1, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, delay: index * 0.35, ease: "easeInOut" }}
         />

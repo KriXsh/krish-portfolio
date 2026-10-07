@@ -12,7 +12,7 @@ export function generateStaticParams() {
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = getPostMeta(slug);
-  const [a, b] = post?.palette ?? ["#6366f1", "#06b6d4"];
+  const [a, b] = post?.palette ?? ["#a3293d", "#d9a77f"];
 
   return new ImageResponse(
     (

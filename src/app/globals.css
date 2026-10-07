@@ -4,74 +4,90 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ---------------------------------------------------------------------------
-   Design tokens. shadcn-style names (background / foreground / muted ...) so
-   components dropped into components/ui work without edits.
+   Design tokens - "Bordeaux" editorial theme.
+   Near-black warm ground, wine and rose accents, champagne for display type.
+   shadcn-style names (background / foreground / muted ...) so components in
+   components/ui work without edits. Token names `primary`, `violet`, `cyan`
+   and `glow` are kept for compatibility but now carry the wine palette:
+     primary -> wine        violet -> deep bordeaux
+     cyan    -> champagne   glow   -> blush (accent text, icons)
+   `ink` is the contrast colour for hairlines, tints and overlays.
    --------------------------------------------------------------------------- */
-/* Light is the default theme; html.dark swaps every token below. Components
-   never hard-code white/black: `ink` is the contrast colour for hairlines,
-   tints and overlays (near-black in light, white in dark). */
 @theme {
-  --color-background: #f7f7fb;
-  --color-surface: #ffffff;
-  --color-elevated: #f0f1f7;
-  --color-foreground: #0b1020;
-  --color-muted: #eceef5;
-  --color-muted-foreground: #475569;
-  --color-subtle: #5b6679;
-  --color-ink: #0b1020;
-  --color-border: rgb(11 16 32 / 0.09);
-  --color-border-strong: rgb(11 16 32 / 0.16);
+  --color-background: #f7f1ec;
+  --color-surface: #fffaf6;
+  --color-elevated: #f1e7e0;
+  --color-foreground: #1c0f12;
+  --color-muted: #efe4dd;
+  --color-muted-foreground: #5b4549;
+  --color-subtle: #6e575a;
+  --color-ink: #1c0f12;
+  --color-border: rgb(28 15 18 / 0.1);
+  --color-border-strong: rgb(28 15 18 / 0.18);
 
-  --color-primary: #6366f1;
-  --color-violet: #8b5cf6;
-  --color-cyan: #0891b2;
-  --color-glow: #4f46e5;
+  --color-primary: #8e2236;
+  --color-violet: #5e1422;
+  --color-cyan: #a8754d;
+  --color-glow: #8e2236;
+  --color-champagne: #b88a67;
+  --color-rose: #b13a4e;
 
   /* GitHub contribution greens */
-  --color-gh-0: #e7e9f0;
-  --color-gh-1: #9be9a8;
-  --color-gh-2: #40c463;
-  --color-gh-3: #30a14e;
-  --color-gh-4: #216e39;
-  --color-gh-accent: #1a7f37;
+  /* GitHub contributions, re-grown as a rose garden: wine shades, not green. */
+  --color-gh-0: #efe4dd;
+  --color-gh-1: #e8b4ac;
+  --color-gh-2: #c8475c;
+  --color-gh-3: #a3293d;
+  --color-gh-4: #6e1626;
+  --color-gh-accent: #a3293d;
 
-  --color-shadow: rgb(11 16 32 / 0.16);
+  --color-shadow: rgb(28 15 18 / 0.16);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
   --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
   --animate-spin-slow: spin 18s linear infinite;
   --animate-shimmer: shimmer 3.2s linear infinite;
+  --animate-petal: petal-drift var(--petal-duration, 14s) ease-in-out infinite;
+  --animate-kai-petal: kai-petal 2.6s cubic-bezier(0.3, 0.1, 0.4, 1) forwards;
+  --animate-steam: steam 2.4s ease-in-out infinite;
+  --animate-hero-rise: hero-rise 1.4s var(--ease-out-expo) 0.15s backwards;
 }
 
 html.dark {
-  --color-background: #090a0f;
-  --color-surface: #0d0e15;
-  --color-elevated: #12141d;
-  --color-foreground: #f8fafc;
-  --color-muted: #151722;
-  --color-muted-foreground: #94a3b8;
-  /* lifted from #64748b so small labels pass WCAG AA (4.5:1) on the dark background */
-  --color-subtle: #7d8aa0;
-  --color-ink: #ffffff;
-  --color-border: rgb(255 255 255 / 0.08);
-  --color-border-strong: rgb(255 255 255 / 0.14);
-  --color-cyan: #06b6d4;
-  --color-glow: #a5b4fc;
+  --color-background: #0b0708;
+  --color-surface: #120b0d;
+  --color-elevated: #1a1013;
+  --color-foreground: #f4e9e1;
+  --color-muted: #1d1215;
+  --color-muted-foreground: #b9a59e;
+  /* small labels stay above WCAG AA (4.5:1) on the background */
+  --color-subtle: #977f78;
+  --color-ink: #fff4ee;
+  --color-border: rgb(244 233 225 / 0.08);
+  --color-border-strong: rgb(244 233 225 / 0.15);
+
+  --color-primary: #a3293d;
+  --color-violet: #6b1828;
+  --color-cyan: #d9a77f;
+  --color-glow: #e8a9a1;
+  --color-champagne: #e3c4ab;
+  --color-rose: #c8475c;
 
   --color-gh-0: rgb(255 255 255 / 0.045);
-  --color-gh-1: #0e4429;
-  --color-gh-2: #006d32;
-  --color-gh-3: #26a641;
-  --color-gh-4: #39d353;
-  --color-gh-accent: #39d353;
+  --color-gh-1: #4a1424;
+  --color-gh-2: #7a1a2c;
+  --color-gh-3: #b23a50;
+  --color-gh-4: #e8a9a1;
+  --color-gh-accent: #d4566b;
 
   --color-shadow: rgb(0 0 0 / 0.85);
 }
 
 @theme inline {
-  --font-display: var(--font-display-face), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display-face), "Didot", "Bodoni 72", Georgia, serif;
   --font-sans: var(--font-sans-face), ui-sans-serif, system-ui, sans-serif;
+  --font-script: var(--font-script-face), "Snell Roundhand", cursive;
   --font-mono: var(--font-mono-face), ui-monospace, monospace;
 }
 
@@ -83,6 +99,33 @@ html.dark {
 @keyframes shimmer {
   from { background-position: 200% center; }
   to { background-position: -200% center; }
+}
+
+/* KAI panel: a petal drifts down through the glass once, turning as it falls. */
+@keyframes kai-petal {
+  0% { opacity: 0; transform: translate3d(0, 0, 0) rotate(0deg); }
+  12% { opacity: 0.9; }
+  100% { opacity: 0; transform: translate3d(calc(var(--kai-spin, 1) * 24px), 520px, 0) rotate(calc(var(--kai-spin, 1) * 260deg)); }
+}
+
+/* Footer latte: a wisp lifts, widens and fades. */
+@keyframes steam {
+  0% { transform: translateY(6px) scaleX(0.8); opacity: 0; }
+  35% { opacity: 1; }
+  100% { transform: translateY(-10px) scaleX(1.25); opacity: 0; }
+}
+
+/* Hero portrait: rises and fades in. No clip-path curtain - the browser only
+   counts LCP once the whole image is uncovered, and a curtain delays that. */
+@keyframes hero-rise {
+  from { opacity: 0.01; transform: translateY(48px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+/* A petal sways and turns slowly; transform-only so it stays on the compositor. */
+@keyframes petal-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(var(--petal-rot, 0deg)); }
+  50% { transform: translate3d(var(--petal-x, 10px), var(--petal-y, -18px), 0) rotate(calc(var(--petal-rot, 0deg) + 14deg)); }
 }
 
 /* ---------------------------------------------------------------------------
@@ -106,8 +149,17 @@ html.dark {
     text-rendering: optimizeLegibility;
   }
 
+  /* The display serif ships 400/500 only. Never fake a bold: font-bold and
+     font-extrabold on a Didone resolve to the 500 cut, keeping the hairlines. */
+  .font-display,
+  h1,
+  h2,
+  h3 {
+    font-synthesis-weight: none;
+  }
+
   ::selection {
-    background: rgb(99 102 241 / 0.3);
+    background: rgb(163 41 61 / 0.45);
     color: var(--color-foreground);
   }
 
@@ -138,9 +190,9 @@ html.lenis body {
    Utilities
    --------------------------------------------------------------------------- */
 @utility glass {
-  background: linear-gradient(180deg, rgb(255 255 255 / 0.85), rgb(255 255 255 / 0.6));
+  background: linear-gradient(180deg, rgb(255 250 246 / 0.85), rgb(255 250 246 / 0.6));
   border: 1px solid var(--color-border);
-  box-shadow: 0 1px 2px rgb(11 16 32 / 0.04), 0 8px 24px -12px rgb(11 16 32 / 0.12);
+  box-shadow: 0 1px 2px rgb(28 15 18 / 0.04), 0 8px 24px -12px rgb(28 15 18 / 0.12);
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
 
@@ -151,21 +203,27 @@ html.lenis body {
   }
 
   &:where(.dark, .dark *) {
-    background: linear-gradient(180deg, rgb(255 255 255 / 0.045), rgb(255 255 255 / 0.015));
+    background: linear-gradient(180deg, rgb(255 236 228 / 0.045), rgb(255 236 228 / 0.015));
     box-shadow: none;
   }
 }
 
+/* Champagne -> blush -> rose sweep, the accent for one or two words per title. */
 @utility text-gradient {
-  background-image: linear-gradient(100deg, #4338ca 0%, #7c3aed 35%, #0891b2 65%, #4338ca 100%);
+  background-image: linear-gradient(100deg, #6e1626 0%, #a3293d 35%, #a8754d 65%, #6e1626 100%);
   background-size: 200% auto;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
 
   &:where(.dark, .dark *) {
-    background-image: linear-gradient(100deg, #c7d2fe 0%, #8b5cf6 35%, #06b6d4 65%, #c7d2fe 100%);
+    background-image: linear-gradient(100deg, #f1d9c8 0%, #e8a9a1 30%, #c8475c 55%, #e3c4ab 80%, #f1d9c8 100%);
   }
+}
+
+/* Solid champagne for large serif display words (the hero name). */
+@utility text-champagne {
+  color: var(--color-champagne);
 }
 
 @utility grain {
@@ -174,8 +232,8 @@ html.lenis body {
 
 @utility grid-lines {
   background-image:
-    linear-gradient(to right, color-mix(in srgb, var(--color-ink) 4.5%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in srgb, var(--color-ink) 4.5%, transparent) 1px, transparent 1px);
+    linear-gradient(to right, color-mix(in srgb, var(--color-ink) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-ink) 4%, transparent) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
@@ -187,21 +245,30 @@ html.lenis body {
   mask-image: linear-gradient(to bottom, #000 60%, transparent);
 }
 
-/* Fluid display sizes */
+/* Small caps-style label used across the editorial layout ("SELECTED PROJECTS ✦"). */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+/* Fluid display sizes, tuned for the Didone (it needs less negative tracking than a grotesk). */
 @utility text-display-xl {
-  font-size: clamp(2rem, 7vw, 6.25rem);
+  font-size: clamp(2.4rem, 7vw, 6.25rem);
   line-height: 0.95;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.02em;
 }
 @utility text-display-lg {
-  font-size: clamp(2.5rem, 6.5vw, 5.75rem);
-  line-height: 0.95;
-  letter-spacing: -0.035em;
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
 }
 @utility text-display-md {
   font-size: clamp(1.9rem, 3.6vw, 3.25rem);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
 }
 
 /* Scrollbar */
@@ -240,18 +307,18 @@ html.lenis body {
    that read on both backgrounds. Utilities: bg-pf-*, animate-pf-*.
    --------------------------------------------------------------------------- */
 @theme {
-  --color-pf-canvas: #fbfbfe;
-  --color-pf-surface: #ffffff;
-  --color-pf-panel: #ffffff;
-  --color-pf-line: rgb(11 16 32 / 0.07);
+  --color-pf-canvas: #fbf6f3;
+  --color-pf-surface: #fffaf6;
+  --color-pf-panel: #fffaf6;
+  --color-pf-line: rgb(28 15 18 / 0.07);
 
-  --color-pf-start: #10b981;
-  --color-pf-target: #f43f5e;
-  --color-pf-path: #f59e0b;
-  --color-pf-frontier: #22d3ee;
-  --color-pf-visited: #6366f1;
-  --color-pf-wall: #475569;
-  --color-pf-weight: #8b5cf6;
+  --color-pf-start: #a8754d;
+  --color-pf-target: #c8304b;
+  --color-pf-path: #d98b2b;
+  --color-pf-frontier: #e07a8c;
+  --color-pf-visited: #8e2236;
+  --color-pf-wall: #5b4549;
+  --color-pf-weight: #a8754d;
 
   /* backwards, not both: a retained transform keeps every cell on its own
      compositor layer and costs ~20% of the frame budget while exploring. */
@@ -262,13 +329,17 @@ html.lenis body {
 }
 
 html.dark {
-  --color-pf-canvas: #0a0d14;
-  --color-pf-surface: #121721;
-  --color-pf-panel: #1a202c;
-  --color-pf-line: rgb(255 255 255 / 0.06);
-  --color-pf-start: #34d399;
-  --color-pf-target: #fb7185;
-  --color-pf-path: #fbbf24;
+  --color-pf-canvas: #0d0709;
+  --color-pf-surface: #150b0e;
+  --color-pf-panel: #1e1014;
+  --color-pf-line: rgb(255 236 228 / 0.06);
+  --color-pf-start: #e3c4ab;
+  --color-pf-target: #ff5c74;
+  --color-pf-path: #ffcf9e;
+  --color-pf-frontier: #e8a9a1;
+  --color-pf-visited: #7a1a2c;
+  --color-pf-wall: #4a3438;
+  --color-pf-weight: #c08457;
 }
 
 @keyframes pf-cell-in {
@@ -303,7 +374,7 @@ html.dark {
   border-radius: 999px;
   background: #fff;
   border: 3px solid var(--color-primary);
-  box-shadow: 0 0 0 4px rgb(99 102 241 / 0.18), 0 0 14px rgb(99 102 241 / 0.6);
+  box-shadow: 0 0 0 4px rgb(163 41 61 / 0.18), 0 0 14px rgb(163 41 61 / 0.6);
   transition: transform 0.2s var(--ease-out-expo);
 }
 .pf-range:hover::-webkit-slider-thumb,
@@ -316,7 +387,7 @@ html.dark {
   border-radius: 999px;
   background: #fff;
   border: 3px solid var(--color-primary);
-  box-shadow: 0 0 14px rgb(99 102 241 / 0.6);
+  box-shadow: 0 0 14px rgb(163 41 61 / 0.6);
 }
 
 /* ---------------------------------------------------------------------------
@@ -326,29 +397,29 @@ html.dark {
    Utilities: bg-sf-*, text-sf-*, animate-sf-*.
    --------------------------------------------------------------------------- */
 @theme {
-  --color-sf-canvas: #fbfbfe;
-  --color-sf-surface: #ffffff;
-  --color-sf-panel: #ffffff;
-  --color-sf-line: rgb(11 16 32 / 0.07);
+  --color-sf-canvas: #fbf6f3;
+  --color-sf-surface: #fffaf6;
+  --color-sf-panel: #fffaf6;
+  --color-sf-line: rgb(28 15 18 / 0.07);
 
-  --color-sf-compare: #f59e0b;
-  --color-sf-swap: #f43f5e;
-  --color-sf-pivot: #d946ef;
-  --color-sf-sorted: #10b981;
+  --color-sf-compare: #b88a67;
+  --color-sf-swap: #c8304b;
+  --color-sf-pivot: #d97a8a;
+  --color-sf-sorted: #a8754d;
 
   --animate-sf-blink: sf-blink 1.4s ease-in-out infinite;
   --animate-sf-rise: sf-rise 0.7s var(--ease-out-expo) backwards;
 }
 
 html.dark {
-  --color-sf-canvas: #0a0d14;
-  --color-sf-surface: #121721;
-  --color-sf-panel: #1a202c;
-  --color-sf-line: rgb(255 255 255 / 0.06);
-  --color-sf-compare: #fbbf24;
-  --color-sf-swap: #fb7185;
-  --color-sf-pivot: #e879f9;
-  --color-sf-sorted: #34d399;
+  --color-sf-canvas: #0d0709;
+  --color-sf-surface: #150b0e;
+  --color-sf-panel: #1e1014;
+  --color-sf-line: rgb(255 236 228 / 0.06);
+  --color-sf-compare: #f3dccb;
+  --color-sf-swap: #ff5c74;
+  --color-sf-pivot: #f0a6a0;
+  --color-sf-sorted: #d9a77f;
 }
 
 @keyframes sf-blink {
@@ -383,7 +454,7 @@ html.dark {
   border-radius: 999px;
   background: #fff;
   border: 3px solid var(--color-primary);
-  box-shadow: 0 0 0 4px rgb(99 102 241 / 0.18), 0 0 14px rgb(99 102 241 / 0.6);
+  box-shadow: 0 0 0 4px rgb(163 41 61 / 0.18), 0 0 14px rgb(163 41 61 / 0.6);
   transition: transform 0.2s var(--ease-out-expo);
 }
 .sf-range:hover::-webkit-slider-thumb,
@@ -396,5 +467,5 @@ html.dark {
   border-radius: 999px;
   background: #fff;
   border: 3px solid var(--color-primary);
-  box-shadow: 0 0 14px rgb(99 102 241 / 0.6);
+  box-shadow: 0 0 14px rgb(163 41 61 / 0.6);
 }

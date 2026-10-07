@@ -13,25 +13,25 @@ const highlights = [
     title: "Full-Stack Architect",
     description: "End-to-end products from React/Next.js frontends to scalable Node.js and Python backends.",
     icon: Code2,
-    glow: "rgba(99,102,241,0.25)",
+    glow: "rgba(163,41,61,0.25)",
   },
   {
     title: "AI/ML Engineer",
     description: "Intelligent systems with LLMs, RAG architectures, agents and ML pipelines on SageMaker & Bedrock.",
     icon: Sparkles,
-    glow: "rgba(139,92,246,0.25)",
+    glow: "rgba(122,31,47,0.25)",
   },
   {
     title: "Cloud & DevOps",
     description: "Shipping on AWS, orchestrating with Kubernetes and automating CI/CD from commit to production.",
     icon: Rocket,
-    glow: "rgba(6,182,212,0.25)",
+    glow: "rgba(217,167,127,0.25)",
   },
   {
     title: "System Designer",
     description: "High-throughput, fault-tolerant, event-driven systems built for enterprise scale.",
     icon: Terminal,
-    glow: "rgba(165,180,252,0.22)",
+    glow: "rgba(232,180,171,0.22)",
   },
 ];
 
@@ -63,7 +63,7 @@ export default function WhoAmI() {
           <div ref={photoRef} className="relative mx-auto aspect-[4/5] w-full max-w-sm">
             <motion.div
               style={{ rotate: frameRotate }}
-              className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-primary/40 via-violet/20 to-cyan/30 blur-2xl"
+              className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-primary/45 via-violet/25 to-champagne/20 blur-2xl"
             />
             <div className="glass relative h-full overflow-hidden rounded-[2rem] p-2">
               <div className="relative h-full overflow-hidden rounded-[1.6rem]">
@@ -71,8 +71,8 @@ export default function WhoAmI() {
                     version instead of the 3024×4032 original (~1.1 MB). */}
                 <motion.div style={{ y: imgY }} className="absolute inset-0 h-[124%] w-full -translate-y-[12%]">
                   <Image
-                    src="/krish.jpeg"
-                    alt="Krishnendu Ghosal in a suit"
+                    src="/krish-portrait.webp"
+                    alt="Krishnendu Ghosal seated against a wine-red wall, holding a red rose"
                     fill
                     sizes="(min-width: 1024px) 384px, 90vw"
                     className="object-cover"
@@ -84,7 +84,7 @@ export default function WhoAmI() {
                     <p className="font-display text-sm font-semibold text-foreground">Krishnendu Ghosal</p>
                     <p className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Open to remote</p>
                   </div>
-                  <span className="flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_2px_rgba(52,211,153,0.6)]" />
+                  <span className="flex h-2 w-2 rounded-full bg-glow shadow-[0_0_12px_2px_rgba(232,169,161,0.6)]" />
                 </div>
               </div>
             </div>
@@ -94,21 +94,20 @@ export default function WhoAmI() {
         {/* Story */}
         <div className="space-y-8 lg:col-span-7">
           <Reveal>
-            <p className="font-display text-2xl leading-snug font-medium text-foreground md:text-3xl">
-              I&apos;m a software engineer who architects <span className="text-gradient">AI-powered platforms</span>,
-              event-driven data pipelines and cloud infrastructure built to scale.
+            <p className="font-display text-2xl leading-snug text-foreground md:text-[2rem]">
+              It started with wondering how systems work. Now I build the ones behind{" "}
+              <span className="text-gradient">gov-tech, fintech and AI</span> products.
             </p>
           </Reveal>
           <Reveal delay={0.08}>
             <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-              My journey began with a curiosity about how systems work and grew into a passion for building them. From
-              government-tech infrastructure to fintech platforms, I&apos;ve delivered across diverse domains, driven by
+              From government-tech infrastructure to fintech platforms, I&apos;ve delivered across diverse domains, driven by
               the thrill of solving complex problems, the satisfaction of optimizing performance, and the impact of
               technology that genuinely improves people&apos;s lives.
             </p>
           </Reveal>
           <Reveal delay={0.12}>
-            <blockquote className="border-l-2 border-primary/60 pl-6 text-lg text-foreground/90 italic">
+            <blockquote className="border-l border-rose/70 pl-6 font-display text-xl leading-snug text-foreground/90 italic md:text-2xl">
               &ldquo;Code is poetry, systems are symphonies, and great software is the intersection of engineering
               excellence and user delight.&rdquo;
             </blockquote>

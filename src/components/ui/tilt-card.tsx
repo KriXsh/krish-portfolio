@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 export function TiltCard({
   max = 10,
   className,
-  glowColor = "rgba(99,102,241,0.22)",
+  glowColor = "rgba(163,41,61,0.22)",
   children,
 }: {
   max?: number;

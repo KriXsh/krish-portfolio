@@ -1,16 +1,13 @@
-"use client";
-
-import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Github, Hand, Lock, Play, RotateCw, Star } from "lucide-react";
+import { ArrowUpRight, Github, Lock, Play, Star } from "lucide-react";
 import type { LiveProject } from "@/lib/showcase";
 import { languageColor } from "@/lib/showcase";
 import { cn } from "@/lib/utils";
 
-/** A browser window with the real site running inside it. The iframe renders at
-    2x and is scaled down, so the page lays out like a laptop screen. It's
-    view-only until "Interact" is pressed, so scrolling the page never gets
-    trapped inside a demo. */
+/** A browser window showing a screenshot of the live project. The whole frame
+    links to the real site in a new tab - no embedded iframe, so the page stays
+    light and fast on phones. */
 export function LivePreview({
   project,
   stars,
@@ -22,87 +19,48 @@ export function LivePreview({
   language?: string | null;
   repoUrl?: string;
 }) {
-  const [interactive, setInteractive] = useState(false);
-  const [reloadKey, setReloadKey] = useState(0);
-  const [loaded, setLoaded] = useState(false);
   const host = project.url.replace(/^https?:\/\//, "");
 
   return (
-    <article className="group overflow-hidden rounded-[1.75rem] border border-border bg-surface">
-      {/* Browser chrome */}
-      <div className="flex items-center gap-3 border-b border-border bg-elevated px-4 py-3">
-        <div className="flex gap-1.5">
-          <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
-          <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
-          <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+    <article className="group overflow-hidden rounded-[1.75rem] border border-border bg-surface transition-colors duration-500 hover:border-rose/40">
+      <a href={project.url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} live site`} className="block">
+        {/* Browser chrome */}
+        <div className="flex items-center gap-3 border-b border-border bg-elevated px-4 py-3">
+          <div className="flex gap-1.5">
+            <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+            <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
+            <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+          </div>
+          <div className="flex min-w-0 flex-1 items-center gap-2 rounded-full bg-background/70 px-3 py-1.5 font-mono text-[11px] text-muted-foreground">
+            <Lock className="h-3 w-3 shrink-0 text-champagne" />
+            <span className="truncate">{host}</span>
+          </div>
+          <ArrowUpRight className="h-4 w-4 shrink-0 text-subtle transition-transform duration-300 group-hover:rotate-45 group-hover:text-rose" />
         </div>
-        <div className="flex min-w-0 flex-1 items-center gap-2 rounded-full bg-background/70 px-3 py-1.5 font-mono text-[11px] text-muted-foreground">
-          <Lock className="h-3 w-3 shrink-0 text-emerald-400" />
-          <span className="truncate">{host}</span>
-        </div>
-        <button
-          type="button"
-          aria-label="Reload preview"
-          onClick={() => {
-            setLoaded(false);
-            setReloadKey((k) => k + 1);
-          }}
-          className="rounded-full p-1.5 text-subtle transition-colors hover:text-foreground"
-        >
-          <RotateCw className="h-3.5 w-3.5" />
-        </button>
-      </div>
 
-      {/* Live site */}
-      <div className="relative aspect-[16/10] overflow-hidden bg-background">
-        {!loaded && (
-          <div className="absolute inset-0 grid place-items-center">
-            <div className="flex items-center gap-2 font-mono text-xs text-subtle">
-              <span className="h-2 w-2 animate-ping rounded-full bg-gh-accent" /> Loading live site…
-            </div>
-          </div>
-        )}
-        <iframe
-          key={reloadKey}
-          src={project.url}
-          title={`${project.title} live preview`}
-          loading="lazy"
-          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-          onLoad={() => setLoaded(true)}
-          className={cn(
-            "absolute top-0 left-0 h-[200%] w-[200%] origin-top-left scale-50 border-0 transition-opacity duration-700",
-            loaded ? "opacity-100" : "opacity-0",
-            !interactive && "pointer-events-none",
-          )}
-        />
-        {!interactive && (
-          <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-background/80 via-transparent to-transparent p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 max-md:opacity-100">
-            <button
-              type="button"
-              onClick={() => setInteractive(true)}
-              className="glass inline-flex items-center gap-2 rounded-full bg-background/60 px-4 py-2 text-xs font-semibold text-foreground"
-            >
-              <Hand className="h-3.5 w-3.5" /> Interact with the live demo
-            </button>
-          </div>
-        )}
-        {interactive && (
-          <button
-            type="button"
-            onClick={() => setInteractive(false)}
-            className="absolute top-3 right-3 rounded-full bg-background/80 px-3 py-1 text-[11px] font-medium text-foreground backdrop-blur"
-          >
-            Done
-          </button>
-        )}
-      </div>
+        {/* Screenshot */}
+        <div className="relative aspect-[16/10] overflow-hidden bg-background">
+          <Image
+            src={`/projects/live-${project.repo.toLowerCase()}.webp`}
+            alt={`${project.title} screenshot`}
+            fill
+            sizes="(min-width: 1280px) 24rem, (min-width: 768px) 45vw, 92vw"
+            className="object-cover object-top transition-transform duration-[1.2s] ease-out-expo group-hover:scale-[1.04]"
+          />
+          <span className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-[#1a080d]/85 via-transparent to-transparent p-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-[#e8a9a1]/30 bg-[#2a0d14]/70 px-4 py-2 text-xs font-semibold text-foreground backdrop-blur">
+              Open live site <ArrowUpRight className="h-3.5 w-3.5" />
+            </span>
+          </span>
+        </div>
+      </a>
 
       {/* Details */}
       <div className="p-6">
         <div className="flex items-start justify-between gap-4">
           <h3 className="font-display text-xl font-semibold text-foreground">{project.title}</h3>
-          <span className="flex shrink-0 items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2.5 py-0.5 font-mono text-[10px] text-emerald-700 dark:text-emerald-300 uppercase">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Live
+          <span className="flex shrink-0 items-center gap-1.5 rounded-full border border-champagne/30 bg-champagne/10 px-2.5 py-0.5 font-mono text-[10px] text-champagne uppercase">
+            <span className="h-1.5 w-1.5 rounded-full bg-champagne" /> Live
           </span>
         </div>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.blurb}</p>
@@ -128,7 +86,7 @@ export function LivePreview({
           {project.tryHref && (
             <Link
               href={project.tryHref}
-              className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-primary via-violet to-cyan px-4 py-2 text-xs font-semibold text-white shadow-[0_0_24px_-8px_rgba(99,102,241,0.8)]"
+              className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-primary via-rose to-primary px-4 py-2 text-xs font-semibold text-white shadow-[0_0_24px_-8px_rgba(163,41,61,0.8)]"
             >
               <Play className="h-3.5 w-3.5 fill-current" /> Try it out
             </Link>
@@ -149,7 +107,7 @@ export function LivePreview({
               href={repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2 text-xs font-semibold text-foreground transition-colors hover:border-ink/20"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2 text-xs font-semibold text-foreground transition-colors hover:border-rose/50"
             >
               <Github className="h-3.5 w-3.5" /> Source
             </a>

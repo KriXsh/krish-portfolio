@@ -8,6 +8,7 @@ import { SiLeetcode } from "react-icons/si";
 import { Reveal } from "@/components/ui/reveal";
 import { LEETCODE_URL } from "@/lib/site";
 import { Magnetic } from "@/components/ui/magnetic";
+import { Petals } from "@/components/ui/petals";
 import { cn } from "@/lib/utils";
 
 type Field = "name" | "email" | "message";
@@ -82,7 +83,7 @@ export default function Contact() {
         : touched[field] && !errors[field]
           ? "border-emerald-400/30 focus:border-emerald-400/60"
           : "border-border focus:border-primary/70",
-      "focus:shadow-[0_0_0_4px_rgba(99,102,241,0.12)]",
+      "focus:shadow-[0_0_0_4px_rgba(163,41,61,0.12)]",
     );
 
   const label =
@@ -92,23 +93,40 @@ export default function Contact() {
     <div className="py-28 md:py-36">
       <div className="relative overflow-hidden rounded-[2.5rem] border border-border bg-surface">
         <div aria-hidden className="absolute -top-40 -left-40 h-[30rem] w-[30rem] rounded-full bg-primary/20 blur-[120px]" />
-        <div aria-hidden className="absolute -right-40 -bottom-40 h-[30rem] w-[30rem] rounded-full bg-cyan/10 blur-[120px]" />
+        <div aria-hidden className="absolute -right-40 -bottom-40 h-[30rem] w-[30rem] rounded-full bg-champagne/10 blur-[120px]" />
+        <Petals
+          name="contact"
+          petals={[
+            { className: "-right-6 -top-8 h-32 w-28 md:h-44 md:w-36", rotate: 200, duration: 15 },
+            { className: "right-[42%] -bottom-10 hidden h-24 w-20 lg:block", rotate: -40, duration: 12, blur: true },
+          ]}
+        />
         <div aria-hidden className="absolute inset-0 grid-lines opacity-40" />
 
         <div className="relative grid gap-14 p-5 sm:p-8 md:p-14 lg:grid-cols-2 lg:p-20 [&>*]:min-w-0">
           <div>
-            <Reveal className="mb-6 flex items-center gap-3 font-mono text-xs tracking-[0.25em] text-muted-foreground uppercase">
-              <span className="text-glow">09</span>
-              <span className="h-px w-10 bg-gradient-to-r from-primary to-transparent" />
+            <Reveal className="mb-8 flex items-center gap-4 eyebrow text-muted-foreground">
+              <span className="font-display text-base tracking-normal text-champagne">08</span>
               Contact
+              <span className="text-rose">✦</span>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="font-display text-[clamp(2.25rem,4.2vw,4rem)] leading-[0.98] font-bold tracking-[-0.035em] text-foreground">
-                Ready to build
+              <h2 className="font-sans text-[clamp(1.9rem,3.4vw,3rem)] leading-[1.05] font-light tracking-[0.06em] text-foreground uppercase">
+                Let&apos;s create
                 <br />
-                <span className="text-gradient">the future?</span>
+                something
               </h2>
             </Reveal>
+            <motion.p
+              aria-hidden
+              initial={{ opacity: 0, clipPath: "inset(0 100% 0 0)" }}
+              whileInView={{ opacity: 1, clipPath: "inset(0 0% 0 0)" }}
+              viewport={{ once: true, margin: "0px 0px -15% 0px" }}
+              transition={{ duration: 1.8, ease: [0.65, 0, 0.35, 1], delay: 0.2 }}
+              className="-mt-2 font-script text-[clamp(4rem,8vw,7.5rem)] leading-[1.1] text-rose"
+            >
+              Amazing
+            </motion.p>
             <Reveal delay={0.1}>
               <p className="mt-6 max-w-md text-muted-foreground md:text-lg">
                 Currently open to roles in Singapore, Thailand, UK, USA, India, Germany or Remote that push the
@@ -121,18 +139,18 @@ export default function Contact() {
                 <div className="relative shrink-0 sm:row-span-2">
                   <div className="relative h-16 w-16 overflow-hidden rounded-full ring-2 ring-ink/10 sm:h-20 sm:w-20">
                     <Image
-                      src="/Krish1.jpg"
-                      alt="Krishnendu Ghosal smiling"
+                      src="/krish-avatar.webp"
+                      alt="Portrait of Krishnendu Ghosal"
                       fill
                       sizes="80px"
-                      className="origin-[51%_40%] scale-[1.75] object-cover object-[50%_30%]"
+                      className="object-cover"
                     />
                   </div>
-                  <span className="absolute right-0.5 bottom-0.5 h-4 w-4 rounded-full border-[3px] border-surface bg-emerald-400" />
+                  <span className="absolute right-0.5 bottom-0.5 h-4 w-4 rounded-full border-[3px] border-surface bg-glow" />
                 </div>
                 <div className="min-w-0 self-end">
-                  <p className="font-display text-lg font-semibold text-foreground">Hi, I&apos;m Krish 👋</p>
-                  <p className="text-sm text-emerald-700 dark:text-emerald-300">Available for new projects</p>
+                  <p className="font-display text-xl text-foreground">Hi, I&apos;m Krish</p>
+                  <p className="eyebrow text-[0.65rem] text-glow">Open for new projects</p>
                 </div>
                 <a
                   href="mailto:krishnendughosal999@gmail.com"
@@ -242,7 +260,7 @@ export default function Contact() {
                 disabled={status === "loading"}
                 className={cn(
                   "group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl py-4 text-sm font-semibold transition-all disabled:opacity-70",
-                  status === "success" ? "bg-emerald-500 text-white" : "bg-foreground text-background",
+                  status === "success" ? "bg-emerald-600 text-white" : "bg-champagne text-[#1a0a0e] hover:bg-foreground",
                 )}
               >
                 <AnimatePresence mode="wait" initial={false}>

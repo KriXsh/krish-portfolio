@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { SiLinkedin } from "react-icons/si";
 import { TestimonialCard } from "@/components/TestimonialCard";
 import { LINKEDIN_RECOMMENDATIONS_URL, TESTIMONIALS } from "@/content/testimonials";
+import { Petals } from "@/components/ui/petals";
 
 export const metadata: Metadata = {
   title: "Recommendations | Krishnendu Ghosal",
@@ -13,10 +14,19 @@ export const metadata: Metadata = {
 export default function TestimonialsPage() {
   if (!TESTIMONIALS.length) notFound();
   return (
-    <main id="main" className="relative min-h-screen overflow-x-clip px-6 pt-28 pb-24 md:px-12 md:pt-36 md:pb-32">
+    <main id="main" className="relative isolate min-h-screen overflow-x-clip px-6 pt-28 pb-24 md:px-12 md:pt-36 md:pb-32">
+      <Petals
+        name="testimonials-page"
+        scroll
+        className="-z-10"
+        petals={[
+          { className: "-right-6 top-24 h-24 w-20 md:right-[5%] md:top-32 md:h-36 md:w-28", rotate: -25, duration: 14 },
+          { className: "-left-8 top-[30rem] hidden h-16 w-14 md:block", rotate: 150, duration: 12, blur: true },
+        ]}
+      />
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[30rem] grid-lines mask-fade-b opacity-60" />
       <div className="relative mx-auto max-w-6xl">
-        <p className="mb-3 font-mono text-xs tracking-[0.25em] text-subtle uppercase">Recommendations</p>
+        <p className="mb-3 eyebrow text-subtle uppercase">Recommendations</p>
         <h1 className="font-display text-display-lg font-bold text-foreground">
           In their <span className="text-gradient">words.</span>
         </h1>

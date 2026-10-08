@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 export function TiltCard({
   max = 10,
   className,
-  glowColor = "rgba(163,41,61,0.22)",
+  glowColor = "rgba(42,79,143,0.22)",
   children,
 }: {
   max?: number;
@@ -28,7 +28,7 @@ export function TiltCard({
   const glow = useMotionTemplate`radial-gradient(420px circle at ${gx} ${gy}, ${glowColor}, transparent 55%)`;
 
   return (
-    <div className="[perspective:1100px]">
+    <div className="h-full [perspective:1100px]">
       <motion.div
         ref={ref}
         onPointerMove={(e) => {

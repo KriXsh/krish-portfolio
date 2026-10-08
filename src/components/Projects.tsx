@@ -11,6 +11,11 @@ import { cn } from "@/lib/utils";
 
 type Project = (typeof PROJECTS)[number];
 
+/** The home page shows a short list. Weather-App stays on /projects only: its demo
+    sits on a free host that cold-starts slowly, so it made a poor first click here. */
+const HOME_HIDDEN = new Set(["Weather-App"]);
+const HOME_PROJECTS = PROJECTS.filter((p) => !HOME_HIDDEN.has(p.title));
+
 const ease = [0.16, 1, 0.3, 1] as const;
 const SPIRAL = "M0 -4c4-2 8 1.4 6 5.4-2 4.6-9.4 4.6-11.4-.6-2.6-6 3.4-12 10-10.6 8 1.4 12 10 8 17.4-4.6 8-16.6 9.4-23.4 2.6";
 
@@ -26,14 +31,14 @@ function Bud({ className = "h-10 w-10 md:h-14 md:w-14" }: { className?: string }
     <svg ref={ref} viewBox="-30 -30 60 60" aria-hidden className={cn("overflow-visible", className)}>
       <defs>
         <radialGradient id="bud-fill" cx="45%" cy="40%" r="70%">
-          <stop offset="0%" stopColor="#c8475c" />
-          <stop offset="60%" stopColor="#7a1a2c" />
-          <stop offset="100%" stopColor="#2a0910" />
+          <stop offset="0%" stopColor="#4a74c4" />
+          <stop offset="60%" stopColor="#1d3766" />
+          <stop offset="100%" stopColor="#0a1428" />
         </radialGradient>
       </defs>
       <motion.circle
         r="22"
-        fill="rgba(200,71,92,0.18)"
+        fill="rgba(74,116,196,0.18)"
         initial={false}
         animate={{ scale: open ? 1.25 : 0, opacity: open ? 1 : 0 }}
         transition={{ duration: 1.2, ease }}
@@ -41,7 +46,7 @@ function Bud({ className = "h-10 w-10 md:h-14 md:w-14" }: { className?: string }
       <motion.circle
         r="15"
         fill="url(#bud-fill)"
-        stroke="#e8a9a1"
+        stroke="#8fb3e8"
         strokeOpacity="0.6"
         initial={false}
         animate={{ scale: open ? 1 : 0.45 }}
@@ -49,7 +54,7 @@ function Bud({ className = "h-10 w-10 md:h-14 md:w-14" }: { className?: string }
       />
       <motion.path
         d={SPIRAL}
-        stroke="#f3c6bd"
+        stroke="#c4d5ef"
         strokeWidth="1.4"
         fill="none"
         strokeLinecap="round"
@@ -62,7 +67,7 @@ function Bud({ className = "h-10 w-10 md:h-14 md:w-14" }: { className?: string }
 }
 
 /** Screenshot in an arched window, drifting a little slower than the page,
-    toned wine until hovered. */
+    toned navy until hovered. */
 function ArchImage({ project }: { project: Project }) {
   const ref = useRef<HTMLAnchorElement>(null);
   const reduced = useReducedMotion();
@@ -89,8 +94,8 @@ function ArchImage({ project }: { project: Project }) {
       </motion.div>
       {/* Wine duotone: stock photos take on the site's colours, then bloom
           back to full colour on hover. */}
-      <div className="absolute inset-0 bg-[linear-gradient(160deg,#c8475c,#5e1422)] mix-blend-color transition-opacity duration-[1.2s] group-hover/img:opacity-0" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(26,8,13,0.85),rgba(94,20,34,0.25)_45%,transparent_75%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(160deg,#4a74c4,#13264a)] mix-blend-color transition-opacity duration-[1.2s] group-hover/img:opacity-0" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(10,18,34,0.85),rgba(19,38,74,0.25)_45%,transparent_75%)]" />
       <span className="absolute inset-x-0 bottom-4 flex items-center justify-center gap-1.5 text-xs tracking-[0.2em] text-champagne uppercase opacity-0 transition-opacity duration-500 group-hover/img:opacity-100">
         Visit <ArrowUpRight className="h-3.5 w-3.5" />
       </span>
@@ -133,7 +138,7 @@ function ProjectBloom({ project, i, total }: { project: Project; i: number; tota
         {project.tryHref && (
           <Link
             href={project.tryHref}
-            className="group/try relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-primary via-rose to-primary bg-[length:200%_auto] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-8px_rgba(163,41,61,0.8)] transition-[background-position,transform] duration-700 hover:scale-[1.03] hover:bg-[position:100%_center]"
+            className="group/try relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-primary via-rose to-primary bg-[length:200%_auto] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-8px_rgba(42,79,143,0.8)] transition-[background-position,transform] duration-700 hover:scale-[1.03] hover:bg-[position:100%_center]"
           >
             <Play className="h-4 w-4 fill-current" />
             Try it out
@@ -184,7 +189,7 @@ export default function Projects() {
   return (
     <div className="pt-28 md:pt-36">
       <SectionHeading
-        index="04"
+        index="03"
         eyebrow="Selected Work"
         title={
           <>
@@ -220,8 +225,8 @@ export default function Projects() {
         </svg>
 
         <ol className="relative space-y-24 md:space-y-32">
-          {PROJECTS.map((p, i) => (
-            <ProjectBloom key={p.title} project={p} i={i} total={PROJECTS.length} />
+          {HOME_PROJECTS.map((p, i) => (
+            <ProjectBloom key={p.title} project={p} i={i} total={HOME_PROJECTS.length} />
           ))}
         </ol>
 
@@ -247,7 +252,7 @@ export default function Projects() {
         <div className="mt-2 flex flex-wrap items-center gap-3 md:justify-center">
           <Link
             href="/projects"
-            className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-rose to-primary bg-[length:200%_auto] px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_40px_-14px_rgba(163,41,61,0.8)] transition-[background-position] duration-700 hover:bg-[position:100%_center]"
+            className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-rose to-primary bg-[length:200%_auto] px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_40px_-14px_rgba(42,79,143,0.8)] transition-[background-position] duration-700 hover:bg-[position:100%_center]"
           >
             See every repo, demo &amp; commit
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />

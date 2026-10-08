@@ -109,7 +109,7 @@ export function BlogIndex({ posts, tags }: { posts: PostCard[]; tags: string[] }
             </div>
             <div className="flex flex-col p-7 md:p-10">
               <span className="mb-3 font-script text-3xl text-rose">fresh off the press</span>
-              <h2 className="font-display text-2xl leading-tight font-bold text-foreground transition-colors group-hover:text-glow md:text-3xl">
+              <h2 className="font-display text-2xl leading-tight font-normal text-foreground transition-colors group-hover:text-glow md:text-3xl">
                 {featured.title}
               </h2>
               <p className="mt-4 leading-relaxed text-muted-foreground">{featured.description}</p>
@@ -143,10 +143,10 @@ export function BlogIndex({ posts, tags }: { posts: PostCard[]; tags: string[] }
             >
               <Link
                 href={`/blog/${post.slug}`}
-                className="group relative isolate flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-border bg-surface transition-all duration-500 hover:-translate-y-1 hover:border-rose/40 hover:shadow-[0_24px_60px_-30px_rgba(163,41,61,0.55)]"
+                className="group relative isolate flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-border bg-surface transition-all duration-500 hover:-translate-y-1 hover:border-rose/40 hover:shadow-[0_24px_60px_-30px_rgba(42,79,143,0.55)]"
               >
                 <CoverArt cover={post.cover} palette={post.palette} className="aspect-[16/9]" />
-                <span aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_110%,rgba(163,41,61,0.22),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <span aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_110%,rgba(42,79,143,0.22),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 <RoseCorner className="absolute right-4 bottom-4" />
                 <div className="flex flex-1 flex-col p-6">
                   <div className="mb-3 flex flex-wrap gap-1.5">
@@ -156,7 +156,7 @@ export function BlogIndex({ posts, tags }: { posts: PostCard[]; tags: string[] }
                       </span>
                     ))}
                   </div>
-                  <h3 className="font-display text-lg leading-snug font-semibold text-foreground transition-colors group-hover:text-glow">{post.title}</h3>
+                  <h3 className="font-display text-lg leading-snug font-medium text-foreground transition-colors group-hover:text-glow">{post.title}</h3>
                   <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{post.description}</p>
                   <div className="mt-auto pt-6">
                     <Meta post={post} likes={likes?.[post.slug]} />

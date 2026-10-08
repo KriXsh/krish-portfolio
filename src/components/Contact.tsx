@@ -83,7 +83,7 @@ export default function Contact() {
         : touched[field] && !errors[field]
           ? "border-emerald-400/30 focus:border-emerald-400/60"
           : "border-border focus:border-primary/70",
-      "focus:shadow-[0_0_0_4px_rgba(163,41,61,0.12)]",
+      "focus:shadow-[0_0_0_4px_rgba(42,79,143,0.12)]",
     );
 
   const label =
@@ -139,7 +139,7 @@ export default function Contact() {
                 <div className="relative shrink-0 sm:row-span-2">
                   <div className="relative h-16 w-16 overflow-hidden rounded-full ring-2 ring-ink/10 sm:h-20 sm:w-20">
                     <Image
-                      src="/krish-avatar.webp"
+                      src="/krish-avatar-v2.webp"
                       alt="Portrait of Krishnendu Ghosal"
                       fill
                       sizes="80px"
@@ -260,7 +260,7 @@ export default function Contact() {
                 disabled={status === "loading"}
                 className={cn(
                   "group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl py-4 text-sm font-semibold transition-all disabled:opacity-70",
-                  status === "success" ? "bg-emerald-600 text-white" : "bg-champagne text-[#1a0a0e] hover:bg-foreground",
+                  status === "success" ? "bg-emerald-600 text-white" : "bg-champagne text-[#0a0f1a] hover:bg-foreground",
                 )}
               >
                 <AnimatePresence mode="wait" initial={false}>

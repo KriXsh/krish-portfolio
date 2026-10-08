@@ -4,44 +4,47 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ---------------------------------------------------------------------------
-   Design tokens - "Bordeaux" editorial theme.
-   Near-black warm ground, wine and rose accents, champagne for display type.
+   Design tokens - "Midnight & Brass" editorial theme.
+   Ink-navy ground, sapphire and ice-blue accents, champagne-gold for display
+   type. Blue carries trust/engineering; the warm gold is its complement, so
+   the page reads premium rather than generic "tech blue".
    shadcn-style names (background / foreground / muted ...) so components in
    components/ui work without edits. Token names `primary`, `violet`, `cyan`
-   and `glow` are kept for compatibility but now carry the wine palette:
-     primary -> wine        violet -> deep bordeaux
-     cyan    -> champagne   glow   -> blush (accent text, icons)
+   and `glow` are kept for compatibility but now carry the navy palette:
+     primary -> sapphire    violet -> deep navy
+     cyan    -> brass       glow   -> ice blue (accent text, icons)
+     rose    -> steel blue (script accents; name kept for compatibility)
    `ink` is the contrast colour for hairlines, tints and overlays.
    --------------------------------------------------------------------------- */
 @theme {
-  --color-background: #f7f1ec;
-  --color-surface: #fffaf6;
-  --color-elevated: #f1e7e0;
-  --color-foreground: #1c0f12;
-  --color-muted: #efe4dd;
-  --color-muted-foreground: #5b4549;
-  --color-subtle: #6e575a;
-  --color-ink: #1c0f12;
-  --color-border: rgb(28 15 18 / 0.1);
-  --color-border-strong: rgb(28 15 18 / 0.18);
+  --color-background: #f4f3ef;
+  --color-surface: #fcfcfa;
+  --color-elevated: #eae9e4;
+  --color-foreground: #0d1424;
+  --color-muted: #e8e8e3;
+  --color-muted-foreground: #4a5263;
+  --color-subtle: #5d6676;
+  --color-ink: #0d1424;
+  --color-border: rgb(13 20 36 / 0.1);
+  --color-border-strong: rgb(13 20 36 / 0.18);
 
-  --color-primary: #8e2236;
-  --color-violet: #5e1422;
+  --color-primary: #1e3a6e;
+  --color-violet: #13264a;
   --color-cyan: #a8754d;
-  --color-glow: #8e2236;
-  --color-champagne: #b88a67;
-  --color-rose: #b13a4e;
+  --color-glow: #1e3a6e;
+  --color-champagne: #a8875a;
+  --color-rose: #2f5aa8;
 
   /* GitHub contribution greens */
-  /* GitHub contributions, re-grown as a rose garden: wine shades, not green. */
-  --color-gh-0: #efe4dd;
-  --color-gh-1: #e8b4ac;
-  --color-gh-2: #c8475c;
-  --color-gh-3: #a3293d;
-  --color-gh-4: #6e1626;
-  --color-gh-accent: #a3293d;
+  /* GitHub contributions, in navy-to-ice shades, not green. */
+  --color-gh-0: #e8e8e3;
+  --color-gh-1: #b9cdec;
+  --color-gh-2: #4a74c4;
+  --color-gh-3: #2a4f8f;
+  --color-gh-4: #16305c;
+  --color-gh-accent: #2a4f8f;
 
-  --color-shadow: rgb(28 15 18 / 0.16);
+  --color-shadow: rgb(13 20 36 / 0.16);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
@@ -52,43 +55,48 @@
   --animate-kai-petal: kai-petal 2.6s cubic-bezier(0.3, 0.1, 0.4, 1) forwards;
   --animate-steam: steam 2.4s ease-in-out infinite;
   --animate-hero-rise: hero-rise 1.4s var(--ease-out-expo) 0.15s backwards;
+  /* Hero entrance on the compositor (CSS, not JS): fades and letter rises. */
+  --animate-fade-up: fade-up 0.9s var(--ease-out-expo) backwards;
+  --animate-char-rise: char-rise 1s var(--ease-out-expo) backwards;
 }
 
 html.dark {
-  --color-background: #0b0708;
-  --color-surface: #120b0d;
-  --color-elevated: #1a1013;
-  --color-foreground: #f4e9e1;
-  --color-muted: #1d1215;
-  --color-muted-foreground: #b9a59e;
+  --color-background: #070a11;
+  --color-surface: #0b1019;
+  --color-elevated: #121a28;
+  --color-foreground: #e8ebf0;
+  --color-muted: #141b28;
+  --color-muted-foreground: #9ea8b8;
   /* small labels stay above WCAG AA (4.5:1) on the background */
-  --color-subtle: #977f78;
-  --color-ink: #fff4ee;
-  --color-border: rgb(244 233 225 / 0.08);
-  --color-border-strong: rgb(244 233 225 / 0.15);
+  --color-subtle: #7f8a9c;
+  --color-ink: #f2f5fa;
+  --color-border: rgb(226 232 240 / 0.08);
+  --color-border-strong: rgb(226 232 240 / 0.15);
 
-  --color-primary: #a3293d;
-  --color-violet: #6b1828;
+  --color-primary: #2a4f8f;
+  --color-violet: #1a2f57;
   --color-cyan: #d9a77f;
-  --color-glow: #e8a9a1;
-  --color-champagne: #e3c4ab;
-  --color-rose: #c8475c;
+  --color-glow: #8fb3e8;
+  --color-champagne: #e4cfa8;
+  --color-rose: #4a74c4;
 
   --color-gh-0: rgb(255 255 255 / 0.045);
-  --color-gh-1: #4a1424;
-  --color-gh-2: #7a1a2c;
-  --color-gh-3: #b23a50;
-  --color-gh-4: #e8a9a1;
-  --color-gh-accent: #d4566b;
+  --color-gh-1: #142a52;
+  --color-gh-2: #1d3766;
+  --color-gh-3: #3b64b0;
+  --color-gh-4: #8fb3e8;
+  --color-gh-accent: #5b86d6;
 
   --color-shadow: rgb(0 0 0 / 0.85);
 }
 
 @theme inline {
-  --font-display: var(--font-display-face), "Didot", "Bodoni 72", Georgia, serif;
+  --font-display: var(--font-display-face), "Inter Tight", ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-sans-face), ui-sans-serif, system-ui, sans-serif;
-  --font-script: var(--font-script-face), "Snell Roundhand", cursive;
+  --font-script: var(--font-display-face), "Inter Tight", ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono-face), ui-monospace, monospace;
+  /* Signature serif (hero name + stats); available as `font-serif`. */
+  --font-serif: var(--font-serif-face), Georgia, "Times New Roman", serif;
 }
 
 @keyframes marquee {
@@ -117,6 +125,16 @@ html.dark {
 
 /* Hero portrait: rises and fades in. No clip-path curtain - the browser only
    counts LCP once the whole image is uncovered, and a curtain delays that. */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes char-rise {
+  from { transform: translateY(110%) rotate(6deg); }
+  to { transform: none; }
+}
+
 @keyframes hero-rise {
   from { opacity: 0.01; transform: translateY(48px) scale(0.98); }
   to { opacity: 1; transform: none; }
@@ -149,8 +167,41 @@ html.dark {
     text-rendering: optimizeLegibility;
   }
 
-  /* The display serif ships 400/500 only. Never fake a bold: font-bold and
-     font-extrabold on a Didone resolve to the 500 cut, keeping the hairlines. */
+  /* The display serif ships a single 400 cut. Never fake a bold. */
+  /* "Script" accents are set in the display serif's italic (already loaded)
+     instead of a calligraphy face, which read as wedding stationery.
+     font-size-adjust shrinks it toward the old script's small x-height so
+     existing text-* sizes still fit their layouts. */
+  .font-script {
+    font-weight: 300;
+    font-size-adjust: 0.4;
+    letter-spacing: -0.03em;
+  }
+  #top .font-script {
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  /* Type system: the hero keeps the editorial serif as its signature; every
+     other heading and label uses the product sans (light, tightly tracked).
+     `font-display` reads --font-display-face, which points at Inter Tight by
+     default and at Instrument Serif inside the hero (#top). */
+  :root {
+    --font-display-face: var(--font-sans-face);
+  }
+  #top {
+    --font-display-face: var(--font-serif-face);
+  }
+  .font-display {
+    font-weight: 300;
+    letter-spacing: -0.035em;
+  }
+  #top .font-display {
+    font-weight: 400;
+    letter-spacing: normal;
+  }
+
   .font-display,
   h1,
   h2,
@@ -159,7 +210,7 @@ html.dark {
   }
 
   ::selection {
-    background: rgb(163 41 61 / 0.45);
+    background: rgb(42 79 143 / 0.45);
     color: var(--color-foreground);
   }
 
@@ -171,6 +222,45 @@ html.dark {
   :focus-visible {
     outline: 2px solid var(--color-glow);
     outline-offset: 3px;
+  }
+}
+
+/* Scroll reveals (components/ui/reveal.tsx): compositor-only transitions
+   toggled once by an IntersectionObserver. */
+.reveal,
+.reveal-item {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-y, 28px), 0);
+  transition:
+    opacity 0.9s var(--ease-out-expo),
+    transform 0.9s var(--ease-out-expo);
+}
+.reveal-item {
+  --reveal-y: 24px;
+  transition-duration: 0.8s;
+}
+.reveal.is-shown,
+.reveal-group.is-shown > .reveal-item {
+  opacity: 1;
+  transform: none;
+}
+.reveal-group > .reveal-item:nth-child(1) { transition-delay: calc(var(--reveal-delay, 0s) + var(--reveal-stagger, 0.08s) * 0); }
+.reveal-group > .reveal-item:nth-child(2) { transition-delay: calc(var(--reveal-delay, 0s) + var(--reveal-stagger, 0.08s) * 1); }
+.reveal-group > .reveal-item:nth-child(3) { transition-delay: calc(var(--reveal-delay, 0s) + var(--reveal-stagger, 0.08s) * 2); }
+.reveal-group > .reveal-item:nth-child(4) { transition-delay: calc(var(--reveal-delay, 0s) + var(--reveal-stagger, 0.08s) * 3); }
+.reveal-group > .reveal-item:nth-child(5) { transition-delay: calc(var(--reveal-delay, 0s) + var(--reveal-stagger, 0.08s) * 4); }
+.reveal-group > .reveal-item:nth-child(6) { transition-delay: calc(var(--reveal-delay, 0s) + var(--reveal-stagger, 0.08s) * 5); }
+.reveal-group > .reveal-item:nth-child(7) { transition-delay: calc(var(--reveal-delay, 0s) + var(--reveal-stagger, 0.08s) * 6); }
+.reveal-group > .reveal-item:nth-child(8) { transition-delay: calc(var(--reveal-delay, 0s) + var(--reveal-stagger, 0.08s) * 7); }
+.reveal-group > .reveal-item:nth-child(9) { transition-delay: calc(var(--reveal-delay, 0s) + var(--reveal-stagger, 0.08s) * 8); }
+.reveal-group > .reveal-item:nth-child(10) { transition-delay: calc(var(--reveal-delay, 0s) + var(--reveal-stagger, 0.08s) * 9); }
+.reveal-group > .reveal-item:nth-child(11) { transition-delay: calc(var(--reveal-delay, 0s) + var(--reveal-stagger, 0.08s) * 10); }
+.reveal-group > .reveal-item:nth-child(12) { transition-delay: calc(var(--reveal-delay, 0s) + var(--reveal-stagger, 0.08s) * 11); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-item {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -189,10 +279,21 @@ html.lenis body {
 /* ---------------------------------------------------------------------------
    Utilities
    --------------------------------------------------------------------------- */
+/* Glass surface. In-flow cards sit on a flat background, where a backdrop blur
+   is invisible but expensive to recompute while scrolling - so plain `glass`
+   has none. Floating UI over moving content (navbar, KAI) uses `glass-frost`. */
 @utility glass {
-  background: linear-gradient(180deg, rgb(255 250 246 / 0.85), rgb(255 250 246 / 0.6));
+  background: linear-gradient(180deg, rgb(252 252 250 / 0.85), rgb(252 252 250 / 0.6));
   border: 1px solid var(--color-border);
-  box-shadow: 0 1px 2px rgb(28 15 18 / 0.04), 0 8px 24px -12px rgb(28 15 18 / 0.12);
+  box-shadow: 0 1px 2px rgb(13 20 36 / 0.04), 0 8px 24px -12px rgb(13 20 36 / 0.12);
+
+  &:where(.dark, .dark *) {
+    background: linear-gradient(180deg, rgb(226 232 240 / 0.045), rgb(226 232 240 / 0.015));
+    box-shadow: none;
+  }
+}
+
+@utility glass-frost {
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
 
@@ -201,23 +302,18 @@ html.lenis body {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }
-
-  &:where(.dark, .dark *) {
-    background: linear-gradient(180deg, rgb(255 236 228 / 0.045), rgb(255 236 228 / 0.015));
-    box-shadow: none;
-  }
 }
 
 /* Champagne -> blush -> rose sweep, the accent for one or two words per title. */
 @utility text-gradient {
-  background-image: linear-gradient(100deg, #6e1626 0%, #a3293d 35%, #a8754d 65%, #6e1626 100%);
+  background-image: linear-gradient(100deg, #16305c 0%, #2a4f8f 35%, #a8754d 65%, #16305c 100%);
   background-size: 200% auto;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
 
   &:where(.dark, .dark *) {
-    background-image: linear-gradient(100deg, #f1d9c8 0%, #e8a9a1 30%, #c8475c 55%, #e3c4ab 80%, #f1d9c8 100%);
+    background-image: linear-gradient(100deg, #f1d9c8 0%, #8fb3e8 30%, #4a74c4 55%, #e4cfa8 80%, #f1d9c8 100%);
   }
 }
 
@@ -246,29 +342,34 @@ html.lenis body {
 }
 
 /* Small caps-style label used across the editorial layout ("SELECTED PROJECTS ✦"). */
+/* Metadata layer: small uppercase labels are set in the mono, like the tags,
+   dates and chips, so all "data about the content" reads as one voice. */
 @utility eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.28em;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
-/* Fluid display sizes, tuned for the Didone (it needs less negative tracking than a grotesk). */
+/* Fluid display sizes for the light product sans (tight tracking, like product sites). */
 @utility text-display-xl {
   font-size: clamp(2.4rem, 7vw, 6.25rem);
   line-height: 0.95;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.045em;
+  font-weight: 300;
 }
 @utility text-display-lg {
   font-size: clamp(2.5rem, 6vw, 5.5rem);
   line-height: 0.98;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.045em;
+  font-weight: 300;
 }
 @utility text-display-md {
   font-size: clamp(1.9rem, 3.6vw, 3.25rem);
   line-height: 1.04;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.045em;
+  font-weight: 300;
 }
 
 /* Scrollbar */
@@ -307,17 +408,17 @@ html.lenis body {
    that read on both backgrounds. Utilities: bg-pf-*, animate-pf-*.
    --------------------------------------------------------------------------- */
 @theme {
-  --color-pf-canvas: #fbf6f3;
-  --color-pf-surface: #fffaf6;
-  --color-pf-panel: #fffaf6;
-  --color-pf-line: rgb(28 15 18 / 0.07);
+  --color-pf-canvas: #f6f6f3;
+  --color-pf-surface: #fcfcfa;
+  --color-pf-panel: #fcfcfa;
+  --color-pf-line: rgb(13 20 36 / 0.07);
 
   --color-pf-start: #a8754d;
-  --color-pf-target: #c8304b;
+  --color-pf-target: #2f5aa8;
   --color-pf-path: #d98b2b;
-  --color-pf-frontier: #e07a8c;
-  --color-pf-visited: #8e2236;
-  --color-pf-wall: #5b4549;
+  --color-pf-frontier: #6f97d8;
+  --color-pf-visited: #1e3a6e;
+  --color-pf-wall: #4a5263;
   --color-pf-weight: #a8754d;
 
   /* backwards, not both: a retained transform keeps every cell on its own
@@ -329,17 +430,17 @@ html.lenis body {
 }
 
 html.dark {
-  --color-pf-canvas: #0d0709;
-  --color-pf-surface: #150b0e;
-  --color-pf-panel: #1e1014;
-  --color-pf-line: rgb(255 236 228 / 0.06);
-  --color-pf-start: #e3c4ab;
-  --color-pf-target: #ff5c74;
+  --color-pf-canvas: #070b13;
+  --color-pf-surface: #0c121d;
+  --color-pf-panel: #141c2b;
+  --color-pf-line: rgb(226 232 240 / 0.06);
+  --color-pf-start: #e4cfa8;
+  --color-pf-target: #8fb3e8;
   --color-pf-path: #ffcf9e;
-  --color-pf-frontier: #e8a9a1;
-  --color-pf-visited: #7a1a2c;
-  --color-pf-wall: #4a3438;
-  --color-pf-weight: #c08457;
+  --color-pf-frontier: #8fb3e8;
+  --color-pf-visited: #1d3766;
+  --color-pf-wall: #2e3646;
+  --color-pf-weight: #d4b07f;
 }
 
 @keyframes pf-cell-in {
@@ -374,7 +475,7 @@ html.dark {
   border-radius: 999px;
   background: #fff;
   border: 3px solid var(--color-primary);
-  box-shadow: 0 0 0 4px rgb(163 41 61 / 0.18), 0 0 14px rgb(163 41 61 / 0.6);
+  box-shadow: 0 0 0 4px rgb(42 79 143 / 0.18), 0 0 14px rgb(42 79 143 / 0.6);
   transition: transform 0.2s var(--ease-out-expo);
 }
 .pf-range:hover::-webkit-slider-thumb,
@@ -387,7 +488,7 @@ html.dark {
   border-radius: 999px;
   background: #fff;
   border: 3px solid var(--color-primary);
-  box-shadow: 0 0 14px rgb(163 41 61 / 0.6);
+  box-shadow: 0 0 14px rgb(42 79 143 / 0.6);
 }
 
 /* ---------------------------------------------------------------------------
@@ -397,29 +498,29 @@ html.dark {
    Utilities: bg-sf-*, text-sf-*, animate-sf-*.
    --------------------------------------------------------------------------- */
 @theme {
-  --color-sf-canvas: #fbf6f3;
-  --color-sf-surface: #fffaf6;
-  --color-sf-panel: #fffaf6;
-  --color-sf-line: rgb(28 15 18 / 0.07);
+  --color-sf-canvas: #f6f6f3;
+  --color-sf-surface: #fcfcfa;
+  --color-sf-panel: #fcfcfa;
+  --color-sf-line: rgb(13 20 36 / 0.07);
 
-  --color-sf-compare: #b88a67;
-  --color-sf-swap: #c8304b;
-  --color-sf-pivot: #d97a8a;
-  --color-sf-sorted: #a8754d;
+  --color-sf-compare: #0d1424;
+  --color-sf-swap: #c2771f;
+  --color-sf-pivot: #2a6fd6;
+  --color-sf-sorted: #a8875a;
 
   --animate-sf-blink: sf-blink 1.4s ease-in-out infinite;
   --animate-sf-rise: sf-rise 0.7s var(--ease-out-expo) backwards;
 }
 
 html.dark {
-  --color-sf-canvas: #0d0709;
-  --color-sf-surface: #150b0e;
-  --color-sf-panel: #1e1014;
-  --color-sf-line: rgb(255 236 228 / 0.06);
-  --color-sf-compare: #f3dccb;
-  --color-sf-swap: #ff5c74;
-  --color-sf-pivot: #f0a6a0;
-  --color-sf-sorted: #d9a77f;
+  --color-sf-canvas: #070b13;
+  --color-sf-surface: #0c121d;
+  --color-sf-panel: #141c2b;
+  --color-sf-line: rgb(226 232 240 / 0.06);
+  --color-sf-compare: #f2f5fa;
+  --color-sf-swap: #ffb86b;
+  --color-sf-pivot: #9fd0ff;
+  --color-sf-sorted: #e4cfa8;
 }
 
 @keyframes sf-blink {
@@ -454,7 +555,7 @@ html.dark {
   border-radius: 999px;
   background: #fff;
   border: 3px solid var(--color-primary);
-  box-shadow: 0 0 0 4px rgb(163 41 61 / 0.18), 0 0 14px rgb(163 41 61 / 0.6);
+  box-shadow: 0 0 0 4px rgb(42 79 143 / 0.18), 0 0 14px rgb(42 79 143 / 0.6);
   transition: transform 0.2s var(--ease-out-expo);
 }
 .sf-range:hover::-webkit-slider-thumb,
@@ -467,5 +568,5 @@ html.dark {
   border-radius: 999px;
   background: #fff;
   border: 3px solid var(--color-primary);
-  box-shadow: 0 0 14px rgb(163 41 61 / 0.6);
+  box-shadow: 0 0 14px rgb(42 79 143 / 0.6);
 }

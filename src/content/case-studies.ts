@@ -413,6 +413,4 @@ export const CASE_STUDY_SLUGS = CASE_STUDIES.map((c) => c.slug);
 
 export const getCaseStudy = (slug: string) => CASE_STUDIES.find((c) => c.slug === slug);
 
-export const getAllCaseStudies = () => CASE_STUDIES;
-
 export const COMPANIES = [...new Set(CASE_STUDIES.map((c) => c.company))];

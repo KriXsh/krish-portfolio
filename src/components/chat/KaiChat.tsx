@@ -213,7 +213,7 @@ export default function KaiChat() {
               onClick={() => setOpen(true)}
               aria-label="Chat with KAI, Krish's AI assistant"
               aria-haspopup="dialog"
-              className="group glass flex items-center gap-3 rounded-full bg-surface/80 p-1.5 shadow-[0_18px_50px_-15px_rgba(163,41,61,0.6)] transition-transform duration-300 hover:-translate-y-0.5 sm:pr-5"
+              className="group glass glass-frost flex items-center gap-3 rounded-full bg-surface/80 p-1.5 shadow-[0_18px_50px_-15px_rgba(42,79,143,0.6)] transition-transform duration-300 hover:-translate-y-0.5 sm:pr-5"
             >
               <KaiOrb size={44} />
               <span className="hidden text-left sm:block">
@@ -225,7 +225,7 @@ export default function KaiChat() {
         )}
       </AnimatePresence>
 
-      {/* Panel: wine glass that blooms open out of the launcher (a clip-path
+      {/* Panel: navy glass that blooms open out of the launcher (a clip-path
           circle, transform and opacity only - no filter, so it stays smooth on
           phones). On small screens it floats as a sheet over a soft scrim. */}
       <AnimatePresence>
@@ -238,7 +238,7 @@ export default function KaiChat() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
-            className="fixed inset-0 z-[69] bg-[#0b0708]/55 sm:hidden"
+            className="fixed inset-0 z-[69] bg-[#070a11]/55 sm:hidden"
           />
         )}
         {open && (
@@ -251,11 +251,11 @@ export default function KaiChat() {
             animate={{ opacity: 1, y: 0, clipPath: "circle(150% at 90% 100%)" }}
             exit={{ opacity: 0, y: 12, clipPath: "circle(0% at 90% 100%)", transition: { duration: 0.38, ease: [0.4, 0, 1, 1] } }}
             transition={{ duration: 0.65, ease: EASE }}
-            className="fixed inset-x-3 bottom-3 z-[70] flex h-[min(80dvh,620px)] flex-col overflow-hidden rounded-[1.75rem] border border-[#e8a9a1]/15 bg-[linear-gradient(165deg,rgba(58,16,26,0.78),rgba(18,10,12,0.88))] shadow-[0_40px_120px_-30px_rgba(0,0,0,0.85),inset_0_1px_0_rgba(255,236,228,0.08)] backdrop-blur-2xl backdrop-saturate-150 sm:inset-x-auto sm:right-6 sm:bottom-6 sm:h-[min(640px,calc(100dvh-3rem))] sm:w-[380px]"
+            className="fixed inset-x-3 bottom-3 z-[70] flex h-[min(80dvh,620px)] flex-col overflow-hidden rounded-[1.75rem] border border-[#8fb3e8]/15 bg-[linear-gradient(165deg,rgba(15,29,56,0.78),rgba(9,13,22,0.88))] shadow-[0_40px_120px_-30px_rgba(0,0,0,0.85),inset_0_1px_0_rgba(226,232,240,0.08)] backdrop-blur-2xl backdrop-saturate-150 sm:inset-x-auto sm:right-6 sm:bottom-6 sm:h-[min(640px,calc(100dvh-3rem))] sm:w-[380px]"
           >
             {/* Glass light, grain and petals */}
-            <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_45%_at_0%_0%,rgba(200,71,92,0.3),transparent_70%),radial-gradient(ellipse_60%_40%_at_100%_100%,rgba(227,196,171,0.1),transparent_70%)]" />
-            <div aria-hidden className="pointer-events-none absolute inset-0 grain opacity-[0.06] mix-blend-overlay" />
+            <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_45%_at_0%_0%,rgba(74,116,196,0.3),transparent_70%),radial-gradient(ellipse_60%_40%_at_100%_100%,rgba(228,207,168,0.1),transparent_70%)]" />
+            <div aria-hidden className="pointer-events-none absolute inset-0 grain opacity-[0.06]" />
             <Petals
               name="kai-panel"
               className="opacity-60"
@@ -273,16 +273,16 @@ export default function KaiChat() {
                   className="absolute -top-8 h-5 w-4 animate-kai-petal opacity-0"
                   style={{ left: `${left}%`, animationDelay: `${0.15 + i * 0.18}s`, "--kai-spin": `${i % 2 ? -1 : 1}` } as React.CSSProperties}
                 >
-                  <path d="M60 146C26 132 4 98 8 62 12 28 36 4 62 4c28 0 52 26 50 60-2 38-22 70-52 82Z" fill={i % 2 ? "#c8475c" : "#8e2236"} />
+                  <path d="M60 146C26 132 4 98 8 62 12 28 36 4 62 4c28 0 52 26 50 60-2 38-22 70-52 82Z" fill={i % 2 ? "#4a74c4" : "#1e3a6e"} />
                 </svg>
               ))}
             </div>
 
             {/* Header */}
-            <div className="relative flex items-center gap-3 border-b border-[#e8a9a1]/10 px-4 py-3.5">
+            <div className="relative flex items-center gap-3 border-b border-[#8fb3e8]/10 px-4 py-3.5">
               <KaiOrb size={38} active={busy} />
               <div className="min-w-0 flex-1">
-                <p className="font-display text-base leading-tight font-bold text-foreground">
+                <p className="font-display text-base leading-tight font-normal text-foreground">
                   KAI <span className="text-gradient">· Krish&apos;s AI</span>
                 </p>
                 <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
@@ -309,7 +309,7 @@ export default function KaiChat() {
                 <div className="flex h-full flex-col justify-end">
                   <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: EASE, delay: 0.1 }}>
                     <KaiOrb size={56} />
-                    <h2 className="mt-5 font-display text-2xl font-bold text-foreground">
+                    <h2 className="mt-5 font-display text-2xl font-normal text-foreground">
                       Hi, I&apos;m <span className="text-gradient">KAI.</span>
                     </h2>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
@@ -324,7 +324,7 @@ export default function KaiChat() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, ease: EASE, delay: 0.2 + i * 0.05 }}
                         onClick={() => send(s)}
-                        className="group flex items-center justify-between rounded-2xl border border-[#e8a9a1]/15 bg-white/[0.03] px-4 py-3 text-left text-sm text-foreground transition-colors hover:border-rose/50 hover:bg-rose/10"
+                        className="group flex items-center justify-between rounded-2xl border border-[#8fb3e8]/15 bg-white/[0.03] px-4 py-3 text-left text-sm text-foreground transition-colors hover:border-rose/50 hover:bg-rose/10"
                       >
                         {s}
                         <ArrowUp className="h-3.5 w-3.5 rotate-45 text-subtle transition-transform group-hover:rotate-90 group-hover:text-glow" />
@@ -340,7 +340,7 @@ export default function KaiChat() {
                         key={i}
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md bg-gradient-to-br from-rose to-primary px-4 py-2.5 text-sm whitespace-pre-wrap text-white shadow-[0_10px_30px_-12px_rgba(163,41,61,0.8)]"
+                        className="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md bg-gradient-to-br from-rose to-primary px-4 py-2.5 text-sm whitespace-pre-wrap text-white shadow-[0_10px_30px_-12px_rgba(42,79,143,0.8)]"
                       >
                         {m.content}
                       </motion.div>
@@ -383,14 +383,14 @@ export default function KaiChat() {
             </div>
 
             {/* Composer */}
-            <div className="relative border-t border-[#e8a9a1]/10 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+            <div className="relative border-t border-[#8fb3e8]/10 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
               {messages.length > 0 && !busy && quickReplies.length > 0 && (
                 <div data-lenis-prevent className="mb-2.5 flex gap-2 overflow-x-auto pb-0.5 [scrollbar-width:none]">
                   {quickReplies.map((s) => (
                     <button
                       key={s}
                       onClick={() => send(s)}
-                      className="shrink-0 rounded-full border border-[#e8a9a1]/15 bg-white/[0.03] px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-rose/50 hover:text-foreground"
+                      className="shrink-0 rounded-full border border-[#8fb3e8]/15 bg-white/[0.03] px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-rose/50 hover:text-foreground"
                     >
                       {s}
                     </button>
@@ -402,7 +402,7 @@ export default function KaiChat() {
                   e.preventDefault();
                   send(input);
                 }}
-                className="flex items-end gap-2 rounded-2xl border border-[#e8a9a1]/15 bg-black/25 p-1.5 pl-4 transition-colors focus-within:border-rose/60"
+                className="flex items-end gap-2 rounded-2xl border border-[#8fb3e8]/15 bg-black/25 p-1.5 pl-4 transition-colors focus-within:border-rose/60"
               >
                 <textarea
                   ref={inputRef}
@@ -433,7 +433,7 @@ export default function KaiChat() {
                     type="submit"
                     disabled={!input.trim()}
                     aria-label="Send"
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-rose to-primary text-white shadow-[0_8px_20px_-8px_rgba(200,71,92,0.9)] transition-opacity disabled:opacity-30"
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-rose to-primary text-white shadow-[0_8px_20px_-8px_rgba(74,116,196,0.9)] transition-opacity disabled:opacity-30"
                   >
                     <ArrowUp className="h-4 w-4" />
                   </button>

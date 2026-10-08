@@ -46,17 +46,17 @@ export const LIVE_PROJECTS: LiveProject[] = [
 ];
 
 /** GitHub's own language colours, for the dots on repo cards. */
-// Each language gets its own shade from the rose palette (wine, blush, copper,
+// Each language gets its own shade from the rose palette (navy, blush, copper,
 // champagne...) instead of GitHub's rainbow, so the charts sit in the theme.
 export const LANGUAGE_COLORS: Record<string, string> = {
-  TypeScript: "#c8475c",
-  JavaScript: "#e3c4ab",
+  TypeScript: "#4a74c4",
+  JavaScript: "#e4cfa8",
   Python: "#c08457",
-  Java: "#e8a9a1",
-  CSS: "#8e2236",
+  Java: "#8fb3e8",
+  CSS: "#1e3a6e",
   HTML: "#d9a77f",
-  Shell: "#9e4a6a",
-  Go: "#b88a67",
+  Shell: "#4a6a9e",
+  Go: "#a8875a",
 };
 
-export const languageColor = (lang: string | null) => (lang && LANGUAGE_COLORS[lang]) || "#6e575a";
+export const languageColor = (lang: string | null) => (lang && LANGUAGE_COLORS[lang]) || "#5d6676";

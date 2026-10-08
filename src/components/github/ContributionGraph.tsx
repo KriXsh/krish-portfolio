@@ -65,7 +65,7 @@ export function ContributionGraph({ days, totals }: { days: ContributionDay[]; t
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="eyebrow text-subtle uppercase">Contribution graph</p>
-          <p className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">
+          <p className="mt-2 font-display text-3xl font-normal text-foreground md:text-4xl">
             {(totals[year] ?? 0).toLocaleString()}
             <span className="ml-3 font-sans text-base font-normal text-muted-foreground">contributions in {year}</span>
           </p>
@@ -136,7 +136,7 @@ export function ContributionGraph({ days, totals }: { days: ContributionDay[]; t
                       className="h-3 w-3 rounded-[3px] transition-transform duration-150 hover:scale-150"
                       style={{
                         background: LEVELS[day.level],
-                        boxShadow: day.level >= 3 ? `0 0 ${day.level === 4 ? 10 : 6}px rgba(232,169,161,${day.level === 4 ? 0.55 : 0.3})` : undefined,
+                        boxShadow: day.level >= 3 ? `0 0 ${day.level === 4 ? 10 : 6}px rgba(143,179,232,${day.level === 4 ? 0.55 : 0.3})` : undefined,
                       }}
                     />
                   ) : (
@@ -178,7 +178,7 @@ export function ContributionGraph({ days, totals }: { days: ContributionDay[]; t
           { k: WEEKDAYS[data.topWeekday].slice(0, 3), v: "Most active weekday" },
         ].map((s) => (
           <div key={s.v}>
-            <dt className="font-display text-2xl font-bold text-gh-accent">{s.k}</dt>
+            <dt className="font-display text-2xl font-normal text-gh-accent">{s.k}</dt>
             <dd className="mt-1 font-mono text-[10px] tracking-wider text-subtle uppercase">{s.v}</dd>
           </div>
         ))}

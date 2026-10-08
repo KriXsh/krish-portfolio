@@ -16,7 +16,7 @@ export function Comments({ title }: { title: string }) {
 
   return (
     <section aria-labelledby="discussion" className="mt-16">
-      <h2 id="discussion" className="mb-6 flex items-center gap-3 font-display text-2xl font-bold text-foreground">
+      <h2 id="discussion" className="mb-6 flex items-center gap-3 font-display text-2xl font-normal text-foreground">
         <MessageCircle className="h-5 w-5 text-glow" /> Discussion
       </h2>
       {configured ? (
@@ -38,7 +38,7 @@ export function Comments({ title }: { title: string }) {
         </div>
       ) : (
         <div className="glass rounded-2xl p-6 md:p-8">
-          <p className="font-display text-lg font-semibold text-foreground">Join the discussion</p>
+          <p className="font-display text-lg font-medium text-foreground">Join the discussion</p>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
             Questions, corrections or a different take on &ldquo;{title}&rdquo;? I&apos;d love to hear it.
           </p>

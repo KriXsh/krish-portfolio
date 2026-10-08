@@ -8,7 +8,7 @@ import { SiLeetcode } from "react-icons/si";
 import { Magnetic } from "@/components/ui/magnetic";
 import { SplitText } from "@/components/ui/reveal";
 import { Petals } from "@/components/ui/petals";
-import { CoffeeButton } from "@/components/coffee/CoffeeButton";
+import { CoffeeOrbLink } from "@/components/coffee/CoffeeOrb";
 import { useClientValue } from "@/lib/use-client-value";
 import { LEETCODE_URL, RESUME_URL } from "@/lib/site";
 
@@ -46,12 +46,6 @@ function readTenure() {
 
 /** Fine pointer + wide screen: the only case where mouse parallax is worth running. */
 const readParallax = () => window.matchMedia("(pointer: fine) and (min-width: 1024px)").matches;
-
-const fadeUp = (delay: number) => ({
-  initial: { opacity: 0, y: 18 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.9, ease: EASE, delay },
-});
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -96,9 +90,9 @@ export default function Hero() {
       onPointerMove={onPointerMove}
       className="relative isolate flex min-h-[100svh] flex-col overflow-hidden"
     >
-      {/* --- Atmosphere: wine bloom, a slanted shaft of light (the one in the photo), grain --- */}
+      {/* --- Atmosphere: navy bloom, a slanted shaft of light (the one in the photo), grain --- */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_38%,#3a0f19_0%,#1a080d_45%,transparent_75%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_38%,#12213d_0%,#0a1222_45%,transparent_75%)]" />
         <motion.div
           initial={{ opacity: 0, x: 120 }}
           animate={{ opacity: 1, x: 0 }}
@@ -108,11 +102,11 @@ export default function Hero() {
         >
           <motion.div
             style={{ opacity: shaftOpacity }}
-            className="absolute -top-[10%] left-[38%] h-[130%] w-[34%] origin-top skew-x-[-24deg] bg-gradient-to-b from-[#e8a9a1]/[0.13] via-[#e8a9a1]/[0.05] to-transparent"
+            className="absolute -top-[10%] left-[38%] h-[130%] w-[34%] origin-top skew-x-[-24deg] bg-gradient-to-b from-[#8fb3e8]/[0.13] via-[#8fb3e8]/[0.05] to-transparent"
           />
         </motion.div>
         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
-        <div className="absolute inset-0 grain opacity-[0.05] mix-blend-overlay" />
+        <div className="absolute inset-0 grain opacity-[0.035]" />
       </div>
 
       <Petals
@@ -126,8 +120,8 @@ export default function Hero() {
 
       {/* --- Meta row --- */}
       <motion.div
-        {...fadeUp(0.05)}
-        className="relative mx-auto flex w-full max-w-7xl items-center justify-between px-6 pt-24 eyebrow text-muted-foreground md:px-12 md:pt-28"
+        style={{ animationDelay: "0.05s" }}
+        className="animate-fade-up relative mx-auto flex w-full max-w-7xl items-center justify-between px-6 pt-24 eyebrow text-muted-foreground md:px-12 md:pt-28"
       >
         <span>Full-Stack · AI/ML · Cloud</span>
         <span className="hidden sm:inline">Portfolio — ©{new Date().getFullYear()}</span>
@@ -137,13 +131,13 @@ export default function Hero() {
       <div className="relative mx-auto w-full max-w-[1500px] flex-1 px-3 md:px-8 lg:min-h-[31rem]">
         <motion.h1
           style={{ opacity: nameOpacity, x: nameShiftX, y: nameShiftY }}
-          className="relative mt-4 text-center font-display leading-[0.8] font-normal tracking-[-0.03em] text-champagne uppercase select-none md:mt-6"
+          className="relative mt-4 text-center font-display leading-[0.8] font-normal tracking-[-0.01em] text-champagne uppercase select-none md:mt-6"
           aria-label="Krishnendu Ghosal"
         >
-          <motion.span style={{ x: leftX }} className="block text-[25vw] lg:inline-block lg:text-[clamp(4rem,12.4vw,14.5rem)]">
+          <motion.span style={{ x: leftX }} className="block will-change-transform text-[30vw] lg:inline-block lg:text-[clamp(4.5rem,15vw,17.5rem)]">
             <SplitText text="Krish" delay={0.15} stagger={0.05} />
           </motion.span>
-          <motion.span style={{ x: rightX }} className="block text-[25vw] lg:inline-block lg:text-[clamp(4rem,12.4vw,14.5rem)]">
+          <motion.span style={{ x: rightX }} className="block will-change-transform text-[30vw] lg:inline-block lg:text-[clamp(4.5rem,15vw,17.5rem)]">
             <SplitText text="nendu" delay={0.4} stagger={0.05} />
           </motion.span>
         </motion.h1>
@@ -154,21 +148,23 @@ export default function Hero() {
             never collides with the action bar on short screens. */}
         <motion.div
           style={{ y: photoY, scale: photoScale }}
-          className="pointer-events-none absolute inset-x-0 top-[calc(25vw*0.95)] z-10 mx-auto aspect-[507/580] w-[min(82vw,26rem)] lg:top-auto lg:bottom-0 lg:h-[94%] lg:w-auto"
+          className="pointer-events-none absolute inset-x-0 top-[calc(30vw*1.38)] z-10 mx-auto aspect-[507/580] w-[min(76vw,24rem)] lg:top-auto lg:bottom-0 lg:h-[84%] lg:w-auto"
         >
-          <motion.div style={{ x: portraitX, rotate: portraitTilt }} className="relative h-full w-full">
+          <motion.div style={{ x: portraitX, rotate: portraitTilt }} className="relative h-full w-full will-change-transform">
             {/* contact shadow on the "floor" */}
-            <div aria-hidden className="absolute inset-x-[14%] -bottom-2 h-8 rounded-[50%] bg-black/70 blur-xl" />
+            {/* soft sapphire halo behind the shoulders - a gradient, not a filter */}
+            <div aria-hidden className="absolute inset-x-[-6%] top-[8%] bottom-[10%] rounded-full bg-[radial-gradient(closest-side,rgba(74,116,196,0.28),transparent)]" />
+            <div aria-hidden className="absolute inset-x-[14%] -bottom-2 h-8 rounded-[50%] bg-[radial-gradient(closest-side,rgba(0,0,0,0.7),transparent)]" />
             {/* CSS (not framer) reveal: it starts on first paint instead of waiting
                 for hydration, so the portrait - the LCP element - shows up fast on phones. */}
             <div className="relative h-full w-full animate-hero-rise">
               <Image
-                src="/krish-hero.webp"
-                alt="Krishnendu Ghosal in a wine-red linen set, seated, holding a single red rose"
+                src="/krish-hero-v3.webp"
+                alt="Krishnendu Ghosal in a navy blazer and light blue shirt"
                 fill
                 priority
                 fetchPriority="high"
-                sizes="(min-width: 1024px) 34rem, 82vw"
+                sizes="(min-width: 1024px) 34rem, 76vw"
                 className="object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]"
               />
             </div>
@@ -178,20 +174,20 @@ export default function Hero() {
         {/* --- Side copy (desktop: flanks the portrait; mobile: flows below it) --- */}
         <motion.div
           style={{ y: copyY, opacity: copyOpacity }}
-          className="relative z-20 mx-auto grid max-w-7xl gap-10 px-3 pt-[calc(min(82vw,26rem)*0.98)] pb-10 md:px-4 lg:absolute lg:inset-x-0 lg:bottom-[7%] lg:grid-cols-[1fr_minmax(22rem,34%)_1fr] lg:items-end lg:pt-0 lg:pb-0"
+          className="relative z-20 mx-auto grid max-w-7xl gap-10 px-3 pt-[calc(min(76vw,24rem)*1.13)] pb-10 md:px-4 lg:absolute lg:inset-x-0 lg:bottom-[7%] lg:grid-cols-[1fr_minmax(22rem,34%)_1fr] lg:items-end lg:pt-0 lg:pb-0"
         >
           {/* left */}
           <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
             <motion.p
-              {...fadeUp(1.0)}
-              className="max-w-xs font-sans text-lg leading-snug font-light tracking-[0.08em] text-foreground uppercase md:text-xl"
+              style={{ animationDelay: "1.0s" }}
+              className="animate-fade-up max-w-sm font-sans text-2xl leading-[1.15] font-light tracking-[-0.03em] text-foreground md:text-[1.75rem]"
             >
               I engineer systems that <span className="text-glow">think, scale</span> &amp; connect
             </motion.p>
-            <motion.div {...fadeUp(1.1)}>
+            <motion.div style={{ animationDelay: "1.1s" }} className="animate-fade-up">
               <a
                 href="#contact"
-                className="group inline-flex items-center gap-3 rounded-full border border-ink/25 px-5 py-2.5 eyebrow text-foreground transition-colors hover:border-glow hover:bg-primary/20"
+                className="group inline-flex items-center gap-3 rounded-full border border-ink/25 px-5 py-2.5 font-sans text-sm font-normal tracking-[-0.01em] text-foreground transition-colors hover:border-glow hover:bg-primary/20"
               >
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-glow opacity-75" />
@@ -205,7 +201,7 @@ export default function Hero() {
               initial={{ opacity: 0, clipPath: "inset(0 100% 0 0)" }}
               animate={{ opacity: 1, clipPath: "inset(0 0% 0 0)" }}
               transition={{ duration: 1.6, ease: [0.65, 0, 0.35, 1], delay: 1.35 }}
-              className="font-script text-4xl leading-none text-rose md:text-5xl"
+              className="font-sans text-4xl leading-none font-light tracking-[-0.045em] text-rose md:text-5xl"
             >
               Krishnendu Ghosal
             </motion.p>
@@ -216,11 +212,11 @@ export default function Hero() {
 
           {/* right */}
           <div className="flex flex-col items-center gap-6 text-center lg:items-end lg:text-right">
-            <motion.p {...fadeUp(1.15)} className="max-w-xs text-[15px] leading-relaxed text-muted-foreground">
+            <motion.p style={{ animationDelay: "1.15s" }} className="animate-fade-up max-w-xs font-sans text-base leading-relaxed font-light tracking-[-0.01em] text-muted-foreground">
               I&apos;m a software engineer crafting <span className="text-foreground">AI-powered platforms</span>,
               event-driven pipelines and cloud infrastructure, down to the interfaces people touch.
             </motion.p>
-            <motion.div {...fadeUp(1.25)} className="flex items-center gap-4">
+            <motion.div style={{ animationDelay: "1.25s" }} className="animate-fade-up flex items-center gap-4">
               <p className="eyebrow leading-relaxed text-muted-foreground">
                 Based in India
                 <br />
@@ -230,7 +226,7 @@ export default function Hero() {
                 <Globe2 className="h-5 w-5 animate-spin-slow" strokeWidth={1.4} />
               </span>
             </motion.div>
-            <motion.div {...fadeUp(1.35)} className="flex items-center gap-2.5">
+            <motion.div style={{ animationDelay: "1.35s" }} className="animate-fade-up flex items-center gap-2.5">
               {socials.map(({ icon: Icon, href, label }) => (
                 <Magnetic key={label} strength={0.5}>
                   <a
@@ -251,14 +247,14 @@ export default function Hero() {
 
       {/* --- Actions + numbers --- */}
       <motion.div
-        {...fadeUp(1.45)}
-        className="relative z-20 mx-auto flex w-full max-w-7xl flex-col items-center gap-8 border-t border-border px-6 pt-7 pb-8 md:px-12 lg:flex-row lg:items-center lg:justify-between"
+        style={{ animationDelay: "1.45s" }}
+        className="animate-fade-up relative z-20 mx-auto flex w-full max-w-7xl flex-col items-center gap-8 border-t border-border px-6 pt-7 pb-8 md:px-12 lg:flex-row lg:items-center lg:justify-between"
       >
         <div className="flex flex-wrap items-center justify-center gap-2.5 lg:justify-start">
           <Magnetic>
             <a
               href="#experience"
-              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-champagne px-6 py-3.5 text-sm whitespace-nowrap font-medium tracking-wide text-[#1a0a0e] shadow-[0_0_40px_-10px_rgba(227,196,171,0.6)]"
+              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-champagne px-6 py-3.5 text-sm whitespace-nowrap font-medium tracking-wide text-[#0a0f1a] shadow-[0_0_40px_-10px_rgba(228,207,168,0.6)]"
             >
               <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-primary via-rose to-primary transition-transform duration-500 ease-out-expo group-hover:translate-y-0" />
               <span className="relative transition-colors duration-300 group-hover:text-white">View Work</span>
@@ -286,7 +282,7 @@ export default function Hero() {
             </a>
           </Magnetic>
           <Magnetic strength={0.3}>
-            <CoffeeButton />
+            <CoffeeOrbLink />
           </Magnetic>
         </div>
 
@@ -323,7 +319,7 @@ export default function Hero() {
             <span
               key={i}
               aria-hidden={i >= domains.length || undefined}
-              className="flex items-center gap-10 font-display text-xl whitespace-nowrap text-muted-foreground italic"
+              className="flex items-center gap-10 font-sans text-xl font-light tracking-[-0.025em] whitespace-nowrap text-muted-foreground"
             >
               <a
                 href={d.href}

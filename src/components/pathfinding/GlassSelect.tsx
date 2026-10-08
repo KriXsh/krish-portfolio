@@ -98,7 +98,7 @@ export function GlassSelect<T extends string>({
         className={cn(
           "group flex h-10 w-full items-center gap-2.5 rounded-xl border border-border bg-ink/[0.03] px-3 text-left text-sm font-medium text-foreground transition-all",
           "hover:border-primary/40 hover:bg-primary/[0.06] disabled:pointer-events-none disabled:opacity-45",
-          open && "border-primary/50 bg-primary/[0.08] shadow-[0_0_0_4px_rgb(163_41_61/0.12)]",
+          open && "border-primary/50 bg-primary/[0.08] shadow-[0_0_0_4px_rgb(42_79_143/0.12)]",
         )}
       >
         {icon && <span className="text-primary">{icon}</span>}

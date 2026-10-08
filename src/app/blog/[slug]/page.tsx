@@ -87,13 +87,13 @@ export default async function PostPage({ params }: Props) {
               </span>
             ))}
           </div>
-          <h1 className="font-display text-[clamp(2rem,4.6vw,3.6rem)] leading-[1.05] font-bold tracking-[-0.03em] text-balance text-foreground">
+          <h1 className="font-display text-[clamp(2rem,4.6vw,3.6rem)] leading-[1.05] font-normal tracking-[-0.03em] text-balance text-foreground">
             {post.title}
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{post.description}</p>
           <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-primary to-cyan font-display text-sm font-bold text-white">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-primary to-cyan font-display text-sm font-normal text-white">
                 KG
               </span>
               <div>
@@ -124,11 +124,11 @@ export default async function PostPage({ params }: Props) {
 
             {/* Author */}
             <div className="mt-10 flex flex-col gap-5 rounded-[1.75rem] border border-border bg-surface p-6 sm:flex-row sm:items-center md:p-8">
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-cyan font-display text-lg font-bold text-white">
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-cyan font-display text-lg font-normal text-white">
                 KG
               </span>
               <div className="flex-1">
-                <p className="font-display text-lg font-semibold text-foreground">{AUTHOR.name}</p>
+                <p className="font-display text-lg font-medium text-foreground">{AUTHOR.name}</p>
                 <p className="text-sm text-muted-foreground">
                   {AUTHOR.role}. I write about the systems I build: AI features, event-driven backends, data pipelines and the
                   infrastructure under them.
@@ -153,7 +153,7 @@ export default async function PostPage({ params }: Props) {
                   <span className="flex items-center gap-1.5 font-mono text-[11px] text-subtle">
                     <ArrowLeft className="h-3 w-3" /> Previous
                   </span>
-                  <span className="mt-2 block font-display font-semibold text-foreground group-hover:text-glow">{prev.title}</span>
+                  <span className="mt-2 block font-display font-medium text-foreground group-hover:text-glow">{prev.title}</span>
                 </Link>
               ) : (
                 <span />
@@ -163,7 +163,7 @@ export default async function PostPage({ params }: Props) {
                   <span className="flex items-center justify-end gap-1.5 font-mono text-[11px] text-subtle">
                     Next <ArrowRight className="h-3 w-3" />
                   </span>
-                  <span className="mt-2 block font-display font-semibold text-foreground group-hover:text-glow">{next.title}</span>
+                  <span className="mt-2 block font-display font-medium text-foreground group-hover:text-glow">{next.title}</span>
                 </Link>
               )}
             </nav>

@@ -45,9 +45,9 @@ export default function Freelance() {
                   <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/25 to-cyan/10 ring-1 ring-ink/10">
                     <Icon className="h-5 w-5 text-foreground" />
                   </span>
-                  <span className="font-display text-5xl font-bold text-ink/[0.06]">0{i + 1}</span>
+                  <span className="font-display text-5xl font-normal text-ink/[0.06]">0{i + 1}</span>
                 </div>
-                <h3 className="font-display text-xl font-semibold text-foreground">{title}</h3>
+                <h3 className="font-display text-xl font-medium text-foreground">{title}</h3>
                 <p className="mt-3 mb-8 text-sm leading-relaxed text-muted-foreground">{desc}</p>
                 <ul className="mt-auto space-y-2.5 border-t border-border pt-5">
                   {features.map((f) => (
@@ -73,7 +73,7 @@ export default function Freelance() {
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
                 Available for projects
               </div>
-              <h3 className="font-display text-display-md font-bold text-foreground">Project-based or part-time payroll.</h3>
+              <h3 className="font-display text-display-md font-normal text-foreground">Project-based or part-time payroll.</h3>
               <p className="text-muted-foreground">
                 Long-term engineering support or a quick MVP launch. Available for{" "}
                 <span className="text-foreground">20 hours/week</span> engagements with competitive project rates.

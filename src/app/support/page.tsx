@@ -26,16 +26,16 @@ export default async function SupportPage({ searchParams }: { searchParams: Prom
         ]}
       />
       <div aria-hidden className="pointer-events-none absolute inset-0 grid-lines mask-fade-b opacity-50" />
-      <div aria-hidden className="pointer-events-none absolute -top-40 left-1/3 h-[34rem] w-[34rem] rounded-full bg-[#c08457]/15 blur-[140px]" />
-      <div aria-hidden className="pointer-events-none absolute right-0 bottom-0 h-[28rem] w-[28rem] rounded-full bg-primary/15 blur-[140px]" />
+      <div aria-hidden className="pointer-events-none absolute -top-40 left-1/3 h-[34rem] w-[34rem] rounded-full bg-primary/25 blur-[140px]" />
+      <div aria-hidden className="pointer-events-none absolute right-0 bottom-0 h-[28rem] w-[28rem] rounded-full bg-champagne/10 blur-[140px]" />
 
       <div className="relative mx-auto max-w-6xl">
 
         <div className="mb-12 max-w-4xl">
-          <p className="mb-4 eyebrow text-[#e0a47a] uppercase">Open · Brewing daily</p>
-          <h1 className="font-display text-display-lg font-bold text-foreground">
+          <p className="mb-4 eyebrow text-champagne uppercase">Open · Brewing daily</p>
+          <h1 className="font-display text-display-lg font-normal text-foreground">
             Krish&apos;s{" "}
-            <span className="bg-gradient-to-r from-[#f0c9a4] via-[#c08457] to-[#e0a47a] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#f1e3c6] via-[#d4b07f] to-[#e4cfa8] bg-clip-text text-transparent">
               Coffee Bar
             </span>
           </h1>
@@ -51,8 +51,8 @@ export default async function SupportPage({ searchParams }: { searchParams: Prom
         <section className="mt-16">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
             <div>
-              <p className="eyebrow text-[#e0a47a] uppercase">Outside India</p>
-              <h2 className="mt-2 font-display text-3xl font-bold text-foreground md:text-4xl">Pay in USD</h2>
+              <p className="eyebrow text-champagne uppercase">Outside India</p>
+              <h2 className="mt-2 font-display text-3xl font-normal text-foreground md:text-4xl">Pay in USD</h2>
             </div>
             <p className="max-w-sm text-sm text-muted-foreground">Cards through GitHub, or a US bank transfer for larger payments and invoices.</p>
           </div>
@@ -65,14 +65,14 @@ export default async function SupportPage({ searchParams }: { searchParams: Prom
                   <Github className="h-5 w-5" />
                 </span>
                 <div>
-                  <p className="font-display text-lg font-semibold text-foreground">GitHub Sponsors</p>
+                  <p className="font-display text-lg font-medium text-foreground">GitHub Sponsors</p>
                   <p className="text-sm text-muted-foreground">Any card · one-time or monthly</p>
                 </div>
               </div>
               <ul className="mb-8 space-y-2.5 text-sm text-muted-foreground">
                 {["Best for tips of any size", "Pay from anywhere in the world", "Recurring support for open source"].map((t) => (
                   <li key={t} className="flex items-center gap-2.5">
-                    <Check className="h-4 w-4 shrink-0 text-emerald-400" /> {t}
+                    <Check className="h-4 w-4 shrink-0 text-glow" /> {t}
                   </li>
                 ))}
               </ul>
@@ -93,24 +93,24 @@ export default async function SupportPage({ searchParams }: { searchParams: Prom
                   <Landmark className="h-5 w-5" />
                 </span>
                 <div>
-                  <p className="font-display text-lg font-semibold text-foreground">US bank transfer</p>
+                  <p className="font-display text-lg font-medium text-foreground">US bank transfer</p>
                   <p className="text-sm text-muted-foreground">From a US bank account · USD</p>
                 </div>
               </div>
               <dl className="mb-6 grid grid-cols-2 gap-3">
                 <div className="rounded-2xl border border-border bg-background/40 p-4">
                   <dt className="font-mono text-[10px] tracking-widest text-subtle uppercase">ACH</dt>
-                  <dd className="mt-1 font-display text-lg font-semibold text-foreground">${USD_BANK.achMin}+</dd>
+                  <dd className="mt-1 font-display text-lg font-medium text-foreground">${USD_BANK.achMin}+</dd>
                   <dd className="text-xs text-muted-foreground">{USD_BANK.achDays}</dd>
                 </div>
                 <div className="rounded-2xl border border-border bg-background/40 p-4">
                   <dt className="font-mono text-[10px] tracking-widest text-subtle uppercase">Wire</dt>
-                  <dd className="mt-1 font-display text-lg font-semibold text-foreground">${USD_BANK.wireMin.toLocaleString()}+</dd>
+                  <dd className="mt-1 font-display text-lg font-medium text-foreground">${USD_BANK.wireMin.toLocaleString()}+</dd>
                   <dd className="text-xs text-muted-foreground">{USD_BANK.wireDays} · invoices</dd>
                 </div>
               </dl>
               <p className="mb-8 flex items-start gap-2.5 text-sm text-muted-foreground">
-                <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
+                <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-glow" />
                 Account details are shared privately by email, never posted here. Wires under ${USD_BANK.wireMin.toLocaleString()} can&apos;t be accepted, so use ACH for smaller amounts.
               </p>
               <a

@@ -15,7 +15,7 @@ import { RESUME_DOWNLOAD_URL, RESUME_PREVIEW_URL, RESUME_URL } from "@/lib/site"
 function PaperPreview() {
   return (
     <div className="relative mx-auto w-full max-w-sm">
-      <TiltCard max={12} glowColor="rgba(122,31,47,0.25)" className="w-full rounded-[1.75rem] p-3">
+      <TiltCard max={12} glowColor="rgba(29,55,102,0.25)" className="w-full rounded-[1.75rem] p-3">
         <a href={RESUME_URL} target="_blank" rel="noopener noreferrer" aria-label="Open resume" className="block">
           <div className="relative aspect-[1/1.3] overflow-hidden rounded-[1.25rem] bg-gradient-to-b from-[#f8fafc] to-[#e2e8f0]">
             <div className="absolute inset-0 flex items-center justify-center text-background/40">
@@ -43,10 +43,10 @@ export default function Resume() {
   return (
     <div className="py-20 md:py-28">
       <div className="relative overflow-hidden rounded-[2.5rem] border border-border bg-surface">
-        {/* Same atmosphere as the footer: wine light as gradients (cheap on phones), grain, petals. */}
-        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_55%_60%_at_85%_0%,rgba(94,20,34,0.4),transparent_70%),radial-gradient(ellipse_50%_55%_at_0%_100%,rgba(163,41,61,0.22),transparent_70%)]" />
+        {/* Same atmosphere as the footer: navy light as gradients (cheap on phones), grain, petals. */}
+        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_55%_60%_at_85%_0%,rgba(19,38,74,0.4),transparent_70%),radial-gradient(ellipse_50%_55%_at_0%_100%,rgba(42,79,143,0.22),transparent_70%)]" />
         <div aria-hidden className="absolute inset-0 grid-lines opacity-30" />
-        <div aria-hidden className="absolute inset-0 grain opacity-[0.05] mix-blend-overlay" />
+        <div aria-hidden className="absolute inset-0 grain opacity-[0.035]" />
         <Petals
           name="resume"
           scroll
@@ -64,7 +64,7 @@ export default function Resume() {
               Resume
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="font-display text-[clamp(2.25rem,4.2vw,4rem)] leading-[0.98] font-bold tracking-[-0.035em] text-foreground">
+              <h2 className="font-display text-[clamp(2.25rem,4.2vw,4rem)] leading-[0.98] font-normal tracking-[-0.035em] text-foreground">
                 The whole story,
                 <br />
                 <span className="text-gradient italic">on one page.</span>

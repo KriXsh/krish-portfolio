@@ -69,7 +69,7 @@ export function VelocityBand({
     >
       <motion.div
         style={{ x }}
-        className="flex w-max font-display text-[clamp(3rem,9vw,8.5rem)] leading-none whitespace-nowrap italic will-change-transform"
+        className="flex w-max font-sans text-[clamp(3rem,9vw,8.5rem)] leading-none font-light tracking-[-0.045em] whitespace-nowrap will-change-transform"
       >
         {line}
         {line}

@@ -16,7 +16,7 @@ function Outcome({ cs }: { cs: CaseStudy }) {
   const m = cs.metrics?.[0];
   return m ? (
     <p className="flex items-baseline gap-2">
-      <span className="font-display text-2xl font-bold text-gradient">{m.value}</span>
+      <span className="font-display text-2xl font-normal text-gradient">{m.value}</span>
       <span className="text-xs text-muted-foreground">{m.label}</span>
     </p>
   ) : (
@@ -28,10 +28,10 @@ function Card({ cs }: { cs: CaseStudy }) {
   return (
     <Link
       href={`/case-studies/${cs.slug}`}
-      className="group relative isolate flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-surface p-6 transition-all duration-500 hover:-translate-y-1 hover:border-rose/40 hover:shadow-[0_24px_60px_-30px_rgba(163,41,61,0.55)]"
+      className="group relative isolate flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-surface p-6 transition-all duration-500 hover:-translate-y-1 hover:border-rose/40 hover:shadow-[0_24px_60px_-30px_rgba(42,79,143,0.55)]"
     >
-      {/* wine light rises from the floor of the card on hover */}
-      <span aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_50%_110%,rgba(163,41,61,0.22),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      {/* navy light rises from the floor of the card on hover */}
+      <span aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_50%_110%,rgba(42,79,143,0.22),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
       <RoseCorner className="absolute right-5 bottom-14" />
       <div className="relative mb-4 flex items-center justify-between gap-3">
         <p className="min-w-0 truncate font-mono text-[11px] tracking-wider text-subtle uppercase">{cs.company}</p>
@@ -39,7 +39,7 @@ function Card({ cs }: { cs: CaseStudy }) {
           <ArrowUpRight className="h-4 w-4" />
         </span>
       </div>
-      <h3 className="font-display text-xl leading-snug font-semibold text-foreground">{cs.title}</h3>
+      <h3 className="font-display text-xl leading-snug font-medium text-foreground">{cs.title}</h3>
       <p className="mt-1 font-mono text-[11px] text-subtle">{cs.period}</p>
       <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{cs.summary}</p>
       <div className="mt-5 flex flex-wrap gap-1.5">
@@ -60,8 +60,8 @@ function Featured({ cs }: { cs: CaseStudy }) {
       href={`/case-studies/${cs.slug}`}
       className="group relative block overflow-hidden rounded-[2rem] border border-border bg-surface p-7 transition-colors hover:border-border-strong md:p-10"
     >
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_70%_at_100%_0%,rgba(163,41,61,0.25),transparent_70%)]" />
-      <div aria-hidden className="pointer-events-none absolute inset-0 grain opacity-[0.05] mix-blend-overlay" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_70%_at_100%_0%,rgba(42,79,143,0.25),transparent_70%)]" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 grain opacity-[0.05]" />
       <WaxSeal label="FEATURED" className="pointer-events-none absolute top-5 right-5 w-20 md:top-7 md:right-8 md:w-24" />
       <div aria-hidden className="pointer-events-none absolute inset-0 grid-lines opacity-50 mask-fade-b" />
       <div className="relative grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-end">
@@ -70,14 +70,14 @@ function Featured({ cs }: { cs: CaseStudy }) {
             <span className="font-script text-2xl tracking-normal text-rose normal-case">the featured story</span>
             {cs.company} · {cs.period}
           </p>
-          <h2 className="font-display text-display-md font-bold text-foreground">{cs.title}</h2>
+          <h2 className="font-display text-display-md font-normal text-foreground">{cs.title}</h2>
           <p className="mt-4 max-w-xl text-muted-foreground md:text-lg">{cs.summary}</p>
           <div className="mt-6 flex flex-wrap gap-1.5">
             {cs.disciplines.map((d) => (
               <DisciplineChip key={d} id={d} />
             ))}
           </div>
-          <span className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-rose to-primary bg-[length:200%_auto] px-5 py-3 text-sm font-semibold text-white shadow-[0_18px_40px_-14px_rgba(163,41,61,0.8)] transition-[background-position] duration-700 group-hover:bg-[position:100%_center]">
+          <span className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-rose to-primary bg-[length:200%_auto] px-5 py-3 text-sm font-semibold text-white shadow-[0_18px_40px_-14px_rgba(42,79,143,0.8)] transition-[background-position] duration-700 group-hover:bg-[position:100%_center]">
             Read the case study
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
           </span>
@@ -86,7 +86,7 @@ function Featured({ cs }: { cs: CaseStudy }) {
           <dl className="grid grid-cols-2 gap-3">
             {cs.metrics.map((m) => (
               <div key={m.label} className="glass rounded-2xl p-4">
-                <dt className="font-display text-3xl font-bold text-gradient">{m.value}</dt>
+                <dt className="font-display text-3xl font-normal text-gradient">{m.value}</dt>
                 <dd className="mt-1 text-xs leading-snug text-muted-foreground">{m.label}</dd>
               </div>
             ))}

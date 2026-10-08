@@ -51,7 +51,7 @@ function JobDetails({ job, index }: { job: Job; index: number }) {
           <p className="font-mono text-xs tracking-widest text-subtle uppercase">
             {String(index + 1).padStart(2, "0")} / {String(journey.length).padStart(2, "0")} · {job.date}
           </p>
-          <h3 className="mt-3 font-display text-3xl leading-tight font-bold text-balance text-foreground md:text-4xl">{job.company}</h3>
+          <h3 className="mt-3 font-display text-3xl leading-tight font-normal text-balance text-foreground md:text-4xl">{job.company}</h3>
           <p className="mt-2 text-sm font-medium text-glow">{job.tenure === "Current" ? "Current role" : `Tenure · ${job.tenure}`}</p>
         </div>
 
@@ -75,7 +75,7 @@ function JobDetails({ job, index }: { job: Job; index: number }) {
           <div className="grid grid-cols-2 gap-3">
             {job.metrics.map((m) => (
               <div key={m.label} className="glass rounded-2xl p-4">
-                <p className="font-display text-2xl font-bold text-gradient">{m.value}</p>
+                <p className="font-display text-2xl font-normal text-gradient">{m.value}</p>
                 <p className="mt-1 text-xs leading-snug text-muted-foreground">{m.label}</p>
               </div>
             ))}
@@ -99,7 +99,7 @@ function JobDetails({ job, index }: { job: Job; index: number }) {
         {job.roles.map((role) => (
           <div key={role.title} className="glass rounded-3xl p-6 md:p-8">
             <div className="mb-6 flex flex-col justify-between gap-2 border-b border-border pb-5 md:flex-row md:items-end">
-              <h4 className="font-display text-xl font-semibold text-foreground md:text-2xl">{role.title}</h4>
+              <h4 className="font-display text-xl font-medium text-foreground md:text-2xl">{role.title}</h4>
               {job.roles.length > 1 && (
                 <span className="font-mono text-xs text-subtle">
                   {role.date} · {role.tenure}
@@ -181,7 +181,7 @@ export default function Experience() {
   return (
     <div className="py-28 md:py-36">
       <SectionHeading
-        index="03"
+        index="02"
         eyebrow="Experience"
         title={
           <>
@@ -201,7 +201,7 @@ export default function Experience() {
 
       {/* Sticky journey bar */}
       <div className="sticky top-20 z-30 mb-14 md:top-24">
-        <div className="rounded-3xl border border-border bg-surface/95 px-5 backdrop-blur-xl pt-4 pb-3 shadow-[0_20px_60px_-24px_var(--color-shadow)] md:px-7 md:pt-5">
+        <div className="rounded-3xl border border-border bg-surface/95 px-5 pt-4 pb-3 shadow-[0_20px_60px_-24px_var(--color-shadow)] md:px-7 md:pt-5">
           <div className="mb-4 flex items-center justify-between gap-4">
             <div className="flex min-w-0 items-center gap-3">
               <span className="relative flex h-2 w-2 shrink-0">
@@ -214,7 +214,7 @@ export default function Experience() {
                   initial={{ y: "100%", opacity: 0 }}
                   animate={{ y: "0%", opacity: 1 }}
                   transition={{ duration: 0.45, ease: EASE }}
-                  className="truncate font-display text-base font-semibold text-foreground md:text-lg"
+                  className="truncate font-display text-base font-medium text-foreground md:text-lg"
                 >
                   {current.short}
                   <span className="ml-2 hidden font-sans text-sm font-normal text-muted-foreground sm:inline">
@@ -254,7 +254,7 @@ export default function Experience() {
             })}
             <motion.div
               style={{ width: fill }}
-              className="pointer-events-none absolute top-1/2 left-0 h-1 -translate-y-1/2 rounded-full bg-gradient-to-r from-primary via-violet to-cyan shadow-[0_0_16px_rgba(163,41,61,0.7)]"
+              className="pointer-events-none absolute top-1/2 left-0 h-1 -translate-y-1/2 rounded-full bg-gradient-to-r from-primary via-violet to-cyan shadow-[0_0_16px_rgba(42,79,143,0.7)]"
             />
             {journey.map((j, i) => (
               <span
@@ -312,7 +312,7 @@ export default function Experience() {
               <p
                 aria-hidden
                 className={cn(
-                  "mb-6 font-display text-5xl font-bold tracking-tight transition-colors duration-500 md:text-7xl",
+                  "mb-6 font-display text-5xl font-normal tracking-tight transition-colors duration-500 md:text-7xl",
                   // Outlined, not faded fill: decorative, and never a low-contrast block of text.
                   "text-transparent",
                   i === active

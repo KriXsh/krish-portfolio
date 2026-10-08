@@ -33,7 +33,7 @@ export default function CaseStudiesPage() {
         ]}
       />
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[36rem] grid-lines mask-fade-b opacity-60" />
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[44rem] bg-[radial-gradient(ellipse_50%_55%_at_35%_0%,rgba(163,41,61,0.24),transparent_70%)]" />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[44rem] bg-[radial-gradient(ellipse_50%_55%_at_35%_0%,rgba(42,79,143,0.24),transparent_70%)]" />
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[44rem] grain opacity-[0.05] mix-blend-overlay" />
 
       <div className="relative mx-auto max-w-6xl">
@@ -42,7 +42,7 @@ export default function CaseStudiesPage() {
             <p className="mb-4 eyebrow text-champagne uppercase"><span className="text-rose">✦</span> Case studies</p>
           </Reveal>
           <Reveal delay={0.05}>
-            <h1 className="font-display text-display-lg font-bold text-foreground">
+            <h1 className="font-display text-display-lg font-normal text-foreground">
               How the work <span className="text-gradient italic">actually got done.</span>
             </h1>
             <p className="mt-2 font-script text-3xl text-rose md:text-4xl">the stories behind the systems</p>

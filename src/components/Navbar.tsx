@@ -121,10 +121,10 @@ export default function Navbar() {
         <nav
           className={cn(
             "flex w-full max-w-6xl items-center justify-between rounded-full px-3 py-2 pl-5 transition-all duration-500",
-            scrolled ? "glass bg-background/70 shadow-[0_10px_40px_-12px_var(--color-shadow)]" : "border border-transparent",
+            scrolled ? "glass glass-frost bg-background/70 shadow-[0_10px_40px_-12px_var(--color-shadow)]" : "border border-transparent",
           )}
         >
-          <NavAnchor href={onHome ? "#top" : "/"} aria-label="krish.dev, home" className="font-display text-lg font-bold tracking-tight text-foreground">
+          <NavAnchor href={onHome ? "#top" : "/"} aria-label="krish.dev, home" className="font-display text-lg font-normal tracking-tight text-foreground">
             krish<span className="text-gradient">.dev</span>
           </NavAnchor>
 
@@ -200,7 +200,7 @@ export default function Navbar() {
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
-              className="glass rounded-full p-2.5 text-foreground lg:hidden"
+              className="glass glass-frost rounded-full p-2.5 text-foreground lg:hidden"
               onClick={() => setIsOpen((v) => !v)}
             >
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -209,7 +209,7 @@ export default function Navbar() {
         </nav>
       </motion.header>
 
-      {/* Mobile menu: a wine-glass card that blooms out of the menu button (clip-path,
+      {/* Mobile menu: a navy-glass card that blooms out of the menu button (clip-path,
           no filters, so it stays smooth on phones) over a soft scrim. */}
       <AnimatePresence>
         {isOpen && (
@@ -221,7 +221,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
-            className="fixed inset-0 z-40 bg-[#0b0708]/55 lg:hidden"
+            className="fixed inset-0 z-40 bg-[#070a11]/55 lg:hidden"
           />
         )}
         {isOpen && (
@@ -237,11 +237,11 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -8, clipPath: "circle(0% at 92% 0%)", transition: { duration: 0.38, ease: [0.4, 0, 1, 1] } }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             data-lenis-prevent
-            className="fixed inset-x-3 top-[5.25rem] z-40 flex max-h-[calc(100dvh-6.25rem)] flex-col overflow-x-hidden overflow-y-auto rounded-[1.75rem] border border-[#e8a9a1]/15 bg-[linear-gradient(165deg,rgba(58,16,26,0.8),rgba(18,10,12,0.9))] px-6 pt-6 pb-7 shadow-[0_40px_120px_-30px_rgba(0,0,0,0.85),inset_0_1px_0_rgba(255,236,228,0.08)] backdrop-blur-2xl backdrop-saturate-150 lg:hidden"
+            className="fixed inset-x-3 top-[5.25rem] z-40 flex max-h-[calc(100dvh-6.25rem)] flex-col overflow-x-hidden overflow-y-auto rounded-[1.75rem] border border-[#8fb3e8]/15 bg-[linear-gradient(165deg,rgba(15,29,56,0.8),rgba(9,13,22,0.9))] px-6 pt-6 pb-7 shadow-[0_40px_120px_-30px_rgba(0,0,0,0.85),inset_0_1px_0_rgba(226,232,240,0.08)] backdrop-blur-2xl backdrop-saturate-150 lg:hidden"
           >
             {/* glass light, grain, petals */}
-            <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_40%_at_100%_0%,rgba(200,71,92,0.3),transparent_70%),radial-gradient(ellipse_60%_35%_at_0%_100%,rgba(227,196,171,0.1),transparent_70%)]" />
-            <div aria-hidden className="pointer-events-none absolute inset-0 grain opacity-[0.06] mix-blend-overlay" />
+            <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_40%_at_100%_0%,rgba(74,116,196,0.3),transparent_70%),radial-gradient(ellipse_60%_35%_at_0%_100%,rgba(228,207,168,0.1),transparent_70%)]" />
+            <div aria-hidden className="pointer-events-none absolute inset-0 grain opacity-[0.04]" />
             <Petals
               name="menu"
               className="opacity-60"
@@ -258,7 +258,7 @@ export default function Navbar() {
                   className="absolute -top-6 h-4 w-3.5 animate-kai-petal opacity-0"
                   style={{ left: `${left}%`, animationDelay: `${0.1 + i * 0.16}s`, "--kai-spin": `${i % 2 ? -1 : 1}` } as React.CSSProperties}
                 >
-                  <path d="M60 146C26 132 4 98 8 62 12 28 36 4 62 4c28 0 52 26 50 60-2 38-22 70-52 82Z" fill={i % 2 ? "#c8475c" : "#8e2236"} />
+                  <path d="M60 146C26 132 4 98 8 62 12 28 36 4 62 4c28 0 52 26 50 60-2 38-22 70-52 82Z" fill={i % 2 ? "#4a74c4" : "#1e3a6e"} />
                 </svg>
               ))}
             </div>
@@ -291,13 +291,13 @@ export default function Navbar() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 0.55 }}
-              className="relative mt-5 flex shrink-0 flex-wrap items-center justify-between gap-4 border-t border-[#e8a9a1]/10 pt-5"
+              className="relative mt-5 flex shrink-0 flex-wrap items-center justify-between gap-4 border-t border-[#8fb3e8]/10 pt-5"
             >
               <a
                 href={RESUME_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-rose to-primary px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_32px_-12px_rgba(163,41,61,0.85)]"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-rose to-primary px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_32px_-12px_rgba(42,79,143,0.85)]"
               >
                 <FileText className="h-4 w-4" /> View resume
               </a>
@@ -309,7 +309,7 @@ export default function Navbar() {
                     target={href.startsWith("mailto:") ? undefined : "_blank"}
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="flex h-11 w-11 items-center justify-center rounded-full border border-[#e8a9a1]/15 bg-white/[0.04] text-muted-foreground transition-colors hover:border-rose/50 hover:text-foreground"
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-[#8fb3e8]/15 bg-white/[0.04] text-muted-foreground transition-colors hover:border-rose/50 hover:text-foreground"
                   >
                     <Icon className="h-4 w-4" />
                   </a>

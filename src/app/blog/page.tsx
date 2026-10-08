@@ -42,7 +42,7 @@ export default function BlogPage() {
         ]}
       />
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[36rem] grid-lines mask-fade-b opacity-70" />
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[44rem] bg-[radial-gradient(ellipse_50%_55%_at_35%_0%,rgba(163,41,61,0.24),transparent_70%),radial-gradient(ellipse_40%_45%_at_100%_15%,rgba(192,132,87,0.12),transparent_70%)]" />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[44rem] bg-[radial-gradient(ellipse_50%_55%_at_35%_0%,rgba(42,79,143,0.24),transparent_70%),radial-gradient(ellipse_40%_45%_at_100%_15%,rgba(192,132,87,0.12),transparent_70%)]" />
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[44rem] grain opacity-[0.05] mix-blend-overlay" />
 
       <div className="relative mx-auto max-w-6xl">
@@ -52,7 +52,7 @@ export default function BlogPage() {
             <span className="h-px w-10 bg-gradient-to-r from-rose to-transparent" />
             {posts.length} posts
           </p>
-          <h1 className="font-display text-display-lg font-bold text-foreground">
+          <h1 className="font-display text-display-lg font-normal text-foreground">
             Notes from the <span className="text-gradient italic">engine room.</span>
           </h1>
           <p className="mt-2 font-script text-3xl text-rose md:text-4xl">scribbled between deploys</p>

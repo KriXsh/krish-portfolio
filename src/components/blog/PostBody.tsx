@@ -21,8 +21,8 @@ function Heading({ level, children }: { level: 2 | 3; children: ReactNode }) {
       id={id}
       className={
         level === 2
-          ? "group mt-14 mb-5 scroll-mt-28 font-display text-2xl leading-tight font-bold text-foreground md:text-3xl"
-          : "group mt-10 mb-4 scroll-mt-28 font-display text-xl font-semibold text-foreground"
+          ? "group mt-14 mb-5 scroll-mt-28 font-display text-2xl leading-tight font-normal text-foreground md:text-3xl"
+          : "group mt-10 mb-4 scroll-mt-28 font-display text-xl font-medium text-foreground"
       }
     >
       <a href={`#${id}`} className="inline-flex items-center gap-2 no-underline">

@@ -30,7 +30,7 @@ function SectionTitle({ index, eyebrow, title }: { index: string; eyebrow: strin
         {eyebrow}
         <span className="text-rose">✦</span>
       </p>
-      <h2 className="font-display text-display-md font-bold text-foreground">{title}</h2>
+      <h2 className="font-display text-display-md font-normal text-foreground">{title}</h2>
     </div>
   );
 }
@@ -70,7 +70,7 @@ export default async function ProjectsPage() {
         ]}
       />
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[40rem] grid-lines mask-fade-b opacity-60" />
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[48rem] bg-[radial-gradient(ellipse_50%_55%_at_25%_0%,rgba(163,41,61,0.22),transparent_70%),radial-gradient(ellipse_40%_45%_at_95%_20%,rgba(192,132,87,0.12),transparent_70%)]" />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[48rem] bg-[radial-gradient(ellipse_50%_55%_at_25%_0%,rgba(42,79,143,0.22),transparent_70%),radial-gradient(ellipse_40%_45%_at_95%_20%,rgba(192,132,87,0.12),transparent_70%)]" />
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[48rem] grain opacity-[0.05] mix-blend-overlay" />
 
       <div className="relative mx-auto max-w-6xl">
@@ -91,7 +91,7 @@ export default async function ProjectsPage() {
           )}
           <div className="text-center lg:text-left">
             <p className="mb-3 eyebrow text-champagne uppercase"><span className="text-rose">✦</span> Projects · Open source</p>
-            <h1 className="font-display text-display-lg font-bold text-foreground">
+            <h1 className="font-display text-display-lg font-normal text-foreground">
               Everything I&apos;ve <span className="text-gradient italic">shipped.</span>
             </h1>
             <p className="mt-2 font-script text-3xl text-rose md:text-4xl">a garden of things I&apos;ve grown</p>
@@ -118,7 +118,7 @@ export default async function ProjectsPage() {
             <div key={v} className="group relative overflow-hidden rounded-2xl border border-border bg-surface/80 p-5 transition-colors duration-500 hover:border-rose/40">
               <RoseCorner className="absolute top-3 right-3" />
               <Icon className="mb-4 h-4 w-4 text-gh-accent" />
-              <dt className="font-display text-3xl font-bold text-foreground">{k}</dt>
+              <dt className="font-display text-3xl font-normal text-foreground">{k}</dt>
               <dd className="mt-1 font-mono text-[10px] tracking-widest text-subtle uppercase">{v}</dd>
             </div>
           ))}

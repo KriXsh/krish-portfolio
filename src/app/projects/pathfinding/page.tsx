@@ -33,7 +33,7 @@ export default function PathfindingPage() {
               <span className="h-px w-10 bg-gradient-to-r from-primary to-transparent" />
               Graph algorithms
             </p>
-            <h1 className="font-display text-display-md font-bold text-foreground">
+            <h1 className="font-display text-display-md font-normal text-foreground">
               Pathfinding <span className="text-gradient">Visualizer</span>
             </h1>
             <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">

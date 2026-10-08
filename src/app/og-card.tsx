@@ -29,14 +29,14 @@ export function renderOgCard({ eyebrow, title, subtitle }: { eyebrow: string; ti
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              background: "linear-gradient(135deg, #a3293d, #7a1f2f 55%, #d9a77f)",
+              background: "linear-gradient(135deg, #2a4f8f, #1d3766 55%, #d9a77f)",
               fontSize: 32,
               fontWeight: 800,
             }}
           >
             K
           </div>
-          <div style={{ fontSize: 26, color: "#e8b4ab", letterSpacing: 4, textTransform: "uppercase" }}>{eyebrow}</div>
+          <div style={{ fontSize: 26, color: "#b9cdec", letterSpacing: 4, textTransform: "uppercase" }}>{eyebrow}</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div style={{ fontSize: 76, fontWeight: 800, lineHeight: 1.05, letterSpacing: -2, maxWidth: 1000 }}>{title}</div>
@@ -50,7 +50,7 @@ export function renderOgCard({ eyebrow, title, subtitle }: { eyebrow: string; ti
               </div>
             ))}
           </div>
-          <div style={{ display: "flex", color: "#e8b4ab" }}>{new URL(SITE_URL).host}</div>
+          <div style={{ display: "flex", color: "#b9cdec" }}>{new URL(SITE_URL).host}</div>
         </div>
       </div>
     ),

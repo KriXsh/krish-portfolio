@@ -8,10 +8,10 @@ import { type Controller, opsPerSecond, type UiSnapshot } from "./engine/control
 type BarState = "idle" | "compare" | "swap" | "pivot" | "sorted";
 
 const STATE_CLASS: Record<Exclude<BarState, "idle">, string> = {
-  compare: "bg-gradient-to-t from-[#a8754d] to-sf-compare shadow-[0_0_18px_-2px_rgb(243_220_203/0.75)]",
-  swap: "bg-gradient-to-t from-[#8e2236] to-sf-swap shadow-[0_0_18px_-2px_rgb(255_92_116/0.85)]",
-  pivot: "bg-gradient-to-t from-[#9e4a6a] to-sf-pivot shadow-[0_0_16px_-2px_rgb(240_166_160/0.8)]",
-  sorted: "bg-gradient-to-t from-[#a8754d] to-sf-sorted",
+  compare: "bg-gradient-to-t from-[#5b86d6] to-sf-compare shadow-[0_0_18px_-2px_rgb(242_245_250/0.75)]",
+  swap: "bg-gradient-to-t from-[#a8754d] to-sf-swap shadow-[0_0_18px_-2px_rgb(255_184_107/0.85)]",
+  pivot: "bg-gradient-to-t from-[#1e3a6e] to-sf-pivot shadow-[0_0_16px_-2px_rgb(159_208_255/0.8)]",
+  sorted: "bg-gradient-to-t from-[#a8875a] to-sf-sorted shadow-[0_0_12px_-4px_rgb(228_207_168/0.6)]",
 };
 
 const LABEL_CLASS: Record<BarState, string> = {
@@ -22,11 +22,12 @@ const LABEL_CLASS: Record<BarState, string> = {
   sorted: "text-sf-sorted",
 };
 
-/** Unsorted bars shade from deep wine (short) to champagne (tall), so order
-    shows at a glance in the site's rose palette. */
+/** Unsorted bars shade from deep navy (short) to sapphire/ice (tall), so order
+    shows at a glance; compare, swap, pivot and sorted pop in white, amber, sky
+    and champagne on top of the blues. */
 const idleFill = (t: number) => {
-  const h = (345 + 40 * t) % 360;
-  return `linear-gradient(to top, hsl(${h} 55% ${26 + 22 * t}%), hsl(${h} 65% ${44 + 30 * t}%))`;
+  const h = 218 - 4 * t;
+  return `linear-gradient(to top, hsl(${h} 58% ${16 + 14 * t}%), hsl(${h} 62% ${30 + 30 * t}%))`;
 };
 
 function barState(ui: UiSnapshot, i: number): BarState {

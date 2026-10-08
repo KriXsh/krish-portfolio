@@ -6,7 +6,7 @@ import { useClientValue } from "@/lib/use-client-value";
 
 const readFinePointer = () => window.matchMedia("(pointer: fine)").matches;
 
-/** A soft wine-coloured light that trails the mouse. Fine pointers only.
+/** A soft navy light that trails the mouse. Fine pointers only.
     The glow is one fixed-size layer moved with a transform, so following the
     cursor never repaints the page (animating a full-screen gradient would). */
 export default function CursorGlow() {
@@ -31,7 +31,7 @@ export default function CursorGlow() {
     <motion.div
       aria-hidden
       style={{ x: sx, y: sy }}
-      className="pointer-events-none fixed top-0 left-0 z-[1] h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(163,41,61,0.10),transparent_60%)] will-change-transform"
+      className="pointer-events-none fixed top-0 left-0 z-[1] h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(42,79,143,0.10),transparent_60%)] will-change-transform"
     />
   );
 }

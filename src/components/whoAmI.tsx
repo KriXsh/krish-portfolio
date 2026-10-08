@@ -1,48 +1,55 @@
 "use client";
 
-import { useRef } from "react";
-import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Code2, Rocket, Sparkles, Terminal } from "lucide-react";
+import { ArrowUpRight, Gauge, Rocket, ShieldCheck, Workflow } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { TiltCard } from "@/components/ui/tilt-card";
+import { JourneyClover } from "@/components/JourneyClover";
 
-const highlights = [
+/** How I work - each principle opens the deep dive that shows it in practice
+    (a case study or a blog post). The numbers live in Experience, not here. */
+const principles = [
   {
-    title: "Full-Stack Architect",
-    description: "End-to-end products from React/Next.js frontends to scalable Node.js and Python backends.",
-    icon: Code2,
-    glow: "rgba(163,41,61,0.25)",
-  },
-  {
-    title: "AI/ML Engineer",
-    description: "Intelligent systems with LLMs, RAG architectures, agents and ML pipelines on SageMaker & Bedrock.",
-    icon: Sparkles,
-    glow: "rgba(122,31,47,0.25)",
-  },
-  {
-    title: "Cloud & DevOps",
-    description: "Shipping on AWS, orchestrating with Kubernetes and automating CI/CD from commit to production.",
+    title: "Production over demos",
+    description: "AI that ships and holds up under real users, not just a notebook that impresses once.",
+    proof: "Voice AI: speech in, speech out",
+    where: "Case study",
+    href: "/case-studies/ironbook-voice-ai",
     icon: Rocket,
+    glow: "rgba(42,79,143,0.25)",
+  },
+  {
+    title: "Measure, then optimise",
+    description: "Profile before refactoring. Numbers before opinions, so the fix lands where it matters.",
+    proof: "A secure, fast API platform for fintech products",
+    where: "Case study",
+    href: "/case-studies/invincible-ocean-api-platform",
+    icon: Gauge,
+    glow: "rgba(29,55,102,0.25)",
+  },
+  {
+    title: "Security is architecture",
+    description: "Access control designed in from the first schema, not bolted on before launch.",
+    proof: "RBAC done right: roles, permissions, JWTs and least privilege",
+    where: "Blog",
+    href: "/blog/rbac-done-right",
+    icon: ShieldCheck,
     glow: "rgba(217,167,127,0.25)",
   },
   {
-    title: "System Designer",
-    description: "High-throughput, fault-tolerant, event-driven systems built for enterprise scale.",
-    icon: Terminal,
-    glow: "rgba(232,180,171,0.22)",
+    title: "Automate the path to prod",
+    description: "If a person does it twice, a pipeline does it next. Releases should be boring.",
+    proof: "Zero-downtime deploys: from a single VM to Kubernetes",
+    where: "Blog",
+    href: "/blog/zero-downtime-deploys",
+    icon: Workflow,
+    glow: "rgba(185,205,236,0.22)",
   },
 ];
 
 const values = ["Innovation", "Quality", "Scalability", "User-Centric"];
 
 export default function WhoAmI() {
-  const photoRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: photoRef, offset: ["start end", "end start"] });
-  const imgY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
-  const frameRotate = useTransform(scrollYProgress, [0, 1], [-6, 6]);
-
   return (
     <div className="relative py-28 md:py-36">
       <SectionHeading
@@ -58,37 +65,9 @@ export default function WhoAmI() {
       />
 
       <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
-        {/* Portrait with parallax */}
+        {/* Career journey: a five-leaf clover, one leaf per company, 2023 -> now */}
         <Reveal className="lg:col-span-5">
-          <div ref={photoRef} className="relative mx-auto aspect-[4/5] w-full max-w-sm">
-            <motion.div
-              style={{ rotate: frameRotate }}
-              className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-primary/45 via-violet/25 to-champagne/20 blur-2xl"
-            />
-            <div className="glass relative h-full overflow-hidden rounded-[2rem] p-2">
-              <div className="relative h-full overflow-hidden rounded-[1.6rem]">
-                {/* Parallax on a wrapper so next/image can serve a resized, modern-format
-                    version instead of the 3024×4032 original (~1.1 MB). */}
-                <motion.div style={{ y: imgY }} className="absolute inset-0 h-[124%] w-full -translate-y-[12%]">
-                  <Image
-                    src="/krish-portrait.webp"
-                    alt="Krishnendu Ghosal seated against a wine-red wall, holding a red rose"
-                    fill
-                    sizes="(min-width: 1024px) 384px, 90vw"
-                    className="object-cover"
-                  />
-                </motion.div>
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-                <div className="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-2xl glass px-4 py-3">
-                  <div>
-                    <p className="font-display text-sm font-semibold text-foreground">Krishnendu Ghosal</p>
-                    <p className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Open to remote</p>
-                  </div>
-                  <span className="flex h-2 w-2 rounded-full bg-glow shadow-[0_0_12px_2px_rgba(232,169,161,0.6)]" />
-                </div>
-              </div>
-            </div>
-          </div>
+          <JourneyClover />
         </Reveal>
 
         {/* Story */}
@@ -122,9 +101,14 @@ export default function WhoAmI() {
         </div>
       </div>
 
-      <RevealGroup className="mt-24 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {highlights.map(({ title, description, icon: Icon, glow }, i) => (
-          <RevealItem key={title}>
+      <Reveal className="mt-24">
+        <p className="eyebrow text-subtle">
+          How I work <span className="text-rose">✦</span>
+        </p>
+      </Reveal>
+      <RevealGroup className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {principles.map(({ title, description, proof, where, href, icon: Icon, glow }, i) => (
+          <RevealItem key={title} className="h-full">
             <TiltCard glowColor={glow} className="p-7">
               <div className="flex h-full flex-col">
                 <div className="mb-10 flex items-center justify-between">
@@ -133,8 +117,18 @@ export default function WhoAmI() {
                   </span>
                   <span className="font-mono text-xs text-subtle">0{i + 1}</span>
                 </div>
-                <h3 className="font-display text-xl font-semibold text-foreground">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{description}</p>
+                <h3 className="font-display text-xl font-medium text-foreground">{title}</h3>
+                <p className="mt-3 mb-6 text-sm leading-relaxed text-muted-foreground">{description}</p>
+                <a
+                  href={href}
+                  className="group/proof mt-auto block border-t border-border pt-4"
+                >
+                  <span className="block text-sm leading-snug text-champagne">{proof}</span>
+                  <span className="mt-1.5 inline-flex items-center gap-1 font-mono text-[10px] tracking-widest text-subtle uppercase transition-colors group-hover/proof:text-foreground">
+                    Read the {where.toLowerCase()}
+                    <ArrowUpRight className="h-3 w-3 transition-transform duration-300 group-hover/proof:rotate-45" />
+                  </span>
+                </a>
               </div>
             </TiltCard>
           </RevealItem>

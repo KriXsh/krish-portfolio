@@ -1,7 +1,7 @@
 // Real recommendations only - copy them from your LinkedIn profile
 // (Profile → Recommendations → Received) with the author's permission.
 // The homepage section and /testimonials page stay hidden while this is empty.
-// Order = display order; the homepage previews the first three.
+// Order = display order (the homepage spotlight starts with the first one).
 
 export type Testimonial = {
   name: string;
@@ -22,6 +22,15 @@ export type Testimonial = {
 };
 
 export const TESTIMONIALS: Testimonial[] = [
+  // Direct manager first.
+  {
+    name: "Naresh Ahirwar",
+    headline: "🇮🇳 Lead Engineer @Invincible | System Design Enthusiast | Microservices | AWS | ELK | Redis | Docker",
+    relationship: "managed Krishnendu directly",
+    date: "December 21, 2024",
+    text: "Had a great time working with Krish. He's more confident than his code, but he always managed to deliver the features on his own. All the best, buddy! Enjoy!",
+    highlight: "Had a great time working with Krish… he always managed to deliver the features on his own.",
+  },
   {
     name: "Shriyansh Agarwal",
     headline: "Software Engineer II | Crafting Reliable & Scalable Products | AI/ML, Cloud & Full Stack",
@@ -57,13 +66,6 @@ export const TESTIMONIALS: Testimonial[] = [
     text: "Krishnendu has a deep inclination towards learning new technologies. In multiple scenarios, he showcased his efforts to optimise the current algorithms and architecture of the projects he's working on.\n\nAnyhow, as a backend developer, he is diligent and hard-working, a great hustler. As it is his initial stage of his career, he has been trying his level best to explore new technologies, code architectures, optimise the algorithms in terms of time complexity.\n\nWith his continuous efforts, I deeply believe that he is a great asset to the company, a great team-player, and most importantly fun to work around with.",
     highlight:
       "In multiple scenarios, he showcased his efforts to optimise the current algorithms and architecture of the projects he's working on.",
-  },
-  {
-    name: "Naresh Ahirwar",
-    headline: "🇮🇳 Lead Engineer @Invincible | System Design Enthusiast | Microservices | AWS | ELK | Redis | Docker",
-    relationship: "managed Krishnendu directly",
-    date: "December 21, 2024",
-    text: "Had a great time working with Krish. He's more confident than his code, but he always managed to deliver the features on his own. All the best, buddy! Enjoy!",
   },
 ];
 

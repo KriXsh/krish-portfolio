@@ -69,7 +69,7 @@ export default async function CaseStudyPage({ params }: Params) {
             </p>
           </Reveal>
           <Reveal delay={0.05}>
-            <h1 className="font-display text-display-lg font-bold text-foreground">{cs.title}</h1>
+            <h1 className="font-display text-display-lg font-normal text-foreground">{cs.title}</h1>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-5 max-w-3xl text-muted-foreground md:text-lg">{cs.summary}</p>
@@ -85,7 +85,7 @@ export default async function CaseStudyPage({ params }: Params) {
           <RevealGroup className="mb-6 grid grid-cols-2 gap-3 md:grid-cols-4">
             {cs.metrics.map((m) => (
               <RevealItem key={m.label} className="rounded-2xl border border-border bg-surface p-5">
-                <p className="font-display text-3xl font-bold text-gradient md:text-4xl">{m.value}</p>
+                <p className="font-display text-3xl font-normal text-gradient md:text-4xl">{m.value}</p>
                 <p className="mt-1 text-xs leading-snug text-muted-foreground">{m.label}</p>
               </RevealItem>
             ))}
@@ -108,7 +108,7 @@ export default async function CaseStudyPage({ params }: Params) {
                   {String(n + 1).padStart(2, "0")}
                 </span>
                 <div>
-                  <h3 className="font-display text-lg font-semibold text-foreground">{step.title}</h3>
+                  <h3 className="font-display text-lg font-medium text-foreground">{step.title}</h3>
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground md:text-[15px]">{step.detail}</p>
                 </div>
               </li>
@@ -157,7 +157,7 @@ export default async function CaseStudyPage({ params }: Params) {
             <span className="flex items-center gap-2 font-mono text-[11px] tracking-wider text-subtle uppercase">
               <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" /> Previous
             </span>
-            <span className="mt-2 block font-display font-semibold text-foreground">{prev.title}</span>
+            <span className="mt-2 block font-display font-medium text-foreground">{prev.title}</span>
             <span className="text-xs text-muted-foreground">{prev.company}</span>
           </Link>
           <Link
@@ -167,7 +167,7 @@ export default async function CaseStudyPage({ params }: Params) {
             <span className="flex items-center justify-end gap-2 font-mono text-[11px] tracking-wider text-subtle uppercase">
               Next <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
             </span>
-            <span className="mt-2 block font-display font-semibold text-foreground">{next.title}</span>
+            <span className="mt-2 block font-display font-medium text-foreground">{next.title}</span>
             <span className="text-xs text-muted-foreground">{next.company}</span>
           </Link>
         </nav>
@@ -176,7 +176,7 @@ export default async function CaseStudyPage({ params }: Params) {
         <div className="relative mt-10 overflow-hidden rounded-[2rem] border border-border bg-surface p-8 text-center md:p-12">
           <div aria-hidden className="pointer-events-none absolute -bottom-40 left-1/2 h-72 w-[36rem] -translate-x-1/2 rounded-full bg-primary/20 blur-[110px]" />
           <div className="relative">
-            <h2 className="font-display text-display-md font-bold text-foreground">
+            <h2 className="font-display text-display-md font-normal text-foreground">
               Building something <span className="text-gradient">similar?</span>
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-muted-foreground">Tell me about it. I&apos;m happy to talk architecture, trade-offs and timelines.</p>

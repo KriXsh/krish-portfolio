@@ -215,7 +215,7 @@ export function AlgorithmPanel({ ui }: { ui: UiSnapshot }) {
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.2 }}
         >
-          <h2 className="font-display text-lg font-bold text-foreground">{a.name}</h2>
+          <h2 className="font-display text-lg font-normal text-foreground">{a.name}</h2>
           <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{a.blurb}</p>
           <div className="mt-3 flex flex-wrap gap-1.5">
             <span
@@ -223,7 +223,7 @@ export function AlgorithmPanel({ ui }: { ui: UiSnapshot }) {
                 "rounded-md border px-2 py-0.5 font-mono text-[10.5px]",
                 a.stable
                   ? "border-champagne/30 text-champagne"
-                  : "border-rose-500/30 text-rose-600 dark:text-rose-400",
+                  : "border-ink/15 text-subtle",
               )}
             >
               {a.stable ? "stable" : "unstable"}
@@ -329,8 +329,8 @@ export function CustomInput({ controller }: { controller: Controller }) {
             className={cn(
               "h-10 w-full rounded-xl border bg-ink/[0.03] px-3 font-mono text-sm text-foreground outline-none transition-all placeholder:text-subtle",
               error
-                ? "border-rose-400/50 focus:border-rose-400"
-                : "border-border focus:border-primary/60 focus:shadow-[0_0_0_4px_rgb(163_41_61/0.12)]",
+                ? "border-[#ffb86b]/50 focus:border-[#ffb86b]"
+                : "border-border focus:border-primary/60 focus:shadow-[0_0_0_4px_rgb(42_79_143/0.12)]",
             )}
           />
         </label>
@@ -343,7 +343,7 @@ export function CustomInput({ controller }: { controller: Controller }) {
           <CornerDownLeft aria-hidden className="size-3.5" />
         </motion.button>
       </form>
-      <p id="custom-hint" className={cn("mt-2 text-xs", error ? "text-rose-600 dark:text-rose-400" : "text-subtle")}>
+      <p id="custom-hint" className={cn("mt-2 text-xs", error ? "text-[#c2771f] dark:text-[#ffb86b]" : "text-subtle")}>
         {error ?? `Commas or spaces between values, up to ${MAX_SIZE}. Decimals and negatives work.`}
       </p>
       <div className="mt-3 flex flex-wrap gap-1.5">

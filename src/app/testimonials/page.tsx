@@ -27,7 +27,7 @@ export default function TestimonialsPage() {
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[30rem] grid-lines mask-fade-b opacity-60" />
       <div className="relative mx-auto max-w-6xl">
         <p className="mb-3 eyebrow text-subtle uppercase">Recommendations</p>
-        <h1 className="font-display text-display-lg font-bold text-foreground">
+        <h1 className="font-display text-display-lg font-normal text-foreground">
           In their <span className="text-gradient">words.</span>
         </h1>
         <p className="mt-4 max-w-2xl text-muted-foreground md:text-lg">

@@ -3,23 +3,23 @@
 
 .blog-code {
   --hl-comment: #6b7280;
-  --hl-keyword: #8f2436;
+  --hl-keyword: #1e3a6e;
   --hl-string: #047857;
   --hl-number: #b45309;
   --hl-title: #1d4ed8;
   --hl-attr: #0e7490;
-  --hl-meta: #be185d;
+  --hl-meta: #2a5bb8;
   --hl-text: #1f2937;
 }
 
 html.dark .blog-code {
   --hl-comment: #7d8aa0;
-  --hl-keyword: #e8b4ab;
+  --hl-keyword: #b9cdec;
   --hl-string: #86efac;
   --hl-number: #fdba74;
   --hl-title: #93c5fd;
   --hl-attr: #e6c3a2;
-  --hl-meta: #f9a8d4;
+  --hl-meta: #a9c4ef;
   --hl-text: #e2e8f0;
 }
 

@@ -41,9 +41,9 @@ function BloomingRose({ progress, className }: { progress: MotionValue<number>; 
     <svg viewBox="0 0 160 320" fill="none" aria-hidden className={className}>
       <defs>
         <radialGradient id="footer-rose-fill" cx="45%" cy="40%" r="70%">
-          <stop offset="0%" stopColor="#c8475c" />
-          <stop offset="55%" stopColor="#7a1a2c" />
-          <stop offset="100%" stopColor="#2a0910" />
+          <stop offset="0%" stopColor="#4a74c4" />
+          <stop offset="55%" stopColor="#1d3766" />
+          <stop offset="100%" stopColor="#0a1428" />
         </radialGradient>
       </defs>
 
@@ -107,12 +107,12 @@ export default function Footer() {
 
   return (
     <footer ref={ref} className="relative isolate overflow-hidden border-t border-border bg-surface">
-      {/* Atmosphere: a wine bloom rising from the floor (a gradient, not a blur
+      {/* Atmosphere: a navy bloom rising from the floor (a gradient, not a blur
           filter, so it is free to scroll past on phones) and the hero's grain. */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_100%,rgba(163,41,61,0.32),rgba(94,20,34,0.12)_45%,transparent_75%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_35%_at_85%_10%,rgba(227,196,171,0.07),transparent_70%)]" />
-        <div className="absolute inset-0 grain opacity-[0.05] mix-blend-overlay" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_100%,rgba(42,79,143,0.32),rgba(19,38,74,0.12)_45%,transparent_75%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_35%_at_85%_10%,rgba(228,207,168,0.07),transparent_70%)]" />
+        <div className="absolute inset-0 grain opacity-[0.035]" />
       </div>
 
       <Petals
@@ -164,7 +164,7 @@ export default function Footer() {
               <Magnetic>
                 <Link
                   href={resolve("#contact")}
-                  className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-primary via-rose to-primary bg-[length:200%_auto] px-7 py-4 text-xs font-medium tracking-widest text-white uppercase shadow-[0_18px_40px_-14px_rgba(163,41,61,0.8)] transition-[background-position] duration-700 hover:bg-[position:100%_center]"
+                  className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-primary via-rose to-primary bg-[length:200%_auto] px-7 py-4 text-xs font-medium tracking-widest text-white uppercase shadow-[0_18px_40px_-14px_rgba(42,79,143,0.8)] transition-[background-position] duration-700 hover:bg-[position:100%_center]"
                 >
                   Start a project
                   <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" />
@@ -184,7 +184,7 @@ export default function Footer() {
 
           <BloomingRose
             progress={scrollYProgress}
-            className="mx-auto h-56 w-auto drop-shadow-[0_0_24px_rgba(200,71,92,0.25)] md:h-72 lg:h-[24rem]"
+            className="mx-auto h-56 w-auto drop-shadow-[0_0_24px_rgba(74,116,196,0.25)] md:h-72 lg:h-[24rem]"
           />
         </div>
 
@@ -194,7 +194,7 @@ export default function Footer() {
         {/* --- Links --- */}
         <div className="grid gap-12 pt-12 md:grid-cols-12 md:gap-14">
           <div className="space-y-6 md:col-span-4">
-            <p className="font-display text-3xl font-bold text-foreground">
+            <p className="font-display text-3xl font-normal text-foreground">
               krish<span className="text-gradient">.dev</span>
             </p>
             <p className="max-w-sm text-muted-foreground">
@@ -212,7 +212,7 @@ export default function Footer() {
                   >
                     <span
                       aria-hidden
-                      className="absolute inset-0 scale-50 rounded-full bg-[radial-gradient(circle,rgba(200,71,92,0.28),transparent_70%)] opacity-0 transition-all duration-500 group-hover:scale-125 group-hover:opacity-100"
+                      className="absolute inset-0 scale-50 rounded-full bg-[radial-gradient(circle,rgba(74,116,196,0.28),transparent_70%)] opacity-0 transition-all duration-500 group-hover:scale-125 group-hover:opacity-100"
                     />
                     <Icon className="relative h-4 w-4" />
                   </a>
@@ -258,7 +258,7 @@ export default function Footer() {
           <Magnetic>
             <button
               onClick={toTop}
-              className="group inline-flex items-center gap-2 rounded-full bg-champagne px-6 py-3 text-xs font-medium tracking-widest text-[#1a0a0e] uppercase"
+              className="group inline-flex items-center gap-2 rounded-full bg-champagne px-6 py-3 text-xs font-medium tracking-widest text-[#0a0f1a] uppercase"
             >
               Back to top
               <ArrowUp className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
@@ -267,14 +267,14 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* --- Sign-off word: an outline that fills with wine as you reach the end --- */}
+      {/* --- Sign-off word: an outline that fills with navy as you reach the end --- */}
       <motion.div aria-hidden style={{ y: wordY }} className="pointer-events-none relative -mb-[0.2em] select-none">
         <p className="text-center font-display text-[20vw] leading-none tracking-[-0.02em] text-transparent [-webkit-text-stroke:1px_color-mix(in_srgb,var(--color-champagne)_30%,transparent)]">
           KRISH
         </p>
         <motion.p
           style={reduced ? undefined : { clipPath: pourClip }}
-          className="absolute inset-0 bg-gradient-to-t from-[#5e1422] via-rose to-champagne bg-clip-text text-center font-display text-[20vw] leading-none tracking-[-0.02em] text-transparent"
+          className="absolute inset-0 bg-gradient-to-t from-[#13264a] via-rose to-champagne bg-clip-text text-center font-display text-[20vw] leading-none tracking-[-0.02em] text-transparent"
         >
           KRISH
         </motion.p>

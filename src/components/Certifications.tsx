@@ -102,7 +102,7 @@ function VerifyBadge({ verify }: { verify: NonNullable<Achievement["verify"]> })
   );
 }
 
-/** Credentials: the two Anthropic certifications sealed in wine wax, two
+/** Credentials: the two Anthropic certifications sealed in navy wax, two
     supporting ones as hover-rose cards, the rest behind "View all", and the
     degree as a closing line
     (it keeps the #education anchor that KAI and old links point to). */
@@ -115,10 +115,10 @@ function AllCredentials({ dialogRef }: { dialogRef: React.RefObject<HTMLDialogEl
       ref={dialogRef}
       aria-labelledby="all-credentials-title"
       onClick={(e) => e.target === e.currentTarget && close()}
-      className="m-auto w-[min(40rem,calc(100vw-2rem))] max-h-[85svh] overflow-hidden rounded-[2rem] border border-border bg-surface p-0 text-foreground shadow-[0_40px_120px_-30px_rgba(0,0,0,0.8)] backdrop:bg-[#0b0708]/80 backdrop:backdrop-blur-sm open:animate-[hero-rise_0.5s_var(--ease-out-expo)]"
+      className="m-auto w-[min(40rem,calc(100vw-2rem))] max-h-[85svh] overflow-hidden rounded-[2rem] border border-border bg-surface p-0 text-foreground shadow-[0_40px_120px_-30px_rgba(0,0,0,0.8)] backdrop:bg-[#070a11]/80 backdrop:backdrop-blur-sm open:animate-[hero-rise_0.5s_var(--ease-out-expo)]"
     >
       <div className="relative isolate flex max-h-[85svh] flex-col">
-        <span aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_45%_at_100%_0%,rgba(163,41,61,0.25),transparent_70%)]" />
+        <span aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_45%_at_100%_0%,rgba(42,79,143,0.25),transparent_70%)]" />
         <div className="flex items-start justify-between gap-4 p-6 pb-4 md:p-8 md:pb-5">
           <div>
             <p className="eyebrow text-champagne">
@@ -188,11 +188,11 @@ export default function Certifications() {
           <RevealItem key={title}>
             <div className="group relative isolate flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-surface p-7 transition-colors duration-500 hover:border-rose/40 md:p-9">
               <a href={link} target="_blank" rel="noopener noreferrer" aria-label={`${title} - ${org}`} className="absolute inset-0 z-[1]" />
-              <span aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_60%_at_100%_0%,rgba(163,41,61,0.22),transparent_70%)]" />
-              <span aria-hidden className="absolute inset-0 -z-10 grain opacity-[0.05] mix-blend-overlay" />
+              <span aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_60%_at_100%_0%,rgba(42,79,143,0.22),transparent_70%)]" />
+              <span aria-hidden className="absolute inset-0 -z-10 grain opacity-[0.035]" />
               <WaxSeal label={org.toUpperCase()} className="pointer-events-none absolute top-5 right-5 w-20 md:top-7 md:right-7 md:w-24" />
               <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-rose/30 to-rose/5 ring-1 ring-rose/40">
-                <Icon className="h-7 w-7 text-[#f0a6a0] transition-transform duration-700 ease-out-expo group-hover:rotate-[60deg]" />
+                <Icon className="h-7 w-7 text-[#9dbbe8] transition-transform duration-700 ease-out-expo group-hover:rotate-[60deg]" />
               </span>
               <p className="relative mt-8 eyebrow text-[0.62rem] text-subtle">{type}</p>
               <h3 className="relative mt-2 pr-16 font-display text-2xl leading-tight text-foreground md:pr-0 md:text-[2rem]">{title}</h3>
@@ -219,7 +219,7 @@ export default function Certifications() {
               rel="noopener noreferrer"
               className="group relative isolate flex items-center gap-5 overflow-hidden rounded-3xl border border-border bg-surface p-5 transition-all duration-500 hover:-translate-y-0.5 hover:border-rose/40 md:p-6"
             >
-              <span aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_70%_at_0%_100%,rgba(163,41,61,0.2),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <span aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_70%_at_0%_100%,rgba(42,79,143,0.2),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-ink/[0.04] ring-1 ring-ink/10">
                 <Icon className="h-5 w-5 text-glow" />
               </span>
@@ -252,7 +252,7 @@ export default function Certifications() {
       <Reveal>
         <div id="education" className="mt-8 flex scroll-mt-28 flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[radial-gradient(circle_at_35%_30%,#c8475c,#5e1422)] ring-1 ring-[#e8a9a1]/40">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[radial-gradient(circle_at_35%_30%,#4a74c4,#13264a)] ring-1 ring-[#8fb3e8]/40">
               <GraduationCap className="h-5 w-5 text-[#f6e3d6]" />
             </span>
             <div>
